@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IAppSysMenuDao">
+
+    <resultMap id="AppSysMenu" type="com.earthworm.ipsp.foundation.entity.AppSysMenu">
+        <id property="appSysMenuId" column="app_sys_menu_id"/>
+        <result property="appMenuId" column="app_menu_id"/>
+        <result property="appSysCode" column="app_sys_code"/>
+        <result property="appSysmenuCreatetime" column="app_sysmenu_createtime"/>
+        <result property="appSysmenuModifytime" column="app_sysmenu_modifytime"/>
+        <result property="appSysmenuModifyAuthor" column="app_sysmenu_modify_author"/>
+        <result property="appSysmenuSort" column="app_sysmenu_sort"/>
+        <result property="appSysmenuMenuDescription" column="app_sysmenu_menu_description"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.app_sys_menu_id,
+                ${alias}.app_menu_id,
+                ${alias}.app_sys_code,
+                ${alias}.app_sysmenu_createtime,
+                ${alias}.app_sysmenu_modifytime,
+                ${alias}.app_sysmenu_modify_author,
+                ${alias}.app_sysmenu_sort,
+                ${alias}.app_sysmenu_menu_description,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				app_sys_menu_id,
+				app_menu_id,
+				app_sys_code,
+				app_sysmenu_createtime,
+				app_sysmenu_modifytime,
+				app_sysmenu_modify_author,
+				app_sysmenu_sort,
+				app_sysmenu_menu_description,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">app_sys_menu</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="appSysMenuId != null">
+							app_sys_menu_id,
+						</if>
+						<if test="appMenuId != null">
+							app_menu_id,
+						</if>
+						<if test="appSysCode != null">
+							app_sys_code,
+						</if>
+						<if test="appSysmenuCreatetime != null">
+							app_sysmenu_createtime,
+						</if>
+						<if test="appSysmenuModifytime != null">
+							app_sysmenu_modifytime,
+						</if>
+						<if test="appSysmenuModifyAuthor != null">
+							app_sysmenu_modify_author,
+						</if>
+						<if test="appSysmenuSort != null">
+							app_sysmenu_sort,
+						</if>
+						<if test="appSysmenuMenuDescription != null">
+							app_sysmenu_menu_description,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="appSysMenuId != null" >
+						#{appSysMenuId},
+					</if>
+					<if test="appMenuId != null" >
+						#{appMenuId},
+					</if>
+					<if test="appSysCode != null" >
+						#{appSysCode},
+					</if>
+					<if test="appSysmenuCreatetime != null" >
+						#{appSysmenuCreatetime},
+					</if>
+					<if test="appSysmenuModifytime != null" >
+						#{appSysmenuModifytime},
+					</if>
+					<if test="appSysmenuModifyAuthor != null" >
+						#{appSysmenuModifyAuthor},
+					</if>
+					<if test="appSysmenuSort != null" >
+						#{appSysmenuSort},
+					</if>
+					<if test="appSysmenuMenuDescription != null" >
+						#{appSysmenuMenuDescription},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="appSysMenuId != null" >
+                and ${alias}.app_sys_menu_id=#{appSysMenuId}
+            </if>
+            <if test="appMenuId != null" >
+                and ${alias}.app_menu_id=#{appMenuId}
+            </if>
+            <if test="appSysCode != null" >
+                and ${alias}.app_sys_code=#{appSysCode}
+            </if>
+            <if test="appSysmenuCreatetime != null" >
+                and ${alias}.app_sysmenu_createtime=#{appSysmenuCreatetime}
+            </if>
+            <if test="appSysmenuModifytime != null" >
+                and ${alias}.app_sysmenu_modifytime=#{appSysmenuModifytime}
+            </if>
+            <if test="appSysmenuModifyAuthor != null" >
+                and ${alias}.app_sysmenu_modify_author=#{appSysmenuModifyAuthor}
+            </if>
+            <if test="appSysmenuSort != null" >
+                and ${alias}.app_sysmenu_sort=#{appSysmenuSort}
+            </if>
+            <if test="appSysmenuMenuDescription != null" >
+                and ${alias}.app_sysmenu_menu_description=#{appSysmenuMenuDescription}
+            </if>
+    </sql>
+    <sql id="likeAndCond">
+                    <if test="appSysMenuId != null" >
+                        and ${alias}.app_sys_menu_id ~* #{appSysMenuId}
+                    </if>
+                    <if test="appMenuId != null" >
+                        and ${alias}.app_menu_id ~* #{appMenuId}
+                    </if>
+                    <if test="appSysCode != null" >
+                        and ${alias}.app_sys_code ~* #{appSysCode}
+                    </if>
+                    <if test="appSysmenuCreatetime != null" >
+                        and ${alias}.app_sysmenu_createtime ~* #{appSysmenuCreatetime}
+                    </if>
+                    <if test="appSysmenuModifytime != null" >
+                        and ${alias}.app_sysmenu_modifytime ~* #{appSysmenuModifytime}
+                    </if>
+                    <if test="appSysmenuModifyAuthor != null" >
+                        and ${alias}.app_sysmenu_modify_author ~* #{appSysmenuModifyAuthor}
+                    </if>
+                    <if test="appSysmenuSort != null" >
+                        and ${alias}.app_sysmenu_sort ~* #{appSysmenuSort}
+                    </if>
+                    <if test="appSysmenuMenuDescription != null" >
+                        and ${alias}.app_sysmenu_menu_description ~* #{appSysmenuMenuDescription}
+                    </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="appMenuId != null" >
+					app_menu_id=#{appMenuId},
+				</if>
+				<if test="appSysCode != null" >
+					app_sys_code=#{appSysCode},
+				</if>
+				<if test="appSysmenuCreatetime != null" >
+					app_sysmenu_createtime=#{appSysmenuCreatetime},
+				</if>
+				<if test="appSysmenuModifytime != null" >
+					app_sysmenu_modifytime=#{appSysmenuModifytime},
+				</if>
+				<if test="appSysmenuModifyAuthor != null" >
+					app_sysmenu_modify_author=#{appSysmenuModifyAuthor},
+				</if>
+				<if test="appSysmenuSort != null" >
+					app_sysmenu_sort=#{appSysmenuSort},
+				</if>
+				<if test="appSysmenuMenuDescription != null" >
+					app_sysmenu_menu_description=#{appSysmenuMenuDescription},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="appSysMenuId != null" >
+            OR ${alias}.app_sys_menu_id=#{appSysMenuId}
+        </if>
+        <if test="appMenuId != null" >
+            OR ${alias}.app_menu_id=#{appMenuId}
+        </if>
+        <if test="appSysCode != null" >
+            OR ${alias}.app_sys_code=#{appSysCode}
+        </if>
+        <if test="appSysmenuCreatetime != null" >
+            OR ${alias}.app_sysmenu_createtime=#{appSysmenuCreatetime}
+        </if>
+        <if test="appSysmenuModifytime != null" >
+            OR ${alias}.app_sysmenu_modifytime=#{appSysmenuModifytime}
+        </if>
+        <if test="appSysmenuModifyAuthor != null" >
+            OR ${alias}.app_sysmenu_modify_author=#{appSysmenuModifyAuthor}
+        </if>
+        <if test="appSysmenuSort != null" >
+            OR ${alias}.app_sysmenu_sort=#{appSysmenuSort}
+        </if>
+        <if test="appSysmenuMenuDescription != null" >
+            OR ${alias}.app_sysmenu_menu_description=#{appSysmenuMenuDescription}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.AppSysMenu">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.appSysMenuId},
+                      #{item.appMenuId},
+                      #{item.appSysCode},
+                      #{item.appSysmenuCreatetime},
+                      #{item.appSysmenuModifytime},
+                      #{item.appSysmenuModifyAuthor},
+                      #{item.appSysmenuSort},
+                      #{item.appSysmenuMenuDescription}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  app_sys_menu where app_sys_menu_id= #{appSysMenuId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from app_sys_menu;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.AppSysMenu">
+        delete from app_sys_menu t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from app_sys_menu t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.AppSysMenu">
+        update app_sys_menu
+        <set>
+            <include refid="updCols" />
+        </set>
+        where app_sys_menu_id=#{appSysMenuId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="AppSysMenu">
+        select <include refid="cols"/> from app_sys_menu
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="AppSysMenu">
+        select <include refid="cols"/> from app_sys_menu where app_sys_menu_id=#{appSysMenuId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="AppSysMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from app_sys_menu t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="AppSysMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from app_sys_menu t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(app_sys_menu_id) from app_sys_menu
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.AppSysMenu" resultType="long">
+        select count(t.app_sys_menu_id) from app_sys_menu t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.AppSysMenu" resultType="long">
+        select count(t.app_sys_menu_id) from app_sys_menu t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.AppSysMenu" resultMap="AppSysMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from app_sys_menu t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="AppSysMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from app_sys_menu t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

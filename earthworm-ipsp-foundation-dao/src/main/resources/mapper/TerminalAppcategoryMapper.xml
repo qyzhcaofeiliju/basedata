@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.ITerminalAppcategoryDao">
+
+    <resultMap id="TerminalAppcategory" type="com.earthworm.ipsp.foundation.entity.TerminalAppcategory">
+        <id property="appId" column="app_id"/>
+        <result property="appName" column="app_name"/>
+        <result property="appCategory" column="app_category"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.app_id,
+                ${alias}.app_name,
+                ${alias}.app_category,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				app_id,
+				app_name,
+				app_category,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Terminal_Appcategory</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="appId != null">
+							app_id,
+						</if>
+						<if test="appName != null">
+							app_name,
+						</if>
+						<if test="appCategory != null">
+							app_category,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="appId != null" >
+						#{appId},
+					</if>
+					<if test="appName != null" >
+						#{appName},
+					</if>
+					<if test="appCategory != null" >
+						#{appCategory},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="appId != null" >
+                and ${alias}.app_id=#{appId}
+            </if>
+            <if test="appName != null" >
+                and ${alias}.app_name=#{appName}
+            </if>
+            <if test="appCategory != null" >
+                and ${alias}.app_category=#{appCategory}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="appName != null" >
+					app_name=#{appName},
+				</if>
+				<if test="appCategory != null" >
+					app_category=#{appCategory},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="appId != null" >
+            OR ${alias}.app_id=#{appId}
+        </if>
+        <if test="appName != null" >
+            OR ${alias}.app_name=#{appName}
+        </if>
+        <if test="appCategory != null" >
+            OR ${alias}.app_category=#{appCategory}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="appId != null" >
+            and ${alias}.app_id ~* #{appId}
+        </if>
+        <if test="appName != null" >
+            and ${alias}.app_name ~* #{appName}
+        </if>
+        <if test="appCategory != null" >
+            and CAST(${alias}.app_category AS VARCHAR) ~* CAST(#{appCategory} AS VARCHAR)
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.TerminalAppcategory">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.appId},
+                      #{item.appName},
+                      #{item.appCategory}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Terminal_Appcategory where app_id= #{appId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Terminal_Appcategory;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.TerminalAppcategory">
+        delete from Terminal_Appcategory t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Terminal_Appcategory t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.TerminalAppcategory">
+        update Terminal_Appcategory
+        <set>
+            <include refid="updCols" />
+        </set>
+        where app_id=#{appId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="TerminalAppcategory">
+        select <include refid="cols"/> from Terminal_Appcategory
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="TerminalAppcategory">
+        select <include refid="cols"/> from Terminal_Appcategory where app_id=#{appId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="TerminalAppcategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Appcategory t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="TerminalAppcategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Appcategory t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(app_id) from Terminal_Appcategory
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.TerminalAppcategory" resultType="long">
+        select count(t.app_id) from Terminal_Appcategory t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.TerminalAppcategory" resultType="long">
+        select count(t.app_id) from Terminal_Appcategory t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.TerminalAppcategory" resultMap="TerminalAppcategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Appcategory t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="TerminalAppcategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from terminal_appcategory t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IFixshelfBillinfoDao">
+
+    <resultMap id="FixshelfBillinfo" type="com.earthworm.ipsp.foundation.entity.FixshelfBillinfo">
+        <id property="billId" column="bill_id"/>
+        <result property="billNumber" column="bill_number"/>
+        <result property="billArrivaltime" column="bill_arrivaltime"/>
+        <result property="billStatus" column="bill_status"/>
+        <result property="billSite" column="bill_site"/>
+        <result property="billCategory" column="bill_category"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.bill_id,
+                ${alias}.bill_number,
+                ${alias}.bill_arrivaltime,
+                ${alias}.bill_status,
+                ${alias}.bill_site,
+                ${alias}.bill_category,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				bill_id,
+				bill_number,
+				bill_arrivaltime,
+				bill_status,
+				bill_site,
+				bill_category,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Fixshelf_Billinfo</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="billId != null">
+							bill_id,
+						</if>
+						<if test="billNumber != null">
+							bill_number,
+						</if>
+						<if test="billArrivaltime != null">
+							bill_arrivaltime,
+						</if>
+						<if test="billStatus != null">
+							bill_status,
+						</if>
+						<if test="billSite != null">
+							bill_site,
+						</if>
+						<if test="billCategory != null">
+							bill_category,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="billId != null" >
+						#{billId},
+					</if>
+					<if test="billNumber != null" >
+						#{billNumber},
+					</if>
+					<if test="billArrivaltime != null" >
+						#{billArrivaltime},
+					</if>
+					<if test="billStatus != null" >
+						#{billStatus},
+					</if>
+					<if test="billSite != null" >
+						#{billSite},
+					</if>
+					<if test="billCategory != null" >
+						#{billCategory},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="billId != null" >
+                and ${alias}.bill_id=#{billId}
+            </if>
+            <if test="billNumber != null" >
+                and ${alias}.bill_number=#{billNumber}
+            </if>
+            <if test="billArrivaltime != null" >
+                and ${alias}.bill_arrivaltime=#{billArrivaltime}
+            </if>
+            <if test="billStatus != null" >
+                and ${alias}.bill_status=#{billStatus}
+            </if>
+            <if test="billSite != null" >
+                and ${alias}.bill_site=#{billSite}
+            </if>
+            <if test="billCategory != null" >
+                and ${alias}.bill_category=#{billCategory}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="billNumber != null" >
+					bill_number=#{billNumber},
+				</if>
+				<if test="billArrivaltime != null" >
+					bill_arrivaltime=#{billArrivaltime},
+				</if>
+				<if test="billStatus != null" >
+					bill_status=#{billStatus},
+				</if>
+				<if test="billSite != null" >
+					bill_site=#{billSite},
+				</if>
+				<if test="billCategory != null" >
+					bill_category=#{billCategory},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="billId != null" >
+            OR ${alias}.bill_id=#{billId}
+        </if>
+        <if test="billNumber != null" >
+            OR ${alias}.bill_number=#{billNumber}
+        </if>
+        <if test="billArrivaltime != null" >
+            OR ${alias}.bill_arrivaltime=#{billArrivaltime}
+        </if>
+        <if test="billStatus != null" >
+            OR ${alias}.bill_status=#{billStatus}
+        </if>
+        <if test="billSite != null" >
+            OR ${alias}.bill_site=#{billSite}
+        </if>
+        <if test="billCategory != null" >
+            OR ${alias}.bill_category=#{billCategory}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="billId != null" >
+            and ${alias}.bill_id ~* #{billId}
+        </if>
+        <if test="billNumber != null" >
+            and ${alias}.bill_number ~* #{billNumber}
+        </if>
+        <if test="billArrivaltime != null" >
+            and ${alias}.bill_arrivaltime ~* #{billArrivaltime}
+        </if>
+        <if test="billStatus != null" >
+            and CAST(${alias}.bill_status AS VARCHAR) ~* CAST(#{billStatus} AS VARCHAR)
+        </if>
+        <if test="billSite != null" >
+            and CAST(${alias}.bill_site AS VARCHAR) ~* CAST(#{billSite} AS VARCHAR)
+        </if>
+        <if test="billCategory != null" >
+            and CAST(${alias}.bill_category AS VARCHAR) ~* CAST(#{billCategory} AS VARCHAR)
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfBillinfo">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.billId},
+                      #{item.billNumber},
+                      #{item.billArrivaltime},
+                      #{item.billStatus},
+                      #{item.billSite},
+                      #{item.billCategory}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Fixshelf_Billinfo where bill_id= #{billId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Fixshelf_Billinfo;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfBillinfo">
+        delete from Fixshelf_Billinfo t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Fixshelf_Billinfo t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfBillinfo">
+        update Fixshelf_Billinfo
+        <set>
+            <include refid="updCols" />
+        </set>
+        where bill_id=#{billId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="FixshelfBillinfo">
+        select <include refid="cols"/> from Fixshelf_Billinfo
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="FixshelfBillinfo">
+        select <include refid="cols"/> from Fixshelf_Billinfo where bill_id=#{billId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="FixshelfBillinfo">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Fixshelf_Billinfo t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="FixshelfBillinfo">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Fixshelf_Billinfo t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(bill_id) from Fixshelf_Billinfo
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfBillinfo" resultType="long">
+        select count(t.bill_id) from Fixshelf_Billinfo t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfBillinfo" resultType="long">
+        select count(t.bill_id) from Fixshelf_Billinfo t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfBillinfo" resultMap="FixshelfBillinfo">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Fixshelf_Billinfo t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="FixshelfBillinfo">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from fixshelf_billinfo t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="viewInWarehouseDeatilInfo">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+<div class="page-header">
+    <div class="table-responsive pre-scrollable">
+        <table class="table table-bordered" >
+           <thead>
+               <tr>
+                    <th>#</th>
+                    <th>编号</th>
+                    <th>规格类型</th>
+                    <th>编码</th>
+                    <th>唯一码</th>
+                    <th>厂家</th>
+                    <th>计量单位</th>
+                    <th>批次</th>
+                    <th>入库数量</th>
+                    <th>实际入库数量</th>
+                    <th>入库状态</th>
+                    <th>仓库编码</th>
+                    <th>货位排</th>
+                    <th>货位层</th>
+                    <th>货位列</th>
+                    <th>仓库索引</th>
+                    <th>有效日期</th>
+                    <th>生产日期</th>
+                    <th>入库日期</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ite,item:${list}" class="tableA">
+                <td th:text="${item.index}"></td>
+                <td th:text="${ite.inwBillsnumber}"></td>
+                <td th:text="${ite.inwModel}"></td>
+                <td th:text="${ite.inwCode}"></td>
+                <td th:text="${ite.inwUniquecode}"></td>
+                <td th:text="${ite.inwManufacturer}"></td>
+                <td th:text="${ite.inwUnit}"></td>
+                <td th:text="${ite.inwBatch}"></td>
+                <td th:text="${ite.inwAmount}"></td>
+                <td th:text="${ite.inwActualcount}"></td>
+                <td th:text="${ite.inwStatus}"></td>
+                <td th:text="${ite.inwWarehousenumber}"></td>
+                <td th:text="${ite.inwRank}"></td>
+                <td th:text="${ite.inwTier}"></td>
+                <td th:text="${ite.inwColumn}"></td>
+                <td th:text="${ite.inwRangeindex}"></td>
+                <td th:text="${#dates.format(ite.inwEffectivedate,'yyyy-MM-dd')}"></td>
+                <td th:text="${#dates.format(ite.inwProduceddate,'yyyy-MM-dd')}"></td>
+                <td th:text="${#dates.format(ite.inwIndatetime,'yyyy-MM-dd')}"></td>
+
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+<input name="script" hidden th:value="${#httpServletRequest.scheme}+'://'+${#httpServletRequest.serverName}+':'+${#httpServletRequest.serverPort}+'/ipsp/earthworm/inWarehouseBill/js/inHouseDetailEdit.js'">
+
+</form>
+</html>

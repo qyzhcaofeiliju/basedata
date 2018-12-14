@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="row">
+    <div class="col-lg-12">
+        <h5 class="page-header">基础数据-->站点管理-->货架货位坐标</h5>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <form id="find_goodslocationAxisdictionary" role="form" class="ew-form-search">
+            <div class="row ew-setFindBtnBorders form-inline">
+                <div class="col-md-10">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">货架编号</span>
+                        <input type="text" class="form-control" name="axisdNumber" placeholder="请输入货架编号编号">
+                        <!--添加清除输入框小按钮-->
+                        <a class="fa fa-lg fa-times-circle form-control-feedback"></a>
+                    </div>
+                </div>
+                <div class="col-md-2 ew-tooltip">
+                    <button type="button" class="btn fa btn-info fa-search btn-lg"
+                            data-toggle="modal"
+                            id="query_goodslocationAxisdictionary"
+                            data-placement="bottom"
+                            data-original-title="查询">
+                    </button>
+                    <button id="goodslocationAxisdictionary_AddBtn" type="button"
+                            class="btn  fa fa-plus btn-success btn-lg"
+                            data-toggle="modal"
+                            data-target="#goodslocationAxisdictionary_UptAdd_OptModal" data-placement="bottom"
+                            data-original-title="新增" th:data="${equId}">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 table-responsive panel panel-default ew-table-height table-responsive" id="goodslocationAxisdictionary-cont">
+        <table width="100%" class="table"  id="dataTables-example">
+            <thead>
+            <tr>
+                <th>货架编号</th>
+                <th>状态</th>
+                <th>排</th>
+                <th>层</th>
+                <th>列</th>
+                <th>X坐标</th>
+                <th>Y坐标</th>
+                <th>Z坐标</th>
+                <th>货盒唯一码</th>
+                <th>周转箱类型</th>
+                <th>自动装载</th>
+                <th colspan="2"></th>
+            </tr>
+            </thead>
+            <tbody id="goodslocationAxisdictionaryTbody">
+            <tr></tr>
+            <tr th:each="l,ls:${list}" class="gradeA">
+                <td th:text="${l.axisdNumber}"></td>
+                <td th:if="${l.axisdStatus}==0" th:text="空闲"></td>
+                <td th:if="${l.axisdStatus}==1" th:text="占用"></td>
+                <td th:if="${l.axisdStatus}==2" th:text="故障不可用"></td>
+                <td th:text="${l.axisdRank}"></td>
+                <td th:text="${l.axisdTier}"></td>
+                <td th:text="${l.axisdColumn}"></td>
+                <td th:text="${l.axisdX}"></td>
+                <td th:text="${l.axisdY}"></td>
+                <td th:text="${l.axisdZ}"></td>
+                <td th:text="${l.axisdSuitcaseuniquecode}"></td>
+                <td th:text="${l.funName}"></td>
+                <td th:text="${l.axisdIsautoload==true?'是':'否'}"></td>
+
+                <td class="ew-tooltip ">
+                    <button type="button" name="goodslocationAxisdictionaryBtnVU"
+                            class="btn btn-primary fa fa-edit"
+                            th:data="${l.axisdId}" data-toggle="modal"
+                            data-target="#goodslocationAxisdictionary_UptAdd_OptModal"
+                            data-placement="bottom" data-original-title="编辑">
+                    </button>
+                </td>
+                <td class="ew-tooltip ">
+                    <button type="button" name="goodslocationAxisdictionaryBtnDel"
+                            class="btn btn-danger fa fa-trash-o"
+                            th:data="${l.axisdId}" data-toggle="modal"
+                            data-placement="bottom" data-original-title="删除">
+                    </button>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row ew-setPageBorders dataTables_wrapper">
+    <div class="col-sm-2">
+        <div class="dataTables_length" id="dataTables-example_length"><label>每页显示<select
+                aria-controls="dataTables-example"
+                class="form-control input-sm"
+                id="selPageSize"
+                name="selPageSize">
+            <option value="7">7</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>条</label></div>
+    </div>
+    <div class="col-sm-10">
+        <div class="dataTables_paginate paging_simple_numbers"
+             id="dataTables-example_paginate">
+            <ul id="goodslocationAxisdictionary_PageList" class="pagination ew-paging">
+                <li class="paginate_button disabled"
+                    aria-controls="dataTables-example" tabindex="0"
+                ><span>&laquo;</span>
+                </li>
+                <li th:each="i:${pageList}" th:if="${i eq 1}" class="paginate_button active"
+                    aria-controls="dataTables-example">
+                    <a name="pages" class="page-link" th:text="${i}"></a>
+                </li>
+                <li th:each="i:${pageList}" th:if="${i ne 1}" class="paginate_button"
+                    aria-controls="dataTables-example">
+                    <a th:name="pages" class="page-link" th:text="${i}"></a>
+                </li>
+                <li th:class="${page.totalPageNum eq page.pageNum}? 'paginate_button disabled' : 'paginate_button'"
+                    aria-controls="dataTables-example"
+                    tabindex="0"
+                    th:id="${page.totalPageNum eq page.pageNum}? '' : 'goodslocationAxisdictionaryPageNext'">
+                    <span>&raquo;</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- modal: insert Edit Page-->
+<div class="modal fade" id="goodslocationAxisdictionary_UptAdd_OptModal" tabindex="-1" role="dialog"
+     aria-labelledby="goodslocationAxisdictionary_UptAddTitle">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="goodslocationAxisdictionary_UptAddTitle">Modal title</h4>
+            </div>
+            <!--模态框弹出增加或者修改页面-->
+            <div id="goodslocationAxisdictionary_UptAdd_OptBody" class="modal-body">
+
+
+            </div>
+            <div class="modal-footer">
+                <button id="goodslocationAxisdictionary_Close" type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+                <button id="goodslocationAxisdictionary_AddBtnExe" type="button" class="btn btn-primary">增加</button>
+                <button id="goodslocationAxisdictionary_UptBtnExe" type="button" class="btn btn-primary">修改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!-- modal: Affirm -->
+<div class="modal fade" tabindex="-1" id="goodslocationAxisdictionary_Affirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i id="examInfoIcon" class="fa fa-info"></i>
+                    <span id="examInfoTitle">温馨提示</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>确认是否删除?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="goodslocationAxisdictionary_OKBtn" type="button" class="btn btn-primary">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<input name="script" hidden th:value="${#httpServletRequest.scheme}+'://'+${#httpServletRequest.serverName}+':'+${#httpServletRequest.serverPort}+'/ipsp/earthworm/goodslocationAxisdictionary/js/goodslocationAxisdictionaryView.js'">
+
+</html>

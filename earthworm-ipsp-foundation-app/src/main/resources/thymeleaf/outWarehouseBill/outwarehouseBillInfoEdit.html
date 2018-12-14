@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="viewOutWarehouseDeatilInfo">
+<div class="row form-group ew-form-addupt" id="save_outWarehouseBill">
+    <!--编号是从except中读取，分类是从单据分类表中进行选择。-->
+    <div class="col-md-12">
+        <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon1">
+                    单&nbsp;&nbsp;据&nbsp;&nbsp;编&nbsp;&nbsp;号
+                </span>
+            <input type="text" th:value="${outwBillsnumber}" data-field="OutWarehouseBill.outwBillsnumber"
+                   id="inputOutwBillsnumber" ,name="outwBillsnumber" class="form-control ew-validate"
+                   placeholder="编号" aria-describedby="sizing-addon4" maxlength="40" required readonly>
+            <div class="glyphicon form-control-feedback"></div>
+        </div>
+        <div class="valid-feedback ew-valid-feedback"></div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon2">
+                    分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类
+                </span>
+            <select name="outwCategory" class="form-control ew-validate"
+                    data-field="OutWarehouseBill.outwCategory" id="selectOutwCategory"
+                    aria-describedby="sizing-addon7" required>
+                <option value="">请选择分类</option>
+                <option th:each="bills:${billsCategories}" th:value="${bills.catCategory}"
+                        th:text="${bills.catName}"
+                        th:selected="${outWarehouseBill==null}
+                                ? null:(${billsCategory.catCategory==outWarehouseBill.outwCategory})">
+                </option>
+            </select>
+            <div class="glyphicon form-control-feedback"></div>
+        </div>
+        <div class="valid-feedback ew-valid-feedback"></div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="input-group form-group ew-form-rowdiv">
+            <span class="input-group-addon ew-validate" id="sizing-addon3">
+                出&nbsp;&nbsp;库&nbsp;&nbsp;时&nbsp;&nbsp;间
+            </span>
+            <input th:value="${outWarehouseBill==null}
+                            ? null:${#dates.format(outWarehouseBill.outwOuttime,'yyyy-MM-dd HH:mm')}"
+                   id="inputOutwOuttime" type="text" name="outwOuttime" class="form-control ew-validate"
+                   data-field="OutWarehouseBill.outwOuttime" placeholder="请选择出库时间"
+                   aria-describedby="sizing-addon3" required excludeSpecValid>
+            <!--清空按钮-->
+            <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+            <div class="glyphicon form-control-feedback"></div>
+        </div>
+        <div class="valid-feedback ew-valid-feedback"></div>
+    </div>
+    <div class="col-md-12" hidden>
+        <div class="input-group form-group ew-form-rowdiv">
+            <span class="input-group-addon" id="sizing-addon7">
+                出&nbsp;&nbsp;库&nbsp;&nbsp;状&nbsp;&nbsp;态
+            </span>
+            <input type="text" th:value="0" data-field="OutWarehouseBill.outwStatus" class="form-control ew-validata"
+                   placeholder="出库状态" id="inputOutwStatus" aria-describedby="sizing-addon4"
+                   maxlength="40" required readonly>
+            <div class="glyphicon form-control-feedback"></div>
+        </div>
+        <div class="valid-feedback ew-valid-feedback"></div>
+    </div>
+</div>
+</form>
+<input name="script" hidden th:value="${#httpServletRequest.scheme}+'://'+${#httpServletRequest.serverName}+':'+${#httpServletRequest.serverPort}+'/ipsp/earthworm/outWarehouseBill/js/outWarehouseBillView.js'">
+<script  type="text/javascript">
+    $('#inputOutwOuttime').datetimepicker();
+</script>
+</html>

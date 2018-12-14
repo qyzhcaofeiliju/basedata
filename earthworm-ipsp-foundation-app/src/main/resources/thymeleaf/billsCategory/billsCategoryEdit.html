@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="billsCategory_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${billsCategory==null}? null : ${billsCategory.catId}" name="catId" hidden>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon2">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</span>
+                <input th:value="${billsCategory==null}? null : ${billsCategory.catName}" type="text" name="catName" class="form-control ew-validate" title="字母、数字、汉字、-、_ 的组合，长度小于64位" pattern="[a-zA-Z0-9\u4e00-\u9fa5]+" placeholder="字母、数字、汉字、-、_ 的组合，长度小于64位" aria-describedby="sizing-addon2" maxlength="64" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon1">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类</span>
+                <input th:value="${billsCategory==null}? null:${billsCategory.catCategory}" type="text" name="catCategory" class="form-control ew-validate" pattern="^[1-9]\d{0,4}$" maxlength="5" max="32767"  placeholder="不超过32767的正整数" aria-describedby="sizing-addon3"  title="不超过32767的正整数" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败后的反馈信息-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon3">总&nbsp;&nbsp;&nbsp;分&nbsp;&nbsp;&nbsp;类</span>
+                <select name="catOwnercategory" class="form-control ew-validate" aria-describedby="sizing-addon7" required>
+                    <option value="" >请选择总入库状态</option>
+                    <option value="1" th:selected="${billsCategory==null}? null:(${1==billsCategory.catOwnercategory})">入库单</option>
+                    <option value="2" th:selected="${billsCategory==null}? null:(${2==billsCategory.catOwnercategory})">出库单</option>
+                </select>
+                <!--添加验证失败后的反馈信息-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+    </div>
+</form>
+</html>

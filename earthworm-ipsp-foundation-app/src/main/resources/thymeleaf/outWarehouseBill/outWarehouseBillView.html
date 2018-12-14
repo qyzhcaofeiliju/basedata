@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div class="row">
+    <div class="col-lg-12">
+        <h5 class="page-header">基础数据-->出库单</h5>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <!--添加新增或者更新的反馈结果-->
+        <div id="outWarehouseBill_UptAdd_Back" hidden="true" class="alert alert-success alert-dismissable">
+            <span></span>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-10">
+                            出库单表
+                    </div>
+
+                    <!--新增 Btn -->
+                    <div class="col-md-2 ew-tooltip">
+                        <form action="/ipsp/outWarehouseBill/exportFile" method="post" id="tmp"></form>
+                        <button id="outWarehouseBill_AddBtn" type="button" class="btn  fa fa-plus btn-success"
+                                data-toggle="modal"
+                                data-target="#outWarehouseBill_UptAdd_OptModal" data-placement="bottom"
+                                data-original-title="新增"></button>
+                        <button type="button" class="btn fa fa-download btn-success"
+                                data-target="#download_outWarehouseBill_UptAdd_OptModal"
+                                data-toggle="modal"
+                                id="download_outWarehouseBill"
+                                data-placement="bottom"
+                                data-original-title="导入">
+                        </button>
+                        <button type="button" class="btn fa fa-upload btn-success"
+                                data-target="#export_outWarehouseBill_UptAdd_OptModal"
+                                data-toggle="modal"
+                                id="export_outWarehouseBill"
+                                data-placement="bottom"
+                                data-original-title="导出">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <form id="find_outWarehouseBill" role="form" class="ew-form-search">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">编号</span>
+                                    <input type="text" class="form-control" name="outwBillsnumber"
+                                           placeholder="请输入单据编号">
+                                    <!--添加清除输入框小按钮-->
+                                    <a class="fa fa-lg fa-times-circle form-control-feedback"></a>
+                                </div>
+                            </div>
+                            <div class="col-md-2 ew-tooltip">
+                                <button type="button" class="btn fa btn-info fa-search btn-lg"
+                                        data-toggle="modal"
+                                        id="query_outWarehouseBill"
+                                        data-placement="bottom"
+                                        data-original-title="查询">
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table width="100%" class="table table-striped table-bordered table-hover"
+                                   id="dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>分类</th>
+                                    <th>出库时间</th>
+                                    <th>出库状态</th>
+                                    <th colspan="3"></th>
+                                </tr>
+                                </thead>
+                                <tbody id="outWarehouseBillTbody">
+                                <tr th:each="l,ls:${list}" class="gradeA">
+                                    <td th:text="${l.outwBillsnumber}"></td>
+                                    <td th:text="${l.catName}"></td>
+                                    <td th:text="${#dates.format(l.outwOuttime,'yyyy-MM-dd HH:mm')}"></td>
+                                    <td th:if="${l.outwStatus}==0" th:text="未出库"></td>
+                                    <td th:if="${l.outwStatus}==1" th:text="出库中"></td>
+                                    <td th:if="${l.outwStatus}==2" th:text="已出库"></td>
+                                    <td class="ew-tooltip ">
+                                        <button type="button" name="outWarehouseBillBtnVU"
+                                                class="btn btn-primary fa fa-edit"
+                                                th:data="${l.outwId}" data-toggle="modal"
+                                                data-target="#outWarehouseBill_UptAdd_OptModal"
+                                                data-placement="bottom" data-original-title="编辑">
+                                        </button>
+                                    </td>
+                                    <td class="ew-tooltip ">
+                                        <button type="button" name="outWarehouseBillBtnDel"
+                                                class="btn btn-danger fa fa-trash-o"
+                                                th:data="${l.outwId}" data-toggle="modal"
+                                                data-placement="bottom" data-original-title="删除">
+                                        </button>
+                                    </td>
+                                    <td class="ew-tooltip ">
+                                        <button type="button" name="outWarehouseBillBtnFind"
+                                                class="btn btn-info fa fa-eye"
+                                                th:data="${l.outwBillsnumber}" data-toggle="modal"
+                                                data-target="#outWarehouseBill_UptAdd_OptModal"
+                                                data-placement="bottom" data-original-title="查看详情" >
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="dataTables_length" id="dataTables-example_length"><label>每页显示<select
+                                    aria-controls="dataTables-example"
+                                    class="form-control input-sm"
+                                    id="selPageSize"
+                                    name="selPageSize">
+                                <option value="7">7</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                            </select>条</label></div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="dataTables_paginate paging_simple_numbers"
+                                 id="dataTables-example_paginate">
+                                <ul id="outWarehouseBill_PageList" class="pagination ew-paging">
+                                    <li class="paginate_button disabled"
+                                        aria-controls="dataTables-example" tabindex="0"
+                                    ><span>&laquo;</span>
+                                    </li>
+                                    <li th:each="i:${pageList}" th:if="${i eq 1}" class="paginate_button active"
+                                        aria-controls="dataTables-example">
+                                        <a name="pages" class="page-link" th:text="${i}"></a>
+                                    </li>
+                                    <li th:each="i:${pageList}" th:if="${i ne 1}" class="paginate_button"
+                                        aria-controls="dataTables-example">
+                                        <a th:name="pages" class="page-link" th:text="${i}"></a>
+                                    </li>
+                                    <li th:class="${page.totalPageNum eq page.pageNum}? 'paginate_button disabled' : 'paginate_button'"
+                                        aria-controls="dataTables-example"
+                                        tabindex="0"
+                                        th:id="${page.totalPageNum eq page.pageNum}? '' : 'outWarehouseBillPageNext'">
+                                        <span>&raquo;</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<!-- modal: insert Edit Page-->
+<div class="modal fade bs-example-modal-lg" id="outWarehouseBill_UptAdd_OptModal" tabindex="-1" role="dialog"
+     aria-labelledby="outWarehouseBill_UptAddTitle">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="outWarehouseBill_UptAddTitle">Modal title</h4>
+            </div>
+            <!--模态框弹出增加或者修改页面-->
+            <div id="outWarehouseBill_UptAdd_OptBody" class="modal-body">
+
+
+            </div>
+            <div class="modal-footer">
+                <button id="outWarehouseBill_Close" type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+                <button id="outWarehouseBill_AddBtnExe" type="button" class="btn btn-primary">下一步</button>
+                <button id="outWarehouseBill_UptBtnExe" type="button" class="btn btn-primary">下一步</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<div class="modal fade" tabindex="-1" id="download_outWarehouseBill_UptAdd_OptModal" role="dialog"
+     aria-labelledby="importOutWarehouse_Title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">请选择要导入的Excel文件：</h5>
+            </div>
+            <form id="file_form" role="form" name="importFile" method="POST" class="form-horizontal"
+                  enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="box-body">
+                        <label class="control-label"></label>
+                        <input type="file" name="file" id="file_input" class="file" multiple
+                               data-show-preview="false">
+                    </div>
+                </div>
+                <!--模态框底部的设置-->
+                <div class="modal-footer">
+                    <button id="importOutWarehouse_close" type="button" class="btn btn-default" data-dismiss="modal">
+                        取消
+                    </button>
+                    <button id="importOutWarehouse_save" type="button" class="btn btn-primary"
+                            data-target="#showImportOutWareInfo">查看
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--定义导入之后需要显示出来的出库单(主)模态框-->
+<div class="modal fade" tabindex="-1" id="showImportOutWareInfo" role="dialg"
+     aria-labelledby="viewImportInWarehouse_Title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="viewImportInWarehouse_Title">显示出库表信息</h4>
+            </div>
+            <div class="modal-body" id="viewImportOutWarehouse_AddBody"></div>
+
+            <div class="modal-footer">
+                <button id="viewOutWarehouseInfo_Close" type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+                <button id="viewOutWarehouseInfo_AddBtnExe" type="button" class="btn btn-primary"
+                        data-target="#showImportOutWareDetailInfo">查看详细信息
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--定义出库单详细信息的模态框-->
+<div class="modal fade" tabindex="-1" id="showImportOutWareDetailInfo" role="dialg"
+     aria-labelledby="OutWareDetailInfo_Title" aria-hidden="true">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <li class="fa fa-remove"></li>
+            </button>
+            <h4 class="modal-title" id="OutWareDetailInfo_Title">显示出库详细信息</h4>
+        </div>
+        <div class="modal-body" id="showOutportFileDetailInfo">
+            <!--详细信息的表格-->
+        </div>
+        <div class="modal-footer">
+            <button id="importFileInfo_Close" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button id="importFileInfo_Back" type="button" class="btn btn-success">上一步</button>
+            <button id="importFileInfo_Save" type="button" class="btn btn-primary" data-target="">保存</button>
+        </div>
+    </div>
+</div>
+<!-- modal: Affirm -->
+<div class="modal fade" tabindex="-1" id="outWarehouseBill_Affirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i id="examInfoIcon" class="fa fa-info"></i>
+                    <span id="examInfoTitle">温馨提示</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>确认是否删除?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="outWarehouseBill_OKBtn" type="button" class="btn btn-primary">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--出库单详情的模态框-->
+<!-- modal: insert Edit Page-->
+<div class="modal fade ew-modal" id="outWarehouseDetailBillDouble_UptAdd_OptModal" tabindex="-1" role="dialog" aria-labelledby="outWarehouseDetailBillDouble_UptAddTitle">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="outWarehouseDetailBillDouble_UptAddTitle">Modal title</h4>
+            </div>
+            <!--模态框弹出增加或者修改页面-->
+            <div id="outWarehouseDetailBillDouble_UptAdd_OptBody" class="modal-body">
+
+
+            </div>
+            <div class="modal-footer">
+                <div class="col-sm-2">
+                    <button id="outWarehouseDetailBillDouble_PrevBtnExe" type="button" class="btn btn-success">上一步</button>
+                </div>
+                <div class="col-sm-10">
+                    <button id="outWarehouseDetailBillDouble_Close" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id="outWarehouseDetailBillDouble_AddBtnExe" type="button" class="btn btn-primary">增加</button>
+                    <button id="outWarehouseDetailBillDouble_UptBtnExe" type="button" class="btn btn-primary">修改</button>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<input name="script" hidden th:value="${#httpServletRequest.scheme}+'://'+${#httpServletRequest.serverName}+':'+${#httpServletRequest.serverPort}+'/ipsp/earthworm/outWarehouseBill/js/outWarehouseBillView.js'">
+</html>

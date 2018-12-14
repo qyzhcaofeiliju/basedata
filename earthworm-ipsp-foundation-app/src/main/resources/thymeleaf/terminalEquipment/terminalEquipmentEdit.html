@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="terminalEquipment_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${terminalEquipment==null}? null : ${terminalEquipment.equId}" name="equId" hidden>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon1">
+                    分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类
+                </span>
+                <select name="equCatId" class="form-control ew-validate" aria-describedby="sizing-addon1"
+                        required>
+                    <option value="">---请选择分类---</option>
+                    <option th:each="terminalCategory:${terminalCategories}" th:value="${terminalCategory.catId}"
+                            th:text="${terminalCategory.catName}"
+                            th:selected="${terminalEquipment==null}?
+                                         null:(${terminalCategory.catId==terminalEquipment.equCatId})">
+                    </option>
+                </select>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon2">
+                    站&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点
+                </span>
+                <select name="equStaId" class="form-control ew-validate" aria-describedby="sizing-addon2"
+                        required>
+                    <option value="">---请选择站点---</option>
+                    <option th:each="materialflowStation:${materialflowStations}"
+                            th:value="${materialflowStation.staId}" th:text="${materialflowStation.staName}"
+                            th:selected="${terminalEquipment==null}?
+                                        null:(${materialflowStation.staId==terminalEquipment.equStaId})">
+                    </option>
+                </select>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon3">唯&nbsp;&nbsp;一&nbsp;&nbsp;码</span>
+                <input th:value="${terminalEquipment==null}? null:${terminalEquipment.equUniquecode}" type="text"
+                       name="equUniquecode" class="form-control ew-validate"
+                       required
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       maxlength="50"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于50位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于50位"
+                       aria-describedby="sizing-addon3">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon4">
+                    编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号
+                </span>
+                <input th:value="${terminalEquipment==null}? null:${terminalEquipment.equNumber}" type="text"
+                       name="equNumber" class="form-control ew-validate"
+                       required
+                       pattern="^[0-9]\d{3}$"
+                       maxlength="4"
+                       title="4位数的正整数编号，前两位代表产品分类、后两位表示具体的设备数量编号"
+                       placeholder="前两位正整数表示产品分类、后两位表示具体的设备数量编号"
+                       aria-describedby="sizing-addon4">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon5">当&nbsp;前&nbsp;状&nbsp;态</span>
+                <select name="equCurrentstatus" class="form-control ew-validate " aria-describedby="sizing-addon5"
+                        pattern="^[0-9]{1}$" required>
+                    <option value="">---请选择当前状态---</option>
+                    <option value="0"
+                            th:selected="${terminalEquipment==null}? null:(${0==terminalEquipment.equCurrentstatus})">停机
+                    </option>
+                    <option value="1"
+                            th:selected="${terminalEquipment==null}? null:(${1==terminalEquipment.equCurrentstatus})">正常
+                    </option>
+                    <option value="2"
+                            th:selected="${terminalEquipment==null}? null:(${2==terminalEquipment.equCurrentstatus})">报警
+                    </option>
+                    <option value="3"
+                            th:selected="${terminalEquipment==null}? null:(${3==terminalEquipment.equCurrentstatus})">故障
+                    </option>
+                </select>
+
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon6">I&nbsp;&nbsp;&nbsp;&nbsp;P</span>
+                <input th:value="${terminalEquipment==null}? null:${terminalEquipment.equIp}" type="text"
+                       name="equIp" class="form-control ew-validate"
+                       required
+                       maxlength="15"
+                       excludeSpecValid
+                       pattern="^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$"
+                       placeholder="例如：127.0.0.1   且每一组数字都不能大于255"
+                       title="请输入合法的ip地址，例如：127.0.0.1"
+                       aria-describedby="sizing-addon6">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon7">端&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;口</span>
+                <input th:value="${terminalEquipment==null}? null:${terminalEquipment.equPort}" type="text"
+                       name="equPort" class="form-control ew-validate"
+                       required
+                       maxlength="5"
+                       max="65535"
+                       pattern="^[1-9]\d{0,4}$"
+                       placeholder="不超过65535的正整数"
+                       title="不超过65535的正整数"
+                       aria-describedby="sizing-addon7">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" ew-form-rowdiv>
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon8">描&nbsp;述&nbsp;信&nbsp;息</span>
+                <textarea name="equDescription"
+                          th:text="${terminalEquipment==null}? null : ${terminalEquipment.equDescription}"
+                          class="form-control ew-textarea-noresize ew-validate" cols="54" rows="5"
+                          maxlength="200"
+                          placeholder="请输入描述信息，字数在100以内"
+                          title="请输入描述信息，字数在100以内">
+                </textarea>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+    </div>
+</form>
+</html>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.ITerminalEquipmentDao">
+
+    <resultMap id="TerminalEquipment" type="com.earthworm.ipsp.foundation.entity.TerminalEquipment">
+        <id property="equId" column="equ_id"/>
+        <result property="equCatId" column="equ_cat_id"/>
+        <result property="equStaId" column="equ_sta_id"/>
+        <result property="equUniquecode" column="equ_uniquecode"/>
+        <result property="equNumber" column="equ_number"/>
+        <result property="equCurrentstatus" column="equ_currentstatus"/>
+        <result property="equIp" column="equ_ip"/>
+        <result property="equPort" column="equ_port"/>
+        <result property="equDescription" column="equ_description"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.equ_id,
+                ${alias}.equ_cat_id,
+                ${alias}.equ_sta_id,
+                ${alias}.equ_uniquecode,
+                ${alias}.equ_number,
+                ${alias}.equ_currentstatus,
+                ${alias}.equ_ip,
+                ${alias}.equ_port,
+                ${alias}.equ_description,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				equ_id,
+				equ_cat_id,
+				equ_sta_id,
+				equ_uniquecode,
+				equ_number,
+				equ_currentstatus,
+				equ_ip,
+				equ_port,
+				equ_description,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Terminal_Equipment</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="equId != null">
+							equ_id,
+						</if>
+						<if test="equCatId != null">
+							equ_cat_id,
+						</if>
+						<if test="equStaId != null">
+							equ_sta_id,
+						</if>
+						<if test="equUniquecode != null">
+							equ_uniquecode,
+						</if>
+						<if test="equNumber != null">
+							equ_number,
+						</if>
+						<if test="equCurrentstatus != null">
+							equ_currentstatus,
+						</if>
+						<if test="equIp != null">
+							equ_ip,
+						</if>
+						<if test="equPort != null">
+							equ_port,
+						</if>
+						<if test="equDescription != null">
+							equ_description,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="equId != null" >
+						#{equId},
+					</if>
+					<if test="equCatId != null" >
+						#{equCatId},
+					</if>
+					<if test="equStaId != null" >
+						#{equStaId},
+					</if>
+					<if test="equUniquecode != null" >
+						#{equUniquecode},
+					</if>
+					<if test="equNumber != null" >
+						#{equNumber},
+					</if>
+					<if test="equCurrentstatus != null" >
+						#{equCurrentstatus},
+					</if>
+					<if test="equIp != null" >
+						#{equIp},
+					</if>
+					<if test="equPort != null" >
+						#{equPort},
+					</if>
+					<if test="equDescription != null" >
+						#{equDescription},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="equId != null" >
+                and ${alias}.equ_id=#{equId}
+            </if>
+            <if test="equCatId != null" >
+                and ${alias}.equ_cat_id=#{equCatId}
+            </if>
+            <if test="equStaId != null" >
+                and ${alias}.equ_sta_id=#{equStaId}
+            </if>
+            <if test="equUniquecode != null" >
+                and ${alias}.equ_uniquecode=#{equUniquecode}
+            </if>
+            <if test="equNumber != null" >
+                and ${alias}.equ_number=#{equNumber}
+            </if>
+            <if test="equCurrentstatus != null" >
+                and ${alias}.equ_currentstatus=#{equCurrentstatus}
+            </if>
+            <if test="equIp != null" >
+                and ${alias}.equ_ip=#{equIp}
+            </if>
+            <if test="equPort != null" >
+                and ${alias}.equ_port=#{equPort}
+            </if>
+            <if test="equDescription != null" >
+                and ${alias}.equ_description=#{equDescription}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="equCatId != null" >
+					equ_cat_id=#{equCatId},
+				</if>
+				<if test="equStaId != null" >
+					equ_sta_id=#{equStaId},
+				</if>
+				<if test="equUniquecode != null" >
+					equ_uniquecode=#{equUniquecode},
+				</if>
+				<if test="equNumber != null" >
+					equ_number=#{equNumber},
+				</if>
+				<if test="equCurrentstatus != null" >
+					equ_currentstatus=#{equCurrentstatus},
+				</if>
+				<if test="equIp != null" >
+					equ_ip=#{equIp},
+				</if>
+				<if test="equPort != null" >
+					equ_port=#{equPort},
+				</if>
+				<if test="equDescription != null" >
+					equ_description=#{equDescription},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="equId != null" >
+            OR ${alias}.equ_id=#{equId}
+        </if>
+        <if test="equCatId != null" >
+            OR ${alias}.equ_cat_id=#{equCatId}
+        </if>
+        <if test="equStaId != null" >
+            OR ${alias}.equ_sta_id=#{equStaId}
+        </if>
+        <if test="equUniquecode != null" >
+            OR ${alias}.equ_uniquecode=#{equUniquecode}
+        </if>
+        <if test="equNumber != null" >
+            OR ${alias}.equ_number=#{equNumber}
+        </if>
+        <if test="equCurrentstatus != null" >
+            OR ${alias}.equ_currentstatus=#{equCurrentstatus}
+        </if>
+        <if test="equIp != null" >
+            OR ${alias}.equ_ip=#{equIp}
+        </if>
+        <if test="equPort != null" >
+            OR ${alias}.equ_port=#{equPort}
+        </if>
+        <if test="equDescription != null" >
+            OR ${alias}.equ_description=#{equDescription}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="equId != null" >
+            and ${alias}.equ_id ~* #{equId}
+        </if>
+        <if test="equCatId != null" >
+            and ${alias}.equ_cat_id ~* #{equCatId}
+        </if>
+        <if test="equStaId != null" >
+            and ${alias}.equ_sta_id ~* #{equStaId}
+        </if>
+        <if test="equUniquecode != null" >
+            and ${alias}.equ_uniquecode ~* #{equUniquecode}
+        </if>
+        <if test="equNumber != null" >
+            and CAST(${alias}.equ_number AS VARCHAR) ~* CAST(#{equNumber} AS VARCHAR)
+        </if>
+        <if test="equCurrentstatus != null" >
+            and CAST(${alias}.equ_currentstatus AS VARCHAR) ~* CAST(#{equCurrentstatus} AS VARCHAR)
+        </if>
+        <if test="equIp != null" >
+            and ${alias}.equ_ip ~* #{equIp}
+        </if>
+        <if test="equPort != null" >
+            and CAST(${alias}.equ_port AS VARCHAR) ~* CAST(#{equPort} AS VARCHAR)
+        </if>
+        <if test="equDescription != null" >
+            and ${alias}.equ_description ~* #{equDescription}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.TerminalEquipment">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.equId},
+                      #{item.equCatId},
+                      #{item.equStaId},
+                      #{item.equUniquecode},
+                      #{item.equNumber},
+                      #{item.equCurrentstatus},
+                      #{item.equIp},
+                      #{item.equPort},
+                      #{item.equDescription}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Terminal_Equipment where equ_id= #{equId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Terminal_Equipment;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.TerminalEquipment">
+        delete from Terminal_Equipment t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Terminal_Equipment t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.TerminalEquipment">
+        update Terminal_Equipment
+        <set>
+            <include refid="updCols" />
+        </set>
+        where equ_id=#{equId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="TerminalEquipment">
+        select <include refid="cols"/> from Terminal_Equipment
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="TerminalEquipment">
+        select <include refid="cols"/> from Terminal_Equipment where equ_id=#{equId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="TerminalEquipment">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Equipment t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="TerminalEquipment">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Equipment t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(equ_id) from Terminal_Equipment
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.TerminalEquipment" resultType="long">
+        select count(t.equ_id) from Terminal_Equipment t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.TerminalEquipment" resultType="long">
+        select count(t.equ_id) from Terminal_Equipment t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.TerminalEquipment" resultMap="TerminalEquipment">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Equipment t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="TerminalEquipment">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from terminal_equipment t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

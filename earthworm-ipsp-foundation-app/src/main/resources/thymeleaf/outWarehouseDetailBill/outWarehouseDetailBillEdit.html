@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="outWarehouseDetailBill_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${outWarehouseDetailBill==null}? null : ${outWarehouseDetailBill.outwId}"
+               name="outwId" hidden>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon1">
+                    编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号
+                </span>
+                <input readonly th:value="${outwBillsnumber}" type="text" name="outwBillsnumber"
+                       class="form-control ew-validate" aria-describedby="sizing-addon1"
+                       maxlength="40" required>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon2">
+                    规&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;&nbsp;型&nbsp;&nbsp;号
+                </span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwModel}"
+                       type="text" name="outwModel" class="form-control ew-validate"
+                       required
+                       maxlength="30"
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于30位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于30位"
+                       aria-describedby="sizing-addon2">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon3">
+                    物&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;料&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码
+                </span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwCode}" type="text"
+                       name="outwCode" class="form-control ew-validate"
+                       required
+                       maxlength="40"
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于40位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于40位"
+                       aria-describedby="sizing-addon3">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon4">
+                    唯&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码
+                </span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwUniquecode}"
+                       type="text" name="outwUniquecode" class="form-control ew-validate"
+                       required
+                       maxlength="80"
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5\#]+"
+                       excludeSpecValid
+                       title="字母、数字、汉字、-、_ 的组合，长度小于80位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于80位"
+                       aria-describedby="sizing-addon4">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon5">
+                    厂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家
+                </span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwManufacturer}"
+                       type="text" name="outwManufacturer" class="form-control ew-validate"
+                       required
+                       maxlength="50"
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于50位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于50位"
+                       aria-describedby="sizing-addon5">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon6">
+                    计&nbsp;&nbsp;&nbsp;量&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;位
+                </span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwUnit}" type="text"
+                       name="outwUnit" class="form-control ew-validate"
+                       required
+                       maxlength="10"
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于10位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于10位"
+                       aria-describedby="sizing-addon6">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon7">
+                    批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次
+                </span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwBatch}" type="text"
+                       name="outwBatch" class="form-control ew-validate"
+                       required
+                       maxlength="20"
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于20位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于20位"
+                       aria-describedby="sizing-addon7">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon"
+                      id="sizing-addon9">生&nbsp;&nbsp;&nbsp;产&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;期</span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${#dates.format(outWarehouseDetailBill.outwProduceddate,'yyyy-MM-dd')}"
+                       type="date" name="outwProduceddate"
+                       class="form-control ew-validate"
+                       pattern="^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"
+                       aria-describedby="sizing-addon9" required>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon8">
+                    有&nbsp;&nbsp;&nbsp;效&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;期
+                </span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${#dates.format(outWarehouseDetailBill.outwEffectivedate,'yyyy-MM-dd')}"
+                       type="date" name="outwEffectivedate"
+                       class="form-control ew-validate"
+                       pattern="^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$"
+                       aria-describedby="sizing-addon8" required>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon"
+                      id="sizing-addon10">总&nbsp;&nbsp;&nbsp;库&nbsp;&nbsp;&nbsp;数&nbsp;&nbsp;量</span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwTotal}" type="text"
+                       name="outwTotal" class="form-control ew-validate"
+                       required
+                       pattern="^[1-9]\d{0,4}"
+                       max="32767"
+                       maxlength="5"
+                       title="不能超过32767的正整数"
+                       placeholder="不能超过32767的正整数"
+                       aria-describedby="sizing-addon11">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon"
+                      id="sizing-addon11">出&nbsp;&nbsp;&nbsp;库&nbsp;&nbsp;&nbsp;数&nbsp;&nbsp;量</span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwAmount}" type="text"
+                       name="outwAmount" class="form-control ew-validate"
+                       required
+                       pattern="^[1-9]\d{0,4}"
+                       max="32767"
+                       maxlength="5"
+                       title="不能超过32767的正整数"
+                       placeholder="不能超过32767的正整数"
+                       aria-describedby="sizing-addon11">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon12">实&nbsp;际&nbsp;出&nbsp;库&nbsp;数&nbsp;量</span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwActualcount}"
+                       type="text" name="outwActualcount" class="form-control ew-validate"
+                       required
+                       pattern="^[1-9]\d{0,4}$"
+                       max="32767"
+                       maxlength="5"
+                       title="不能超过32767的正整数"
+                       placeholder="不能超过32767的正整数"
+                       aria-describedby="sizing-addon12">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv ">
+                <span class="input-group-addon" id="sizing-addon13">
+                    出&nbsp;&nbsp;&nbsp;库&nbsp;&nbsp;&nbsp;状&nbsp;&nbsp;态
+                </span>
+                <select name="outwStatus" class="form-control ew-validate" aria-describedby="sizing-addon13"
+                        required
+                        pattern="^[0-9]{1}"
+                        maxlength="1">
+                    <option value="0"
+                            th:selected="${outWarehouseDetailBill==null}? true:(${0==outWarehouseDetailBill.outwStatus})">
+                        未出库
+                    </option>
+                    <option value="1"
+                            th:selected="${outWarehouseDetailBill==null}? null:(${1==outWarehouseDetailBill.outwStatus})">
+                        出库中
+                    </option>
+                    <option value="2"
+                            th:selected="${outWarehouseDetailBill==null}? null:(${2==outWarehouseDetailBill.outwStatus})">
+                        已出库
+                    </option>
+                </select>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv ">
+                <span class="input-group-addon"
+                      id="sizing-addon14">仓&nbsp;&nbsp;&nbsp;库&nbsp;&nbsp;&nbsp;编&nbsp;&nbsp;号</span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwWarehousenumber}"
+                       type="text" name="outwWarehousenumber" class="form-control ew-validate"
+                       required
+                       pattern="^[1-9]\d{0,4}"
+                       max="32767"
+                       maxlength="5"
+                       title="不能超过32767的正整数"
+                       placeholder="不能超过32767的正整数"
+                       aria-describedby="sizing-addon14">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon15">预&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库</span>
+                <span class="form-control">
+                    <label class="radio-inline">
+                        <input type="radio" name="outwIspreout"
+                               th:checked="${outWarehouseDetailBill==null}?'checked':(${outWarehouseDetailBill.outwIspreout==1})"
+                               value="1" th:text="是"/>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="outwIspreout"
+                               th:checked="${outWarehouseDetailBill==null}?null:(${outWarehouseDetailBill.outwIspreout==0})"
+                               value="0" th:text="否"/>
+                    </label>
+                </span>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon16">预&nbsp;出&nbsp;库&nbsp;单&nbsp;编&nbsp;号</span>
+                <input th:value="${outWarehouseDetailBill==null}? null:${outWarehouseDetailBill.outwPrebillnumber}"
+                       type="text" name="outwPrebillnumber" class="form-control ew-validate"
+                       required
+                       maxlength="50"
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于50位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于50位"
+                       aria-describedby="sizing-addon16">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+
+        <div class="col-md-12" th:hidden="${outWarehouseDetailBill==null}?false:true">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon17">出&nbsp;&nbsp;库&nbsp;&nbsp;时&nbsp;&nbsp;间</span>
+                <input th:value="${outWarehouseDetailBill==null}? null :${#dates.format(outWarehouseDetailBill.outwOutdatetime,'yyyy-MM-dd HH:mm')}"
+                       type="text" name="outwOutdatetime" id="outwOutdatetime" class="form-control ew-validate"
+                       aria-describedby="sizing-addon17" required excludeSpecValid
+                       pattern="^(?:19|20)[0-9][0-9]-(?:(?:0[1-9])|(?:1[0-2]))-(?:(?:[0-2][1-9])|(?:[1-3][0-1])) (?:(?:[0-2][0-3])|(?:[0-1][0-9])):[0-5][0-9]$"
+
+                >
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+    </div>
+</form>
+
+<!--引入编辑页面的js文件-->
+<script th:src="@{/earthworm/outWarehouseDetailBill/js/outWarehouseDetailBillEdit.js}"></script>
+
+</html>

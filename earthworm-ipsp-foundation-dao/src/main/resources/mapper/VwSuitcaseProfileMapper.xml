@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IVwSuitcaseProfileDao">
+
+    <resultMap id="VwSuitcaseProfile" type="com.earthworm.ipsp.foundation.entity.VwSuitcaseProfile">
+        <id property="proId" column="pro_id"/>
+        <result property="proUniquecode" column="pro_uniquecode"/>
+        <result property="proRfid" column="pro_rfid"/>
+        <result property="proCabintotal" column="pro_cabintotal"/>
+        <result property="proAppcategory" column="pro_appcategory"/>
+        <result property="proFunccategory" column="pro_funccategory"/>
+        <result property="proStatus" column="pro_status"/>
+        <result property="proIspartition" column="pro_ispartition"/>
+        <result property="proVerticalamount" column="pro_verticalamount"/>
+        <result property="proHorizontalamount" column="pro_horizontalamount"/>
+        <result property="funName" column="fun_name"/>
+        <result property="appName" column="app_name"/>
+        <result property="proHeight" column="pro_height"/>
+        <result property="proWidth" column="pro_width"/>
+        <result property="proLength" column="pro_length"/>
+        <result property="proCabinwidth" column="pro_cabinwidth"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.pro_id,
+                ${alias}.pro_uniquecode,
+                ${alias}.pro_rfid,
+                ${alias}.pro_cabintotal,
+                ${alias}.pro_appcategory,
+                ${alias}.pro_funccategory,
+                ${alias}.pro_status,
+                ${alias}.pro_ispartition,
+                ${alias}.pro_verticalamount,
+                ${alias}.pro_horizontalamount,
+                ${alias}.fun_name,
+                ${alias}.app_name,
+                ${alias}.pro_height,
+                ${alias}.pro_width,
+                ${alias}.pro_length,
+                ${alias}.pro_cabinwidth,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				pro_id,
+				pro_uniquecode,
+				pro_rfid,
+				pro_cabintotal,
+				pro_appcategory,
+				pro_funccategory,
+				pro_status,
+				pro_ispartition,
+				pro_verticalamount,
+				pro_horizontalamount,
+				fun_name,
+				app_name,
+                pro_height,
+                pro_width,
+                pro_length,
+                pro_cabinwidth,
+        </trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">vw_suitcase_profile</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="proId != null">
+							pro_id,
+						</if>
+						<if test="proUniquecode != null">
+							pro_uniquecode,
+						</if>
+						<if test="proRfid != null">
+							pro_rfid,
+						</if>
+						<if test="proCabintotal != null">
+							pro_cabintotal,
+						</if>
+						<if test="proAppcategory != null">
+							pro_appcategory,
+						</if>
+						<if test="proFunccategory != null">
+							pro_funccategory,
+						</if>
+						<if test="proStatus != null">
+							pro_status,
+						</if>
+						<if test="proIspartition != null">
+							pro_ispartition,
+						</if>
+						<if test="proVerticalamount != null">
+							pro_verticalamount,
+						</if>
+						<if test="proHorizontalamount != null">
+							pro_horizontalamount,
+						</if>
+						<if test="funName != null">
+							fun_name,
+						</if>
+						<if test="appName != null">
+							app_name,
+						</if>
+                        <if test="proHeight != null">
+                            pro_height,
+						</if>
+                        <if test="proWidth != null">
+                            pro_width,
+						</if>
+                        <if test="proLength != null">
+                            pro_length,
+						</if>
+                        <if test="proCabinwidth != null">
+                            pro_cabinwidth,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="proId != null" >
+						#{proId},
+					</if>
+					<if test="proUniquecode != null" >
+						#{proUniquecode},
+					</if>
+					<if test="proRfid != null" >
+						#{proRfid},
+					</if>
+					<if test="proCabintotal != null" >
+						#{proCabintotal},
+					</if>
+					<if test="proAppcategory != null" >
+						#{proAppcategory},
+					</if>
+					<if test="proFunccategory != null" >
+						#{proFunccategory},
+					</if>
+					<if test="proStatus != null" >
+						#{proStatus},
+					</if>
+					<if test="proIspartition != null" >
+						#{proIspartition},
+					</if>
+					<if test="proVerticalamount != null" >
+						#{proVerticalamount},
+					</if>
+					<if test="proHorizontalamount != null" >
+						#{proHorizontalamount},
+					</if>
+					<if test="funName != null" >
+						#{funName},
+					</if>
+					<if test="appName != null" >
+						#{appName},
+					</if>
+                    <if test="proHeight != null" >
+						#{proHeight},
+                    </if>
+                    <if test="proWidth != null" >
+						#{proWidth},
+					</if>
+                    <if test="proLength != null" >
+						#{proLength},
+					</if>
+                    <if test="proCabinwidth != null" >
+						#{proCabinwidth},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="proId != null" >
+                and ${alias}.pro_id=#{proId}
+            </if>
+            <if test="proUniquecode != null" >
+                and ${alias}.pro_uniquecode=#{proUniquecode}
+            </if>
+            <if test="proRfid != null" >
+                and ${alias}.pro_rfid=#{proRfid}
+            </if>
+            <if test="proCabintotal != null" >
+                and ${alias}.pro_cabintotal=#{proCabintotal}
+            </if>
+            <if test="proAppcategory != null" >
+                and ${alias}.pro_appcategory=#{proAppcategory}
+            </if>
+            <if test="proFunccategory != null" >
+                and ${alias}.pro_funccategory=#{proFunccategory}
+            </if>
+            <if test="proStatus != null" >
+                and ${alias}.pro_status=#{proStatus}
+            </if>
+            <if test="proIspartition != null" >
+                and ${alias}.pro_ispartition=#{proIspartition}
+            </if>
+            <if test="proVerticalamount != null" >
+                and ${alias}.pro_verticalamount=#{proVerticalamount}
+            </if>
+            <if test="proHorizontalamount != null" >
+                and ${alias}.pro_horizontalamount=#{proHorizontalamount}
+            </if>
+            <if test="funName != null" >
+                and ${alias}.fun_name=#{funName}
+            </if>
+            <if test="appName != null" >
+                and ${alias}.app_name=#{appName}
+            </if>
+            <if test="proHeight != null" >
+                and ${alias}.pro_height=#{proHeight}
+            </if>
+            <if test="proWidth != null" >
+                and ${alias}.pro_width=#{proWidth}
+            </if>
+            <if test="proLength != null" >
+                and ${alias}.pro_length=#{proLength}
+            </if>
+            <if test="proCabinwidth != null" >
+                and ${alias}.pro_cabinwidth=#{proCabinwidth}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="proUniquecode != null" >
+					pro_uniquecode=#{proUniquecode},
+				</if>
+				<if test="proRfid != null" >
+					pro_rfid=#{proRfid},
+				</if>
+				<if test="proCabintotal != null" >
+					pro_cabintotal=#{proCabintotal},
+				</if>
+				<if test="proAppcategory != null" >
+					pro_appcategory=#{proAppcategory},
+				</if>
+				<if test="proFunccategory != null" >
+					pro_funccategory=#{proFunccategory},
+				</if>
+				<if test="proStatus != null" >
+					pro_status=#{proStatus},
+				</if>
+				<if test="proIspartition != null" >
+					pro_ispartition=#{proIspartition},
+				</if>
+				<if test="proVerticalamount != null" >
+					pro_verticalamount=#{proVerticalamount},
+				</if>
+				<if test="proHorizontalamount != null" >
+					pro_horizontalamount=#{proHorizontalamount},
+				</if>
+				<if test="funName != null" >
+					fun_name=#{funName},
+				</if>
+				<if test="appName != null" >
+					app_name=#{appName},
+				</if>
+                <if test="proHeight != null" >
+                    pro_height=#{proHeight},
+				</if>
+                <if test="proWidth != null" >
+                    pro_width=#{proWidth},
+				</if>
+                <if test="proLength != null" >
+                    pro_length=#{proLength},
+				</if>
+                <if test="proCabinwidth != null" >
+                    pro_cabinwidth=#{proCabinwidth},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="proId != null" >
+            OR ${alias}.pro_id=#{proId}
+        </if>
+        <if test="proUniquecode != null" >
+            OR ${alias}.pro_uniquecode=#{proUniquecode}
+        </if>
+        <if test="proRfid != null" >
+            OR ${alias}.pro_rfid=#{proRfid}
+        </if>
+        <if test="proCabintotal != null" >
+            OR ${alias}.pro_cabintotal=#{proCabintotal}
+        </if>
+        <if test="proAppcategory != null" >
+            OR ${alias}.pro_appcategory=#{proAppcategory}
+        </if>
+        <if test="proFunccategory != null" >
+            OR ${alias}.pro_funccategory=#{proFunccategory}
+        </if>
+        <if test="proStatus != null" >
+            OR ${alias}.pro_status=#{proStatus}
+        </if>
+        <if test="proIspartition != null" >
+            OR ${alias}.pro_ispartition=#{proIspartition}
+        </if>
+        <if test="proVerticalamount != null" >
+            OR ${alias}.pro_verticalamount=#{proVerticalamount}
+        </if>
+        <if test="proHorizontalamount != null" >
+            OR ${alias}.pro_horizontalamount=#{proHorizontalamount}
+        </if>
+        <if test="funName != null" >
+            OR ${alias}.fun_name=#{funName}
+        </if>
+        <if test="appName != null" >
+            OR ${alias}.app_name=#{appName}
+        </if>
+        <if test="proHeight != null" >
+            OR ${alias}.pro_height=#{proHeight}
+        </if>
+        <if test="proWidth != null" >
+            OR ${alias}.pro_width=#{proWidth}
+        </if>
+        <if test="proLength != null" >
+            OR ${alias}.pro_length=#{proLength}
+        </if>
+        <if test="proCabinwidth != null" >
+            OR ${alias}.pro_cabinwidth=#{proCabinwidth}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="proId != null" >
+            and ${alias}.pro_id ~* #{proId}
+        </if>
+        <if test="proUniquecode != null" >
+            and ${alias}.pro_uniquecode ~* #{proUniquecode}
+        </if>
+        <if test="proRfid != null" >
+            and ${alias}.pro_rfid ~* #{proRfid}
+        </if>
+        <if test="proCabintotal != null" >
+            and CAST(${alias}.pro_cabintotal AS VARCHAR) ~* CAST(#{proCabintotal} AS VARCHAR)
+        </if>
+        <if test="proAppcategory != null" >
+            and CAST(${alias}.pro_appcategory AS VARCHAR) ~* CAST(#{proAppcategory} AS VARCHAR)
+        </if>
+        <if test="proFunccategory != null" >
+            and CAST(${alias}.pro_funccategory AS VARCHAR) ~* CAST(#{proFunccategory} AS VARCHAR)
+        </if>
+        <if test="proStatus != null" >
+            and CAST(${alias}.pro_status AS VARCHAR) ~* CAST(#{proStatus} AS VARCHAR)
+        </if>
+        <if test="proIspartition != null" >
+            and ${alias}.pro_ispartition ~* #{proIspartition}
+        </if>
+        <if test="proVerticalamount != null" >
+            and CAST(${alias}.pro_verticalamount AS VARCHAR) ~* CAST(#{proVerticalamount} AS VARCHAR)
+        </if>
+        <if test="proHorizontalamount != null" >
+            and CAST(${alias}.pro_horizontalamount AS VARCHAR) ~* CAST(#{proHorizontalamount} AS VARCHAR)
+        </if>
+        <if test="funName != null" >
+            and ${alias}.fun_name ~* #{funName}
+        </if>
+        <if test="appName != null" >
+            and ${alias}.app_name ~* #{appName}
+        </if>
+        <if test="proHeight != null" >
+            and CAST(${alias}.pro_height AS VARCHAR) ~* CAST(#{proHeight} AS VARCHAR)
+        </if>
+        <if test="proWidth != null" >
+            and CAST(${alias}.pro_width AS VARCHAR) ~* CAST(#{proWidth} AS VARCHAR)
+        </if>
+        <if test="proLength != null" >
+            and CAST(${alias}.pro_length AS VARCHAR) ~* CAST(#{proLength} AS VARCHAR)
+        </if>
+        <if test="proCabinwidth != null" >
+            and CAST(${alias}.pro_cabinwidth AS VARCHAR) ~* CAST(#{proCabinwidth} AS VARCHAR)
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.VwSuitcaseProfile">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.proId},
+                      #{item.proUniquecode},
+                      #{item.proRfid},
+                      #{item.proCabintotal},
+                      #{item.proAppcategory},
+                      #{item.proFunccategory},
+                      #{item.proStatus},
+                      #{item.proIspartition},
+                      #{item.proVerticalamount},
+                      #{item.proHorizontalamount},
+                      #{item.funName},
+                      #{item.appName},
+                      #{item.proHeight},
+                      #{item.proWidth},
+                      #{item.proLength},
+                      #{item.proCabinwidth}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  vw_suitcase_profile where pro_id= #{proId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from vw_suitcase_profile;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.VwSuitcaseProfile">
+        delete from vw_suitcase_profile t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from vw_suitcase_profile t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.VwSuitcaseProfile">
+        update vw_suitcase_profile
+        <set>
+            <include refid="updCols" />
+        </set>
+        where pro_id=#{proId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="VwSuitcaseProfile">
+        select <include refid="cols"/> from vw_suitcase_profile
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="VwSuitcaseProfile">
+        select <include refid="cols"/> from vw_suitcase_profile where pro_id=#{proId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="VwSuitcaseProfile">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_suitcase_profile t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="VwSuitcaseProfile">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_suitcase_profile t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(pro_id) from vw_suitcase_profile
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.VwSuitcaseProfile" resultType="long">
+        select count(t.pro_id) from vw_suitcase_profile t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.VwSuitcaseProfile" resultType="long">
+        select count(t.pro_id) from vw_suitcase_profile t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.VwSuitcaseProfile" resultMap="VwSuitcaseProfile">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_suitcase_profile t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="VwSuitcaseProfile">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_suitcase_profile t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

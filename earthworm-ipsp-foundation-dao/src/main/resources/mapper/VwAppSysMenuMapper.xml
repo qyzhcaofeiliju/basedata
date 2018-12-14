@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IVwAppSysMenuDao">
+    <resultMap id="VwAppSysMenu" type="com.earthworm.ipsp.foundation.entity.VwAppSysMenu">
+        <result property="appMenu.menuUrl" column="menu_url"/>
+        <result property="appMenu.menuId" column="menu_id"/>
+        <result property="appMenu.menuIcon" column="menu_icon"/>
+        <result property="appMenu.menuLevel" column="menu_level"/>
+        <result property="appMenu.menuRemark" column="menu_remark"/>
+        <result property="appMenu.menuOwnerid" column="menu_ownerid"/>
+        <result property="appMenu.menuDescription" column="menu_description"/>
+        <result property="sortNum" column="app_sysmenu_sort"/>
+        <result property="appSysCode" column="app_sys_code"/>
+        <result property="menuAccessAddress" column="app_sysmenu_access_address"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+        <trim suffixOverrides=",">
+            ${alias}.menu_url,
+            ${alias}.menu_id,
+            ${alias}.menu_icon,
+            ${alias}.menu_level,
+            ${alias}.menu_remark,
+            ${alias}.menu_ownerid,
+            ${alias}.app_sys_code,
+            ${alias}.menu_description,
+            ${alias}.app_sysmenu_sort,
+            ${alias}.app_sysmenu_access_address,
+        </trim>
+    </sql>
+
+    <sql id="objAndCond">
+        <if test="appMenu!=null">
+            <if test="appMenu.menuId != null" >
+                and ${alias}.menu_id=#{menuId}
+            </if>
+            <if test="appMenu.menuDescription != null" >
+                and ${alias}.menu_description=#{menuDescription}
+            </if>
+            <if test="appMenu.menuLevel != null" >
+                and ${alias}.menu_level=#{menuLevel}
+            </if>
+            <if test="appMenu.menuIcon != null" >
+                and ${alias}.menu_icon=#{menuIcon}
+            </if>
+            <if test="appMenu.menuOwnerid != null" >
+                and ${alias}.menu_ownerid=#{menuOwnerid}
+            </if>
+            <if test="appMenu.menuUrl != null" >
+                and ${alias}.menu_url=#{menuUrl}
+            </if>
+            <if test="appMenu.menuRemark != null" >
+                and ${alias}.menu_remark=#{menuRemark}
+            </if>
+        </if>
+        <if test="appSysCode != null" >
+            and ${alias}.app_sys_code=#{appSysCode}
+        </if>
+        <if test="sortNum != null" >
+            and ${alias}.app_sysmenu_sort=#{sortNum}
+        </if>
+        <if test="menuAccessAddress != null" >
+            and ${alias}.app_sysmenu_access_address=#{menuAccessAddress}
+        </if>
+    </sql>
+
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <select id="find" parameterType="com.earthworm.ipsp.foundation.entity.VwAppSysMenu" resultMap="VwAppSysMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_app_sys_menu t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="VwAppSysMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_app_sys_menu t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findBySysCodes" parameterType="java.util.Set" resultMap="VwAppSysMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_app_sys_menu t
+        <where>
+            t.app_sys_code in (
+            <foreach item="item" collection="collection" separator=",">
+                <if test="item != null and item!=''">
+                    #{item}
+                </if>
+            </foreach>
+            )
+        </where>
+
+    </select>
+</mapper>

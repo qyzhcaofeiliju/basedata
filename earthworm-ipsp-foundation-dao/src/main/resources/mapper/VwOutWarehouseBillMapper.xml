@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IVwOutWarehouseBillDao">
+
+    <resultMap id="VwOutWarehouseBill" type="com.earthworm.ipsp.foundation.entity.VwOutWarehouseBill">
+        <id property="outwId" column="outw_id"/>
+        <result property="outwBillsnumber" column="outw_billsnumber"/>
+        <result property="outwCategory" column="outw_category"/>
+        <result property="outwOuttime" column="outw_outtime"/>
+        <result property="outwStatus" column="outw_status"/>
+        <result property="catName" column="cat_name"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.outw_id,
+                ${alias}.outw_billsnumber,
+                ${alias}.outw_category,
+                ${alias}.outw_outtime,
+                ${alias}.outw_status,
+                ${alias}.cat_name,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				outw_id,
+				outw_billsnumber,
+				outw_category,
+				outw_outtime,
+				outw_status,
+				cat_name,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">vw_outwarehouse_bill</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="outwId != null">
+							outw_id,
+						</if>
+						<if test="outwBillsnumber != null">
+							outw_billsnumber,
+						</if>
+						<if test="outwCategory != null">
+							outw_category,
+						</if>
+						<if test="outwOuttime != null">
+							outw_outtime,
+						</if>
+						<if test="outwStatus != null">
+							outw_status,
+						</if>
+						<if test="catName != null">
+							cat_name,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="outwId != null" >
+						#{outwId},
+					</if>
+					<if test="outwBillsnumber != null" >
+						#{outwBillsnumber},
+					</if>
+					<if test="outwCategory != null" >
+						#{outwCategory},
+					</if>
+					<if test="outwOuttime != null" >
+						#{outwOuttime},
+					</if>
+					<if test="outwStatus != null" >
+						#{outwStatus},
+					</if>
+					<if test="catName != null" >
+						#{catName},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="outwId != null" >
+                and ${alias}.outw_id=#{outwId}
+            </if>
+            <if test="outwBillsnumber != null" >
+                and ${alias}.outw_billsnumber=#{outwBillsnumber}
+            </if>
+            <if test="outwCategory != null" >
+                and ${alias}.outw_category=#{outwCategory}
+            </if>
+            <if test="outwOuttime != null" >
+                and ${alias}.outw_outtime=#{outwOuttime}
+            </if>
+            <if test="outwStatus != null" >
+                and ${alias}.outw_status=#{outwStatus}
+            </if>
+            <if test="catName != null" >
+                and ${alias}.cat_name=#{catName}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="outwBillsnumber != null" >
+					outw_billsnumber=#{outwBillsnumber},
+				</if>
+				<if test="outwCategory != null" >
+					outw_category=#{outwCategory},
+				</if>
+				<if test="outwOuttime != null" >
+					outw_outtime=#{outwOuttime},
+				</if>
+				<if test="outwStatus != null" >
+					outw_status=#{outwStatus},
+				</if>
+				<if test="catName != null" >
+					cat_name=#{catName},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="outwId != null" >
+            OR ${alias}.outw_id=#{outwId}
+        </if>
+        <if test="outwBillsnumber != null" >
+            OR ${alias}.outw_billsnumber=#{outwBillsnumber}
+        </if>
+        <if test="outwCategory != null" >
+            OR ${alias}.outw_category=#{outwCategory}
+        </if>
+        <if test="outwOuttime != null" >
+            OR ${alias}.outw_outtime=#{outwOuttime}
+        </if>
+        <if test="outwStatus != null" >
+            OR ${alias}.outw_status=#{outwStatus}
+        </if>
+        <if test="catName != null" >
+            OR ${alias}.cat_name=#{catName}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="outwId != null" >
+            and ${alias}.outw_id  ~*  #{outwId}
+        </if>
+        <if test="outwBillsnumber != null" >
+            and ${alias}.outw_billsnumber  ~*  #{outwBillsnumber}
+        </if>
+        <if test="outwCategory != null" >
+            and CAST(${alias}.outw_category AS VARCHAR) ~*  CAST(#{outwCategory} AS VARCHAR)
+        </if>
+        <if test="outwOuttime != null" >
+            and ${alias}.outw_outtime  ~*  #{outwOuttime}
+        </if>
+        <if test="outwStatus != null" >
+            and CAST(${alias}.outw_status AS VARCHAR) ~*  CAST(#{outwStatus} AS VARCHAR)
+        </if>
+        <if test="catName != null" >
+            and ${alias}.cat_name  ~*  #{catName}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.VwOutWarehouseBill">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.outwId},
+                      #{item.outwBillsnumber},
+                      #{item.outwCategory},
+                      #{item.outwOuttime},
+                      #{item.outwStatus},
+                      #{item.catName}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  vw_outwarehouse_bill where outw_id= #{outwId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from vw_outwarehouse_bill;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.VwOutWarehouseBill">
+        delete from vw_outwarehouse_bill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from vw_outwarehouse_bill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.VwOutWarehouseBill">
+        update vw_outwarehouse_bill
+        <set>
+            <include refid="updCols" />
+        </set>
+        where outw_id=#{outwId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="VwOutWarehouseBill">
+        select <include refid="cols"/> from vw_outwarehouse_bill
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="VwOutWarehouseBill">
+        select <include refid="cols"/> from vw_outwarehouse_bill where outw_id=#{outwId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="VwOutWarehouseBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_outwarehouse_bill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="VwOutWarehouseBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_outwarehouse_bill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(outw_id) from vw_outwarehouse_bill
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.VwOutWarehouseBill" resultType="long">
+        select count(t.outw_id) from vw_outwarehouse_bill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.VwOutWarehouseBill" resultType="long">
+        select count(t.outw_id) from vw_outwarehouse_bill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.VwOutWarehouseBill" resultMap="VwOutWarehouseBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_outwarehouse_bill t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="VwOutWarehouseBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from vw_outwarehouse_bill t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

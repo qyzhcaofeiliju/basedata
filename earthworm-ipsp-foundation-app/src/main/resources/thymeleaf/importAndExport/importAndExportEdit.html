@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="inWarehouseBill_ViewDetailForm">
+<div class="row form-group ew-form-addupt" id="save_inWarehouseBill">
+    <!--编号是从except中读取，分类选择的。时间是本地时间，入库状态:没有入库或者入库未完成-->
+    <input type="text" name="inwId" hidden>
+    <div class="col-md-12">
+        <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</span>
+            <input type="text" th:value="${inwBillsnumber}" data-field="InWarehouseBill.inwBillsnumber" id="inputID" ,
+                   name="inwBillsnumber" class="form-control ew-validate"
+                   placeholder="编号" aria-describedby="sizing-addon4" maxlength="40" required readonly>
+            <div class="glyphicon form-control-feedback"></div>
+        </div>
+        <div class="valid-feedback ew-valid-feedback"></div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon">分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类:</span>
+            <select name="inwCategory" class="form-control ew-validate" data-field="InWarehouseBill.inwCategory" id="selectValue"
+                    aria-describedby="sizing-addon7" required>
+                <option value="">请选择分类</option>
+                <option th:each="bills:${billsCategories}" th:value="${bills.catCategory}"
+                        th:text="${bills.catName}"
+                        th:selected="${inWarehouseBill==null}? null:(${bills.catCategory==inWarehouseBill.inwCategory})"></option>
+            </select>
+            <div class="glyphicon form-control-feedback"></div>
+        </div>
+        <div class="valid-feedback ew-valid-feedback"></div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="input-group form-group ew-form-rowdiv">
+            <span class="input-group-addon ew-validate">入库时间:</span>
+            <input id="inputDateId" type="text" name="inwIntime" class="form-control ew-validate" data-field="InWarehouseBill.inwIntime" placeholder="请输入入库时间" required excludeSpecValid>
+            <div class="glyphicon form-control-feedback"></div>
+        </div>
+        <div class="valid-feedback ew-valid-feedback"></div>
+    </div>
+
+    <div class="col-md-12" hidden>
+        <div class="input-group form-group ew-form-rowdiv">
+            <span class="input-group-addon">入库状态:</span>
+            <input type="text" th:value="0" data-field="InWarehouseBill.inwStatus" class="form-control ew-validata" placeholder="入库状态"
+                   id="inputState" aria-describedby="sizing-addon4" maxlength="40" required readonly >
+        </div>
+    </div>
+</div>
+</form>
+<input name="script" hidden th:value="${#httpServletRequest.scheme}+'://'+${#httpServletRequest.serverName}+':'+${#httpServletRequest.serverPort}+'/ipsp/earthworm/inWarehouseBill/js/inWarehouseBillView.js'">
+<script type="text/javascript">
+    $("#inputDateId").datetimepicker();
+</script>
+</html>

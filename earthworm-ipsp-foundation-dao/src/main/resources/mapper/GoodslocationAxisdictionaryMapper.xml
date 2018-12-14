@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IGoodslocationAxisdictionaryDao">
+
+    <resultMap id="GoodslocationAxisdictionary" type="com.earthworm.ipsp.foundation.entity.GoodslocationAxisdictionary">
+        <id property="axisdId" column="axisd_id"/>
+        <result property="axisdEquId" column="axisd_equ_id"/>
+        <result property="axisdNumber" column="axisd_number"/>
+        <result property="axisdStatus" column="axisd_status"/>
+        <result property="axisdRank" column="axisd_rank"/>
+        <result property="axisdTier" column="axisd_tier"/>
+        <result property="axisdColumn" column="axisd_column"/>
+        <result property="axisdX" column="axisd_x"/>
+        <result property="axisdY" column="axisd_y"/>
+        <result property="axisdZ" column="axisd_z"/>
+        <result property="axisdSuitcaseuniquecode" column="axisd_suitcaseuniquecode"/>
+        <result property="axisdSuitcasetype" column="axisd_suitcasetype"/>
+        <result property="axisdIsautoload" column="axisd_isautoload"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.axisd_id,
+                ${alias}.axisd_equ_id,
+                ${alias}.axisd_number,
+                ${alias}.axisd_status,
+                ${alias}.axisd_rank,
+                ${alias}.axisd_tier,
+                ${alias}.axisd_column,
+                ${alias}.axisd_x,
+                ${alias}.axisd_y,
+                ${alias}.axisd_z,
+                ${alias}.axisd_suitcaseuniquecode,
+                ${alias}.axisd_suitcasetype,
+                ${alias}.axisd_isautoload,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				axisd_id,
+				axisd_equ_id,
+				axisd_number,
+				axisd_status,
+				axisd_rank,
+				axisd_tier,
+				axisd_column,
+				axisd_x,
+				axisd_y,
+				axisd_z,
+				axisd_suitcaseuniquecode,
+				axisd_suitcasetype,
+				axisd_isautoload,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Goodslocation_Axisdictionary</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="axisdId != null">
+							axisd_id,
+						</if>
+						<if test="axisdEquId != null">
+							axisd_equ_id,
+						</if>
+						<if test="axisdNumber != null">
+							axisd_number,
+						</if>
+						<if test="axisdStatus != null">
+							axisd_status,
+						</if>
+						<if test="axisdRank != null">
+							axisd_rank,
+						</if>
+						<if test="axisdTier != null">
+							axisd_tier,
+						</if>
+						<if test="axisdColumn != null">
+							axisd_column,
+						</if>
+						<if test="axisdX != null">
+							axisd_x,
+						</if>
+						<if test="axisdY != null">
+							axisd_y,
+						</if>
+						<if test="axisdZ != null">
+							axisd_z,
+						</if>
+						<if test="axisdSuitcaseuniquecode != null">
+							axisd_suitcaseuniquecode,
+						</if>
+						<if test="axisdSuitcasetype != null">
+							axisd_suitcasetype,
+						</if>
+						<if test="axisdIsautoload != null">
+							axisd_isautoload,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="axisdId != null" >
+						#{axisdId},
+					</if>
+					<if test="axisdEquId != null" >
+						#{axisdEquId},
+					</if>
+					<if test="axisdNumber != null" >
+						#{axisdNumber},
+					</if>
+					<if test="axisdStatus != null" >
+						#{axisdStatus},
+					</if>
+					<if test="axisdRank != null" >
+						#{axisdRank},
+					</if>
+					<if test="axisdTier != null" >
+						#{axisdTier},
+					</if>
+					<if test="axisdColumn != null" >
+						#{axisdColumn},
+					</if>
+					<if test="axisdX != null" >
+						#{axisdX},
+					</if>
+					<if test="axisdY != null" >
+						#{axisdY},
+					</if>
+					<if test="axisdZ != null" >
+						#{axisdZ},
+					</if>
+					<if test="axisdSuitcaseuniquecode != null" >
+						#{axisdSuitcaseuniquecode},
+					</if>
+					<if test="axisdSuitcasetype != null" >
+						#{axisdSuitcasetype},
+					</if>
+					<if test="axisdIsautoload != null" >
+						#{axisdIsautoload},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="axisdId != null" >
+                and ${alias}.axisd_id=#{axisdId}
+            </if>
+            <if test="axisdEquId != null" >
+                and ${alias}.axisd_equ_id=#{axisdEquId}
+            </if>
+            <if test="axisdNumber != null" >
+                and ${alias}.axisd_number=#{axisdNumber}
+            </if>
+            <if test="axisdStatus != null" >
+                and ${alias}.axisd_status=#{axisdStatus}
+            </if>
+            <if test="axisdRank != null" >
+                and ${alias}.axisd_rank=#{axisdRank}
+            </if>
+            <if test="axisdTier != null" >
+                and ${alias}.axisd_tier=#{axisdTier}
+            </if>
+            <if test="axisdColumn != null" >
+                and ${alias}.axisd_column=#{axisdColumn}
+            </if>
+            <if test="axisdX != null" >
+                and ${alias}.axisd_x=#{axisdX}
+            </if>
+            <if test="axisdY != null" >
+                and ${alias}.axisd_y=#{axisdY}
+            </if>
+            <if test="axisdZ != null" >
+                and ${alias}.axisd_z=#{axisdZ}
+            </if>
+            <if test="axisdSuitcaseuniquecode != null" >
+                and ${alias}.axisd_suitcaseuniquecode=#{axisdSuitcaseuniquecode}
+            </if>
+            <if test="axisdSuitcasetype != null" >
+                and ${alias}.axisd_suitcasetype=#{axisdSuitcasetype}
+            </if>
+            <if test="axisdIsautoload != null" >
+                and ${alias}.axisd_isautoload=#{axisdIsautoload}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="axisdEquId != null" >
+					axisd_equ_id=#{axisdEquId},
+				</if>
+				<if test="axisdNumber != null" >
+					axisd_number=#{axisdNumber},
+				</if>
+				<if test="axisdStatus != null" >
+					axisd_status=#{axisdStatus},
+				</if>
+				<if test="axisdRank != null" >
+					axisd_rank=#{axisdRank},
+				</if>
+				<if test="axisdTier != null" >
+					axisd_tier=#{axisdTier},
+				</if>
+				<if test="axisdColumn != null" >
+					axisd_column=#{axisdColumn},
+				</if>
+				<if test="axisdX != null" >
+					axisd_x=#{axisdX},
+				</if>
+				<if test="axisdY != null" >
+					axisd_y=#{axisdY},
+				</if>
+				<if test="axisdZ != null" >
+					axisd_z=#{axisdZ},
+				</if>
+				<if test="axisdSuitcaseuniquecode != null" >
+					axisd_suitcaseuniquecode=#{axisdSuitcaseuniquecode},
+				</if>
+				<if test="axisdSuitcasetype != null" >
+					axisd_suitcasetype=#{axisdSuitcasetype},
+				</if>
+				<if test="axisdIsautoload != null" >
+					axisd_isautoload=#{axisdIsautoload},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="axisdId != null" >
+            OR ${alias}.axisd_id=#{axisdId}
+        </if>
+        <if test="axisdEquId != null" >
+            OR ${alias}.axisd_equ_id=#{axisdEquId}
+        </if>
+        <if test="axisdNumber != null" >
+            OR ${alias}.axisd_number=#{axisdNumber}
+        </if>
+        <if test="axisdStatus != null" >
+            OR ${alias}.axisd_status=#{axisdStatus}
+        </if>
+        <if test="axisdRank != null" >
+            OR ${alias}.axisd_rank=#{axisdRank}
+        </if>
+        <if test="axisdTier != null" >
+            OR ${alias}.axisd_tier=#{axisdTier}
+        </if>
+        <if test="axisdColumn != null" >
+            OR ${alias}.axisd_column=#{axisdColumn}
+        </if>
+        <if test="axisdX != null" >
+            OR ${alias}.axisd_x=#{axisdX}
+        </if>
+        <if test="axisdY != null" >
+            OR ${alias}.axisd_y=#{axisdY}
+        </if>
+        <if test="axisdZ != null" >
+            OR ${alias}.axisd_z=#{axisdZ}
+        </if>
+        <if test="axisdSuitcaseuniquecode != null" >
+            OR ${alias}.axisd_suitcaseuniquecode=#{axisdSuitcaseuniquecode}
+        </if>
+        <if test="axisdSuitcasetype != null" >
+            OR ${alias}.axisd_suitcasetype=#{axisdSuitcasetype}
+        </if>
+        <if test="axisdIsautoload != null" >
+            OR ${alias}.axisd_isautoload=#{axisdIsautoload}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="axisdId != null" >
+            and ${alias}.axisd_id ~* #{axisdId}
+        </if>
+        <if test="axisdEquId != null" >
+            and ${alias}.axisd_equ_id ~* #{axisdEquId}
+        </if>
+        <if test="axisdNumber != null" >
+            and ${alias}.axisd_number ~* #{axisdNumber}
+        </if>
+        <if test="axisdStatus != null" >
+            and ${alias}.axisd_status ~* #{axisdStatus}
+        </if>
+        <if test="axisdRank != null" >
+            and CAST(${alias}.axisd_rank AS VARCHAR) ~* CAST(#{axisdRank} AS VARCHAR)
+        </if>
+        <if test="axisdTier != null" >
+            and CAST(${alias}.axisd_tier AS VARCHAR) ~* CAST(#{axisdTier} AS VARCHAR)
+        </if>
+        <if test="axisdColumn != null" >
+            and CAST(${alias}.axisd_column AS VARCHAR) ~* CAST(#{axisdColumn}　AS VARCHAR)
+        </if>
+        <if test="axisdX != null" >
+            and CAST(${alias}.axisd_x AS VARCHAR) ~* CAST(#{axisdX} AS VARCHAR)
+        </if>
+        <if test="axisdY != null" >
+            and CAST(${alias}.axisd_y AS VARCHAR) ~* CAST(#{axisdY} AS VARCHAR)
+        </if>
+        <if test="axisdZ != null" >
+            and CAST(${alias}.axisd_z AS VARCHAR) ~* CAST(#{axisdZ} AS VARCHAR)
+        </if>
+        <if test="axisdSuitcaseuniquecode != null" >
+            and ${alias}.axisd_suitcaseuniquecode ~* #{axisdSuitcaseuniquecode}
+        </if>
+        <if test="axisdSuitcasetype != null" >
+            and CAST(${alias}.axisd_suitcasetype AS VARCHAR) ~* CAST(#{axisdSuitcasetype} AS VARCHAR)
+        </if>
+        <if test="axisdIsautoload != null" >
+            and ${alias}.axisd_isautoload ~* #{axisdIsautoload}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.GoodslocationAxisdictionary">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.axisdId},
+                      #{item.axisdEquId},
+                      #{item.axisdNumber},
+                      #{item.axisdStatus},
+                      #{item.axisdRank},
+                      #{item.axisdTier},
+                      #{item.axisdColumn},
+                      #{item.axisdX},
+                      #{item.axisdY},
+                      #{item.axisdZ},
+                      #{item.axisdSuitcaseuniquecode},
+                      #{item.axisdSuitcasetype},
+                      #{item.axisdIsautoload}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Goodslocation_Axisdictionary where axisd_id= #{axisdId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Goodslocation_Axisdictionary;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.GoodslocationAxisdictionary">
+        delete from Goodslocation_Axisdictionary t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Goodslocation_Axisdictionary t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.GoodslocationAxisdictionary">
+        update Goodslocation_Axisdictionary
+        <set>
+            <include refid="updCols" />
+        </set>
+        where axisd_id=#{axisdId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="GoodslocationAxisdictionary">
+        select <include refid="cols"/> from Goodslocation_Axisdictionary
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="GoodslocationAxisdictionary">
+        select <include refid="cols"/> from Goodslocation_Axisdictionary where axisd_id=#{axisdId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="GoodslocationAxisdictionary">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Goodslocation_Axisdictionary t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="GoodslocationAxisdictionary">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Goodslocation_Axisdictionary t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(axisd_id) from Goodslocation_Axisdictionary
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.GoodslocationAxisdictionary" resultType="long">
+        select count(t.axisd_id) from Goodslocation_Axisdictionary t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.GoodslocationAxisdictionary" resultType="long">
+        select count(t.axisd_id) from Goodslocation_Axisdictionary t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.GoodslocationAxisdictionary" resultMap="GoodslocationAxisdictionary">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Goodslocation_Axisdictionary t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="GoodslocationAxisdictionary">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from goodslocation_axisdictionary t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

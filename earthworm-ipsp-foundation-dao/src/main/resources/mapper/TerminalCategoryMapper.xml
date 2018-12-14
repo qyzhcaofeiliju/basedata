@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.ITerminalCategoryDao">
+
+    <resultMap id="TerminalCategory" type="com.earthworm.ipsp.foundation.entity.TerminalCategory">
+        <id property="catId" column="cat_id"/>
+        <result property="catModel" column="cat_model"/>
+        <result property="catName" column="cat_name"/>
+        <result property="catFunccategory" column="cat_funccategory"/>
+        <result property="catAppcategory" column="cat_appcategory"/>
+        <result property="catDescription" column="cat_description"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.cat_id,
+                ${alias}.cat_model,
+                ${alias}.cat_name,
+                ${alias}.cat_funccategory,
+                ${alias}.cat_appcategory,
+                ${alias}.cat_description,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				cat_id,
+				cat_model,
+				cat_name,
+				cat_funccategory,
+				cat_appcategory,
+				cat_description,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Terminal_Category</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="catId != null">
+							cat_id,
+						</if>
+						<if test="catModel != null">
+							cat_model,
+						</if>
+						<if test="catName != null">
+							cat_name,
+						</if>
+						<if test="catFunccategory != null">
+							cat_funccategory,
+						</if>
+						<if test="catAppcategory != null">
+							cat_appcategory,
+						</if>
+						<if test="catDescription != null">
+							cat_description,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="catId != null" >
+						#{catId},
+					</if>
+					<if test="catModel != null" >
+						#{catModel},
+					</if>
+					<if test="catName != null" >
+						#{catName},
+					</if>
+					<if test="catFunccategory != null" >
+						#{catFunccategory},
+					</if>
+					<if test="catAppcategory != null" >
+						#{catAppcategory},
+					</if>
+					<if test="catDescription != null" >
+						#{catDescription},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="catId != null" >
+                and ${alias}.cat_id=#{catId}
+            </if>
+            <if test="catModel != null" >
+                and ${alias}.cat_model=#{catModel}
+            </if>
+            <if test="catName != null" >
+                and ${alias}.cat_name=#{catName}
+            </if>
+            <if test="catFunccategory != null" >
+                and ${alias}.cat_funccategory=#{catFunccategory}
+            </if>
+            <if test="catAppcategory != null" >
+                and ${alias}.cat_appcategory=#{catAppcategory}
+            </if>
+            <if test="catDescription != null" >
+                and ${alias}.cat_description=#{catDescription}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="catModel != null" >
+					cat_model=#{catModel},
+				</if>
+				<if test="catName != null" >
+					cat_name=#{catName},
+				</if>
+				<if test="catFunccategory != null" >
+					cat_funccategory=#{catFunccategory},
+				</if>
+				<if test="catAppcategory != null" >
+					cat_appcategory=#{catAppcategory},
+				</if>
+				<if test="catDescription != null" >
+					cat_description=#{catDescription},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="catId != null" >
+            OR ${alias}.cat_id=#{catId}
+        </if>
+        <if test="catModel != null" >
+            OR ${alias}.cat_model=#{catModel}
+        </if>
+        <if test="catName != null" >
+            OR ${alias}.cat_name=#{catName}
+        </if>
+        <if test="catFunccategory != null" >
+            OR ${alias}.cat_funccategory=#{catFunccategory}
+        </if>
+        <if test="catAppcategory != null" >
+            OR ${alias}.cat_appcategory=#{catAppcategory}
+        </if>
+        <if test="catDescription != null" >
+            OR ${alias}.cat_description=#{catDescription}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="catId != null" >
+            and ${alias}.cat_id ~* #{catId}
+        </if>
+        <if test="catModel != null" >
+            and ${alias}.cat_model ~* #{catModel}
+        </if>
+        <if test="catName != null" >
+            and ${alias}.cat_name ~* #{catName}
+        </if>
+        <if test="catFunccategory != null" >
+            and CAST(${alias}.cat_funccategory AS VARCHAR) ~* CAST(#{catFunccategory} AS VARCHAR)
+        </if>
+        <if test="catAppcategory != null" >
+            and CAST(${alias}.cat_appcategory AS VARCHAR) ~* CAST(#{catAppcategory} AS VARCHAR)
+        </if>
+        <if test="catDescription != null" >
+            and ${alias}.cat_description ~* #{catDescription}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.TerminalCategory">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.catId},
+                      #{item.catModel},
+                      #{item.catName},
+                      #{item.catFunccategory},
+                      #{item.catAppcategory},
+                      #{item.catDescription}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Terminal_Category where cat_id= #{catId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Terminal_Category;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.TerminalCategory">
+        delete from Terminal_Category t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Terminal_Category t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.TerminalCategory">
+        update Terminal_Category
+        <set>
+            <include refid="updCols" />
+        </set>
+        where cat_id=#{catId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="TerminalCategory">
+        select <include refid="cols"/> from Terminal_Category
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="TerminalCategory">
+        select <include refid="cols"/> from Terminal_Category where cat_id=#{catId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="TerminalCategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Category t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="TerminalCategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Category t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(cat_id) from Terminal_Category
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.TerminalCategory" resultType="long">
+        select count(t.cat_id) from Terminal_Category t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.TerminalCategory" resultType="long">
+        select count(t.cat_id) from Terminal_Category t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.TerminalCategory" resultMap="TerminalCategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Category t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="TerminalCategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from terminal_category t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

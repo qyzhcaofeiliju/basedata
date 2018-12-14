@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="terminalCategory_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${terminalCategory==null}? null : ${terminalCategory.catId}" name="catId" hidden>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon1">型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                <input th:value="${terminalCategory==null}? null : ${terminalCategory.catModel}" type="text"
+                       name="catModel" class="form-control ew-validate"
+                       required
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       maxlength="30"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于30位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于30位"
+                       aria-describedby="sizing-addon2">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon2">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</span>
+                <input th:value="${terminalCategory==null}? null : ${terminalCategory.catName}" type="text"
+                       name="catName" class="form-control ew-validate"
+                       required
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       maxlength="100"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于100位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于100位"
+                       aria-describedby="sizing-addon2">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon3">功&nbsp;能&nbsp;分&nbsp;类</span>
+                <select name="catFunccategory" class="form-control ew-validate" aria-describedby="sizing-addon3">
+                    <option value="">---请选择功能分类---</option>
+                    <option th:each="terminalFunccategory:${terminalFunccategories}"
+                            th:value="${terminalFunccategory.funCategory}" th:text="${terminalFunccategory.funName}"
+                            th:selected="${terminalCategory==null}? null:(${terminalFunccategory.funCategory==terminalCategory.catFunccategory})"></option>
+                </select>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon4">应&nbsp;用&nbsp;分&nbsp;类</span>
+                <select name="catAppcategory" class="form-control ew-validate" aria-describedby="sizing-addon3">
+                    <option value="">---请选择应用分类---</option>
+                    <option th:each="terminalAppcategory:${terminalAppcategories}"
+                            th:value="${terminalAppcategory.appCategory}" th:text="${terminalAppcategory.appName}"
+                            th:selected="${terminalCategory==null}? null:(${terminalAppcategory.appCategory==terminalCategory.catAppcategory})"></option>
+                </select>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon5">描&nbsp;述&nbsp;信&nbsp;息</span>
+                <textarea name="catDescription" cols="54" rows="4"
+                          th:text="${terminalCategory==null}? null : ${terminalCategory.catDescription}"
+                          class="form-control ew-textarea-noresize ew-validate"
+                          maxlength="100"
+                          placeholder="请输入描述信息，字数在100以内"
+                          title="请输入描述信息，字数在100以内">
+                </textarea>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+    </div>
+</form>
+</html>

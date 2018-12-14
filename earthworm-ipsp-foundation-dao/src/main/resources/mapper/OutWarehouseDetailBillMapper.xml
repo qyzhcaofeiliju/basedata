@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IOutWarehouseDetailBillDao">
+
+    <resultMap id="OutWarehouseDetailBill" type="com.earthworm.ipsp.foundation.entity.OutWarehouseDetailBill">
+        <id property="outwId" column="outw_id"/>
+        <result property="outwBillsnumber" column="outw_billsnumber"/>
+        <result property="outwModel" column="outw_model"/>
+        <result property="outwCode" column="outw_code"/>
+        <result property="outwUniquecode" column="outw_uniquecode"/>
+        <result property="outwManufacturer" column="outw_manufacturer"/>
+        <result property="outwUnit" column="outw_unit"/>
+        <result property="outwBatch" column="outw_batch"/>
+        <result property="outwEffectivedate" column="outw_effectivedate"/>
+        <result property="outwProduceddate" column="outw_produceddate"/>
+        <result property="outwTotal" column="outw_total"/>
+        <result property="outwAmount" column="outw_amount"/>
+        <result property="outwActualcount" column="outw_actualcount"/>
+        <result property="outwStatus" column="outw_status"/>
+        <result property="outwWarehousenumber" column="outw_warehousenumber"/>
+        <result property="outwIspreout" column="outw_ispreout"/>
+        <result property="outwPrebillnumber" column="outw_prebillnumber"/>
+        <result property="outwOutdatetime" column="outw_outdatetime"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.outw_id,
+                ${alias}.outw_billsnumber,
+                ${alias}.outw_model,
+                ${alias}.outw_code,
+                ${alias}.outw_uniquecode,
+                ${alias}.outw_manufacturer,
+                ${alias}.outw_unit,
+                ${alias}.outw_batch,
+                ${alias}.outw_effectivedate,
+                ${alias}.outw_produceddate,
+                ${alias}.outw_total,
+                ${alias}.outw_amount,
+                ${alias}.outw_actualcount,
+                ${alias}.outw_status,
+                ${alias}.outw_warehousenumber,
+                ${alias}.outw_ispreout,
+                ${alias}.outw_prebillnumber,
+                ${alias}.outw_outdatetime,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				outw_id,
+				outw_billsnumber,
+				outw_model,
+				outw_code,
+				outw_uniquecode,
+				outw_manufacturer,
+				outw_unit,
+				outw_batch,
+				outw_effectivedate,
+				outw_produceddate,
+				outw_total,
+				outw_amount,
+				outw_actualcount,
+				outw_status,
+				outw_warehousenumber,
+				outw_ispreout,
+				outw_prebillnumber,
+				outw_outdatetime,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">OutWarehouse_DetailBill</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="outwId != null">
+							outw_id,
+						</if>
+						<if test="outwBillsnumber != null">
+							outw_billsnumber,
+						</if>
+						<if test="outwModel != null">
+							outw_model,
+						</if>
+						<if test="outwCode != null">
+							outw_code,
+						</if>
+						<if test="outwUniquecode != null">
+							outw_uniquecode,
+						</if>
+						<if test="outwManufacturer != null">
+							outw_manufacturer,
+						</if>
+						<if test="outwUnit != null">
+							outw_unit,
+						</if>
+						<if test="outwBatch != null">
+							outw_batch,
+						</if>
+						<if test="outwEffectivedate != null">
+							outw_effectivedate,
+						</if>
+						<if test="outwProduceddate != null">
+							outw_produceddate,
+						</if>
+						<if test="outwTotal != null">
+							outw_total,
+						</if>
+						<if test="outwAmount != null">
+							outw_amount,
+						</if>
+						<if test="outwActualcount != null">
+							outw_actualcount,
+						</if>
+						<if test="outwStatus != null">
+							outw_status,
+						</if>
+						<if test="outwWarehousenumber != null">
+							outw_warehousenumber,
+						</if>
+						<if test="outwIspreout != null">
+							outw_ispreout,
+						</if>
+						<if test="outwPrebillnumber != null">
+							outw_prebillnumber,
+						</if>
+						<if test="outwOutdatetime != null">
+							outw_outdatetime,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="outwId != null" >
+						#{outwId},
+					</if>
+					<if test="outwBillsnumber != null" >
+						#{outwBillsnumber},
+					</if>
+					<if test="outwModel != null" >
+						#{outwModel},
+					</if>
+					<if test="outwCode != null" >
+						#{outwCode},
+					</if>
+					<if test="outwUniquecode != null" >
+						#{outwUniquecode},
+					</if>
+					<if test="outwManufacturer != null" >
+						#{outwManufacturer},
+					</if>
+					<if test="outwUnit != null" >
+						#{outwUnit},
+					</if>
+					<if test="outwBatch != null" >
+						#{outwBatch},
+					</if>
+					<if test="outwEffectivedate != null" >
+						#{outwEffectivedate},
+					</if>
+					<if test="outwProduceddate != null" >
+						#{outwProduceddate},
+					</if>
+					<if test="outwTotal != null" >
+						#{outwTotal},
+					</if>
+					<if test="outwAmount != null" >
+						#{outwAmount},
+					</if>
+					<if test="outwActualcount != null" >
+						#{outwActualcount},
+					</if>
+					<if test="outwStatus != null" >
+						#{outwStatus},
+					</if>
+					<if test="outwWarehousenumber != null" >
+						#{outwWarehousenumber},
+					</if>
+					<if test="outwIspreout != null" >
+						#{outwIspreout},
+					</if>
+					<if test="outwPrebillnumber != null" >
+						#{outwPrebillnumber},
+					</if>
+					<if test="outwOutdatetime != null" >
+						#{outwOutdatetime},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="outwId != null" >
+                and ${alias}.outw_id=#{outwId}
+            </if>
+            <if test="outwBillsnumber != null" >
+                and ${alias}.outw_billsnumber=#{outwBillsnumber}
+            </if>
+            <if test="outwModel != null" >
+                and ${alias}.outw_model=#{outwModel}
+            </if>
+            <if test="outwCode != null" >
+                and ${alias}.outw_code=#{outwCode}
+            </if>
+            <if test="outwUniquecode != null" >
+                and ${alias}.outw_uniquecode=#{outwUniquecode}
+            </if>
+            <if test="outwManufacturer != null" >
+                and ${alias}.outw_manufacturer=#{outwManufacturer}
+            </if>
+            <if test="outwUnit != null" >
+                and ${alias}.outw_unit=#{outwUnit}
+            </if>
+            <if test="outwBatch != null" >
+                and ${alias}.outw_batch=#{outwBatch}
+            </if>
+            <if test="outwEffectivedate != null" >
+                and ${alias}.outw_effectivedate=#{outwEffectivedate}
+            </if>
+            <if test="outwProduceddate != null" >
+                and ${alias}.outw_produceddate=#{outwProduceddate}
+            </if>
+            <if test="outwTotal != null" >
+                and ${alias}.outw_total=#{outwTotal}
+            </if>
+            <if test="outwAmount != null" >
+                and ${alias}.outw_amount=#{outwAmount}
+            </if>
+            <if test="outwActualcount != null" >
+                and ${alias}.outw_actualcount=#{outwActualcount}
+            </if>
+            <if test="outwStatus != null" >
+                and ${alias}.outw_status=#{outwStatus}
+            </if>
+            <if test="outwWarehousenumber != null" >
+                and ${alias}.outw_warehousenumber=#{outwWarehousenumber}
+            </if>
+            <if test="outwIspreout != null" >
+                and ${alias}.outw_ispreout=#{outwIspreout}
+            </if>
+            <if test="outwPrebillnumber != null" >
+                and ${alias}.outw_prebillnumber=#{outwPrebillnumber}
+            </if>
+            <if test="outwOutdatetime != null" >
+                and ${alias}.outw_outdatetime=#{outwOutdatetime}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="outwBillsnumber != null" >
+					outw_billsnumber=#{outwBillsnumber},
+				</if>
+				<if test="outwModel != null" >
+					outw_model=#{outwModel},
+				</if>
+				<if test="outwCode != null" >
+					outw_code=#{outwCode},
+				</if>
+				<if test="outwUniquecode != null" >
+					outw_uniquecode=#{outwUniquecode},
+				</if>
+				<if test="outwManufacturer != null" >
+					outw_manufacturer=#{outwManufacturer},
+				</if>
+				<if test="outwUnit != null" >
+					outw_unit=#{outwUnit},
+				</if>
+				<if test="outwBatch != null" >
+					outw_batch=#{outwBatch},
+				</if>
+				<if test="outwEffectivedate != null" >
+					outw_effectivedate=#{outwEffectivedate},
+				</if>
+				<if test="outwProduceddate != null" >
+					outw_produceddate=#{outwProduceddate},
+				</if>
+				<if test="outwTotal != null" >
+					outw_total=#{outwTotal},
+				</if>
+				<if test="outwAmount != null" >
+					outw_amount=#{outwAmount},
+				</if>
+				<if test="outwActualcount != null" >
+					outw_actualcount=#{outwActualcount},
+				</if>
+				<if test="outwStatus != null" >
+					outw_status=#{outwStatus},
+				</if>
+				<if test="outwWarehousenumber != null" >
+					outw_warehousenumber=#{outwWarehousenumber},
+				</if>
+				<if test="outwIspreout != null" >
+					outw_ispreout=#{outwIspreout},
+				</if>
+				<if test="outwPrebillnumber != null" >
+					outw_prebillnumber=#{outwPrebillnumber},
+				</if>
+				<if test="outwOutdatetime != null" >
+					outw_outdatetime=#{outwOutdatetime},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="outwId != null" >
+            OR ${alias}.outw_id=#{outwId}
+        </if>
+        <if test="outwBillsnumber != null" >
+            OR ${alias}.outw_billsnumber=#{outwBillsnumber}
+        </if>
+        <if test="outwModel != null" >
+            OR ${alias}.outw_model=#{outwModel}
+        </if>
+        <if test="outwCode != null" >
+            OR ${alias}.outw_code=#{outwCode}
+        </if>
+        <if test="outwUniquecode != null" >
+            OR ${alias}.outw_uniquecode=#{outwUniquecode}
+        </if>
+        <if test="outwManufacturer != null" >
+            OR ${alias}.outw_manufacturer=#{outwManufacturer}
+        </if>
+        <if test="outwUnit != null" >
+            OR ${alias}.outw_unit=#{outwUnit}
+        </if>
+        <if test="outwBatch != null" >
+            OR ${alias}.outw_batch=#{outwBatch}
+        </if>
+        <if test="outwEffectivedate != null" >
+            OR ${alias}.outw_effectivedate=#{outwEffectivedate}
+        </if>
+        <if test="outwProduceddate != null" >
+            OR ${alias}.outw_produceddate=#{outwProduceddate}
+        </if>
+        <if test="outwTotal != null" >
+            OR ${alias}.outw_total=#{outwTotal}
+        </if>
+        <if test="outwAmount != null" >
+            OR ${alias}.outw_amount=#{outwAmount}
+        </if>
+        <if test="outwActualcount != null" >
+            OR ${alias}.outw_actualcount=#{outwActualcount}
+        </if>
+        <if test="outwStatus != null" >
+            OR ${alias}.outw_status=#{outwStatus}
+        </if>
+        <if test="outwWarehousenumber != null" >
+            OR ${alias}.outw_warehousenumber=#{outwWarehousenumber}
+        </if>
+        <if test="outwIspreout != null" >
+            OR ${alias}.outw_ispreout=#{outwIspreout}
+        </if>
+        <if test="outwPrebillnumber != null" >
+            OR ${alias}.outw_prebillnumber=#{outwPrebillnumber}
+        </if>
+        <if test="outwOutdatetime != null" >
+            OR ${alias}.outw_outdatetime=#{outwOutdatetime}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="outwId != null" >
+            and ${alias}.outw_id ~* #{outwId}
+        </if>
+        <if test="outwBillsnumber != null" >
+            and ${alias}.outw_billsnumber ~* #{outwBillsnumber}
+        </if>
+        <if test="outwModel != null" >
+            and ${alias}.outw_model ~* #{outwModel}
+        </if>
+        <if test="outwCode != null" >
+            and ${alias}.outw_code ~* #{outwCode}
+        </if>
+        <if test="outwUniquecode != null" >
+            and ${alias}.outw_uniquecode ~* #{outwUniquecode}
+        </if>
+        <if test="outwManufacturer != null" >
+            and ${alias}.outw_manufacturer ~* #{outwManufacturer}
+        </if>
+        <if test="outwUnit != null" >
+            and ${alias}.outw_unit ~* #{outwUnit}
+        </if>
+        <if test="outwBatch != null" >
+            and ${alias}.outw_batch ~* #{outwBatch}
+        </if>
+        <if test="outwEffectivedate != null" >
+            and ${alias}.outw_effectivedate ~* #{outwEffectivedate}
+        </if>
+        <if test="outwProduceddate != null" >
+            and ${alias}.outw_produceddate ~* #{outwProduceddate}
+        </if>
+        <if test="outwTotal != null" >
+            and CAST(${alias}.outw_total AS VARCHAR) ~* CAST(#{outwTotal} AS VARCHAR)
+        </if>
+        <if test="outwAmount != null" >
+            and CAST(${alias}.outw_amount AS VARCHAR) ~* CAST(#{outwAmount} AS VARCHAR)
+        </if>
+        <if test="outwActualcount != null" >
+            and CAST(${alias}.outw_actualcount AS VARCHAR) ~* CAST(#{outwActualcount} AS VARCHAR)
+        </if>
+        <if test="outwStatus != null" >
+            and CAST(${alias}.outw_status AS VARCHAR) ~* CAST(#{outwStatus} AS VARCHAR)
+        </if>
+        <if test="outwWarehousenumber != null" >
+            and ${alias}.outw_warehousenumber ~* #{outwWarehousenumber}
+        </if>
+        <if test="outwIspreout != null" >
+            and CAST(${alias}.outw_ispreout AS VARCHAR) ~* CAST(#{outwIspreout} AS VARCHAR)
+        </if>
+        <if test="outwPrebillnumber != null" >
+            and ${alias}.outw_prebillnumber ~* #{outwPrebillnumber}
+        </if>
+        <if test="outwOutdatetime != null" >
+            and ${alias}.outw_outdatetime ~* #{outwOutdatetime}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.OutWarehouseDetailBill">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.outwId},
+                      #{item.outwBillsnumber},
+                      #{item.outwModel},
+                      #{item.outwCode},
+                      #{item.outwUniquecode},
+                      #{item.outwManufacturer},
+                      #{item.outwUnit},
+                      #{item.outwBatch},
+                      #{item.outwEffectivedate},
+                      #{item.outwProduceddate},
+                      #{item.outwTotal},
+                      #{item.outwAmount},
+                      #{item.outwActualcount},
+                      #{item.outwStatus},
+                      #{item.outwWarehousenumber},
+                      #{item.outwIspreout},
+                      #{item.outwPrebillnumber},
+                      #{item.outwOutdatetime}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  OutWarehouse_DetailBill where outw_id= #{outwId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from OutWarehouse_DetailBill;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.OutWarehouseDetailBill">
+        delete from OutWarehouse_DetailBill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from OutWarehouse_DetailBill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.OutWarehouseDetailBill">
+        update OutWarehouse_DetailBill
+        <set>
+            <include refid="updCols" />
+        </set>
+        where outw_id=#{outwId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="OutWarehouseDetailBill">
+        select <include refid="cols"/> from OutWarehouse_DetailBill
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="OutWarehouseDetailBill">
+        select <include refid="cols"/> from OutWarehouse_DetailBill where outw_id=#{outwId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="OutWarehouseDetailBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from OutWarehouse_DetailBill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="OutWarehouseDetailBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from OutWarehouse_DetailBill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(outw_id) from OutWarehouse_DetailBill
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.OutWarehouseDetailBill" resultType="long">
+        select count(t.outw_id) from OutWarehouse_DetailBill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.OutWarehouseDetailBill" resultType="long">
+        select count(t.outw_id) from OutWarehouse_DetailBill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.OutWarehouseDetailBill" resultMap="OutWarehouseDetailBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from OutWarehouse_DetailBill t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="OutWarehouseDetailBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from outwarehouse_detailbill t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

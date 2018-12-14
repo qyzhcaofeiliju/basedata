@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="row">
+    <div class="col-lg-12">
+        <h5 class="page-header">基础数据-->周转箱管理-->特征描述</h5>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <form id="find_suitcaseProfile" role="form" class="ew-form-search">
+            <div class="row ew-setFindBtnBorders form-inline">
+                <div class="col-md-10">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">唯一码 :</span>
+                        <input type="text" class="form-control" name="proUniquecode" placeholder="唯一码">
+                        <a class="fa fa-lg fa-times-circle form-control-feedback"></a>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">RFID :</span>
+                        <input type="text" class="form-control" name="proRfid" placeholder="RFID">
+                        <!--html-->
+                        <a class="fa fa-lg fa-times-circle form-control-feedback"></a>
+                    </div>
+                </div>
+                <div class="col-md-2 ew-tooltip">
+                    <!--查询-->
+                    <button type="button" class="btn fa btn-info fa-search"
+                            data-toggle="tooltip"
+                            id="query_suitcaseProfile"
+                            data-placement="bottom"
+                            data-original-title="查询">
+                    </button>
+                    <!--新增-->
+                    <button type="button" id="suitcaseProfile_AddBtn" class="btn  fa fa-plus btn-success"
+                            data-toggle="modal"
+                            data-target="#suitcaseProfile_UptAdd_OptModal" data-placement="bottom"
+                            data-original-title="新增">
+                    </button>
+                    <!--导入-->
+                    <button type="button" class="btn fa fa-download btn-success" data-target="#download_suitcaseProfile_UptAdd_OptModal"
+                            data-toggle="modal"
+                            id="download_suitcaseProfile"
+                            data-placement="bottom"
+                            data-original-title="导入">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default ew-table-height table-responsive" id="suitcaseProfile-cont">
+            <table width="100%" class="table"
+                   id="dataTables-example">
+                <thead>
+                <tr>
+                    <th hidden>ID</th>
+                    <th>唯一码</th>
+                    <th>RFID</th>
+                    <th>仓位总数</th>
+                    <th>功能分类</th>
+                    <th>应用分类</th>
+                    <th>当前状态</th>
+                    <th>是否分区</th>
+                    <th>垂直隔板个数</th>
+                    <th>水平隔板个数</th>
+                    <th>长</th>
+                    <th>宽</th>
+                    <th>高</th>
+                    <th>仓位厚度</th>
+                    <th colspan="2"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="l,ls:${list}" class="gradeA">
+                    <td hidden th:text="${l.proId}"></td>
+                    <td th:text="${l.proUniquecode}"></td>
+                    <td th:text="${l.proRfid}"></td>
+                    <td th:text="${l.proCabintotal}"></td>
+                    <td th:text="${l.funName}"></td>
+                    <td th:text="${l.appName}"></td>
+                    <td th:if="${l.proStatus}==1" th:text="非空"></td>
+                    <td th:if="${l.proStatus}==2" th:text="空"></td>
+                    <td th:if="${l.proStatus}==3" th:text="异常（RFID无法识别）"></td>
+                    <td th:if="${l.proStatus}==4" th:text="损坏"></td>
+                    <td th:text="${l.proIspartition==true?'是':'否'}"></td>
+                    <td th:text="${l.proVerticalamount}"></td>
+                    <td th:text="${l.proHorizontalamount}"></td>
+                    <td th:text="${l.proLength}"></td>
+                    <td th:text="${l.proWidth}"></td>
+                    <td th:text="${l.proHeight}"></td>
+                    <td th:text="${l.proCabinwidth}"></td>
+                    <td class="ew-tooltip">
+                            <button name="suitcaseProfileBtnVU" th:data="${l.proId}" type="button"
+                                    class="btn btn-primary fa fa-edit " data-toggle="modal"
+                                    data-target="#suitcaseProfile_UptAdd_OptModal"
+                                    data-placement="bottom" data-original-title="编辑"></button>
+                    </td>
+                    <td class="ew-tooltip">
+                            <button name="suitcaseProfileBtnDel" type="button" th:data="${l.proId}"
+                                    class="btn btn-danger fa fa-trash-o " data-toggle="modal"
+                                    data-placement="bottom" data-original-title="删除"></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row ew-setPageBorders dataTables_wrapper">
+    <div class="col-sm-2">
+        <div class="dataTables_length" id="dataTables-example_length"><label>每页显示<select
+                aria-controls="dataTables-example"
+                class="form-control input-sm"
+                id="selPageSize"
+                name="selPageSize">
+            <option value="7">7</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>条</label></div>
+    </div>
+    <div class="col-sm-10">
+        <div class="dataTables_paginate paging_simple_numbers"
+             id="dataTables-example_paginate">
+            <ul id="suitcaseProfile_PageList" class="pagination">
+                <li class="paginate_button disabled"
+                    aria-controls="dataTables-example" tabindex="0"
+                ><span>&laquo;</span>
+                </li>
+                <li th:each="i:${pageList}" th:if="${i eq 1}" class="paginate_button active"
+                    aria-controls="dataTables-example">
+                    <a name="pages" class="page-link" th:text="${i}"></a>
+                </li>
+                <li th:each="i:${pageList}" th:if="${i ne 1}" class="paginate_button"
+                    aria-controls="dataTables-example">
+                    <a th:name="pages" class="page-link" th:text="${i}"></a>
+                </li>
+                <li th:class="${page.totalPageNum eq page.pageNum}? 'paginate_button disabled' : 'paginate_button'"
+                    aria-controls="dataTables-example"
+                    tabindex="0"
+                    th:id="${page.totalPageNum eq page.pageNum}? '' : 'suitcaseProfilePageNext'">
+                    <span>&raquo;</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /#page-wrapper -->
+<!-- modal: insert Edit Page-->
+<div class="modal fade" id="suitcaseProfile_UptAdd_OptModal" tabindex="-1" role="dialog"
+     aria-labelledby="suitcaseProfile_UptAddTitle">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="suitcaseProfile_UptAddTitle">Modal title</h4>
+            </div>
+            <!--模态框弹出增加或者修改页面-->
+            <div id="suitcaseProfile_UptAdd_OptBody" class="modal-body">
+
+
+            </div>
+            <div class="modal-footer">
+                <button id="suitcaseProfile_Close" type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+                <button id="suitcaseProfile_AddBtnExe" type="button" class="btn btn-primary">增加</button>
+                <button id="suitcaseProfile_UptBtnExe" type="button" class="btn btn-primary">修改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!-- modal: Affirm -->
+<div class="modal fade" tabindex="-1" id="suitcaseProfile_Affirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i id="examInfoIcon" class="fa fa-info"></i>
+                    <span id="examInfoTitle">温馨提示</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>确认是否删除?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="suitcaseProfile_OKBtn" type="button" class="btn btn-primary">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!--导入模态框-->
+<div class="modal fade" tabindex="-1" id="download_suitcaseProfile_UptAdd_OptModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">请选择要导入的Excel文件：</h5>
+            </div>
+            <form id="file_form" role="form" name="importFile" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="box-body">
+                        <label class="control-label"></label>
+                        <input type="file" name="file" id="file_input" class="file" data-show-preview="false">
+                    </div>
+                </div>
+                <!--模态框底部的设置-->
+                <div class="modal-footer">
+                    <button id="importSuitcaseProfile_close" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id="importSuitcaseProfile_save" type="button" class="btn btn-primary" data-target="#showImportSuitcaseProfile">上传</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--定义导入之后需要显示出来的入库(主)模态框-->
+<div class="modal fade" tabindex="-1" id="showImportSuitcaseProfile" role="dialg" aria-labelledby="viewImportSuitcaseProfile_Title" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="viewImportSuitcaseProfile_Title">显示周转箱特征描述表信息</h4>
+            </div>
+            <div class="modal-body" id="viewImportSuitcaseProfile_AddBody"></div>
+
+
+            <div class="modal-footer">
+                <button id="viewSuitcaseProfileInfo_Close" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="viewSuitcaseProfileInfo_AddBtnExe" type="button" class="btn btn-primary" data-target="#showImportSuitcaseProfileInfo">查看详细信息</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--定义周转箱详细信息的模态框-->
+<div class="modal fade" tabindex="-1" id="showImportSuitcaseProfileInfo" role="dialg" aria-labelledby="SuitcaseProfileInfo_Title">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <li class="fa fa-remove"></li>
+            </button>
+            <h4 class="modal-title" id="SuitcaseProfileInfo_Title">显示周转箱特征描述详细信息</h4>
+        </div>
+        <div class="modal-body" id="showImportData">
+            <!--详细信息的表格-->
+        </div>
+        <div class="modal-footer">
+            <button id="importFileInfo_Close" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button id="importFileInfo_Back" type="button" class="btn btn-success">上一步</button>
+            <button id="importFileInfo_Save" type="button" class="btn btn-primary" data-target="">保存</button>
+        </div>
+    </div>
+</div>
+
+<!-- /#wrapper -->
+<input name="script" hidden th:value="${#httpServletRequest.scheme}+'://'+${#httpServletRequest.serverName}+':'+${#httpServletRequest.serverPort}+'/ipsp/earthworm/suitcaseProfile/js/suitcaseProfileView.js'">
+</html>

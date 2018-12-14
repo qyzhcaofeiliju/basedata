@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IInWarehouseBillDao">
+
+    <resultMap id="InWarehouseBill" type="com.earthworm.ipsp.foundation.entity.InWarehouseBill">
+        <id property="inwId" column="inw_id"/>
+        <result property="inwBillsnumber" column="inw_billsnumber"/>
+        <result property="inwCategory" column="inw_category"/>
+        <result property="inwIntime" column="inw_intime"/>
+        <result property="inwStatus" column="inw_status"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.inw_id,
+                ${alias}.inw_billsnumber,
+                ${alias}.inw_category,
+                ${alias}.inw_intime,
+                ${alias}.inw_status,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				inw_id,
+				inw_billsnumber,
+				inw_category,
+				inw_intime,
+				inw_status,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">InWarehouse_Bill</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="inwId != null">
+							inw_id,
+						</if>
+						<if test="inwBillsnumber != null">
+							inw_billsnumber,
+						</if>
+						<if test="inwCategory != null">
+							inw_category,
+						</if>
+						<if test="inwIntime != null">
+							inw_intime,
+						</if>
+						<if test="inwStatus != null">
+							inw_status,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="inwId != null" >
+						#{inwId},
+					</if>
+					<if test="inwBillsnumber != null" >
+						#{inwBillsnumber},
+					</if>
+					<if test="inwCategory != null" >
+						#{inwCategory},
+					</if>
+					<if test="inwIntime != null" >
+						#{inwIntime},
+					</if>
+					<if test="inwStatus != null" >
+						#{inwStatus},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="inwId != null" >
+                and ${alias}.inw_id=#{inwId}
+            </if>
+            <if test="inwBillsnumber != null" >
+                and ${alias}.inw_billsnumber=#{inwBillsnumber}
+            </if>
+            <if test="inwCategory != null" >
+                and ${alias}.inw_category=#{inwCategory}
+            </if>
+            <if test="inwIntime != null" >
+                and ${alias}.inw_intime=#{inwIntime}
+            </if>
+            <if test="inwStatus != null" >
+                and ${alias}.inw_status=#{inwStatus}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="inwBillsnumber != null" >
+					inw_billsnumber=#{inwBillsnumber},
+				</if>
+				<if test="inwCategory != null" >
+					inw_category=#{inwCategory},
+				</if>
+				<if test="inwIntime != null" >
+					inw_intime=#{inwIntime},
+				</if>
+				<if test="inwStatus != null" >
+					inw_status=#{inwStatus},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="inwId != null" >
+            OR ${alias}.inw_id=#{inwId}
+        </if>
+        <if test="inwBillsnumber != null" >
+            OR ${alias}.inw_billsnumber=#{inwBillsnumber}
+        </if>
+        <if test="inwCategory != null" >
+            OR ${alias}.inw_category=#{inwCategory}
+        </if>
+        <if test="inwIntime != null" >
+            OR ${alias}.inw_intime=#{inwIntime}
+        </if>
+        <if test="inwStatus != null" >
+            OR ${alias}.inw_status=#{inwStatus}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="inwId != null" >
+            and ${alias}.inw_id ~* #{inwId}
+        </if>
+        <if test="inwBillsnumber != null" >
+            and ${alias}.inw_billsnumber ~* #{inwBillsnumber}
+        </if>
+        <if test="inwCategory != null" >
+            and CAST(${alias}.inw_category AS VARCHAR)~* CAST(#{inwCategory} AS VARCHAR)
+        </if>
+        <if test="inwIntime != null" >
+            and ${alias}.inw_intime ~* #{inwIntime}
+        </if>
+        <if test="inwStatus != null" >
+            and CAST(${alias}.inw_status AS VARCHAR) ~* CAST(#{inwStatus} AS VARCHAR)
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseBill">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.inwId},
+                      #{item.inwBillsnumber},
+                      #{item.inwCategory},
+                      #{item.inwIntime},
+                      #{item.inwStatus}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  InWarehouse_Bill where inw_id= #{inwId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from InWarehouse_Bill;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseBill">
+        delete from InWarehouse_Bill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from InWarehouse_Bill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseBill">
+        update InWarehouse_Bill
+        <set>
+            <include refid="updCols" />
+        </set>
+        where inw_id=#{inwId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="InWarehouseBill">
+        select <include refid="cols"/> from InWarehouse_Bill
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="InWarehouseBill">
+        select <include refid="cols"/> from InWarehouse_Bill where inw_id=#{inwId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="InWarehouseBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from InWarehouse_Bill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="InWarehouseBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from InWarehouse_Bill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(inw_id) from InWarehouse_Bill
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseBill" resultType="long">
+        select count(t.inw_id) from InWarehouse_Bill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseBill" resultType="long">
+        select count(t.inw_id) from InWarehouse_Bill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseBill" resultMap="InWarehouseBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from InWarehouse_Bill t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="InWarehouseBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from inwarehouse_bill t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="inWarehouseBill_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${inWarehouseBill==null}? null : ${inWarehouseBill.inwId}" name="inwId" hidden>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</span>
+                <input th:value="${inWarehouseBill==null}? null : ${inWarehouseBill.inwBillsnumber}" type="text" name="inwBillsnumber" class="form-control ew-validate" pattern="[a-zA-Z0-9\u4e00-\u9fa5]+" placeholder="字母、数字、汉字、-、_ 的组合，长度小于40位" title="字母、数字、汉字、-、_ 的组合，长度小于40位" aria-describedby="sizing-addon4" maxlength="40" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon">分类名称:</span>
+                <select name="inwCategory" class="form-control ew-validate" aria-describedby="sizing-addon7" required>
+                    <option value="" >请选择分类</option>
+                    <option th:each="bills:${billsCategories}" th:value="${bills.catCategory}" th:text="${bills.catName}" th:selected="${inWarehouseBill==null}? null:(${bills.catCategory==inWarehouseBill.inwCategory})"></option>
+                </select>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon ew-validate">入库时间:</span>
+                <input th:value="${inWarehouseBill==null}? null:${#dates.format(inWarehouseBill.inwIntime,'yyyy-MM-dd HH:mm')}" type="text" name="inwIntime" id="inwIntime" pattern="^(?:19|20)[0-9][0-9]-(?:(?:0[1-9])|(?:1[0-2]))-(?:(?:[0-2][1-9])|(?:[1-3][0-1])) (?:(?:[0-2][0-3])|(?:[0-1][0-9])):[0-5][0-9]$" class="form-control ew-validate" placeholder="请输入入库时间" aria-describedby="sizing-addon3" required excludeSpecValid>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" th:hidden="${inWarehouseBill==null}?true:false">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon">入库状态:</span>
+                <select name="inwStatus" class="form-control ew-validate" aria-describedby="sizing-addon7" required>
+                    <option value="" >请选择入库状态</option>
+                    <option value="0" th:selected="${inWarehouseBill==null}? true:(${0==inWarehouseBill.inwStatus})">未入库</option>
+                    <option value="1" th:selected="${inWarehouseBill==null}? null:(${1==inWarehouseBill.inwStatus})">入库中</option>
+                    <option value="2" th:selected="${inWarehouseBill==null}? null:(${2==inWarehouseBill.inwStatus})">已入库</option>
+                </select>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $("#inwIntime").datetimepicker();
+</script>
+</html>

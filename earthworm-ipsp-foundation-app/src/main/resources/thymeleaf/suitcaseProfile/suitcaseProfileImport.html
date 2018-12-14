@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="suitcaseProfile_ImportForm">
+    <div class="row form-group ew-form-addupt">
+            <div class="col-md-12">
+                <div class="form-group input-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon4">功&nbsp;&nbsp;&nbsp;能&nbsp;&nbsp;&nbsp;分&nbsp;&nbsp;类</span>
+                    <select id="proFunccategory" name="proFunccategory" class="form-control ew-validate" aria-describedby="sizing-addon4" required>
+                        <option value="">请选择功能分类</option>
+                        <option th:each="fun:${suitcaseFunccategories}" th:selected="${suitcaseProfile==null}?null:(${fun.funCategory==suitcaseProfile.proFunccategory})" th:value="${fun.funCategory}" th:text="${fun.funName}"></option>
+                    </select>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group input-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon5">应&nbsp;&nbsp;&nbsp;用&nbsp;&nbsp;&nbsp;分&nbsp;&nbsp;类</span>
+                    <select id="proAppcategory" name="proAppcategory" class="form-control ew-validate" aria-describedby="sizing-addon5" required>
+                        <option value="">请选择应用分类</option>
+                        <option th:each="app:${suitcaseAppcategories}" th:selected="${suitcaseProfile==null}? null:(${app.appCategory==suitcaseProfile.proAppcategory})" th:value="${app.appCategory}" th:text="${app.appName}"></option>
+                    </select>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon7">是&nbsp;&nbsp;&nbsp;否&nbsp;&nbsp;&nbsp;分&nbsp;&nbsp;区</span>
+                        <span class="form-control ew-validate">
+                            <label class="radio-inline">
+                                <input type="radio"  name="proIspartition" th:checked="${suitcaseProfile==null}?'checked':(${suitcaseProfile.proIspartition==true})" value="true"/>是
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio"  name="proIspartition" th:checked="${suitcaseProfile==null}?null:(${suitcaseProfile.proIspartition==false})" value="false"/>否
+                            </label>
+                        </span>
+                    </span>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                    </div>
+                    <!--添加验证失败后的反馈信息-->
+                    <div class="valid-feedback ew-valid-feedback"></div>
+                </div>
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon8">垂直隔板个数</span>
+                    <input th:value="${suitcaseProfile==null}? null : ${suitcaseProfile.proVerticalamount}" type="text" id="proVerticalamount" name="proVerticalamount" class="form-control ew-validate" placeholder="不超过32767的正整数" aria-describedby="sizing-addon8" pattern="^[0-9]\d{0,4}$" maxlength="5" max="32767" title="不超过32767的正整数" required>
+                    <!--清空按钮-->
+                    <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon9">水平隔板个数</span>
+                    <input th:value="${suitcaseProfile==null}? null : ${suitcaseProfile.proHorizontalamount}" type="text" name="proHorizontalamount" id="proHorizontalamount" class="form-control ew-validate" placeholder="不超过32767的正整数" aria-describedby="sizing-addon9" pattern="^[0-9]\d{0,4}$" maxlength="5" max="32767" title="不超过32767的正整数" required>
+                    <!--清空按钮-->
+                    <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+    </div>
+</form>
+
+<!--引入编辑页面的js文件-->
+<script th:src="@{/earthworm/suitcaseProfile/js/suitcaseProfileEdit.js}"></script>
+
+</html>

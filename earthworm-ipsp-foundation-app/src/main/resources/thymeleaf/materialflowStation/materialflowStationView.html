@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="row">
+    <div class="col-lg-12">
+        <h5 class="page-header">基础数据-->站点管理-->物流站点</h5>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <form id="find_materialflowStation" role="form" class="ew-form-search">
+            <div class="row ew-setFindBtnBorders form-inline">
+                <div class="col-md-10">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">名称</span>
+                        <input type="text" class="form-control" name="staName" placeholder="请输入名称">
+                        <!--添加清除输入框小按钮-->
+                        <a class="fa fa-lg fa-times-circle form-control-feedback"></a>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">编号</span>
+                        <input type="text" class="form-control" name="staNumber" placeholder="请输入编号">
+                        <!--添加清除输入框小按钮-->
+                        <a class="fa fa-lg fa-times-circle form-control-feedback"></a>
+                    </div>
+                </div>
+                <div class="col-md-2 ew-tooltip">
+                    <button type="button" class="btn fa btn-info fa-search btn-lg"
+                            data-toggle="modal"
+                            id="query_materialflowStation"
+                            data-placement="bottom"
+                            data-original-title="查询">
+                    </button>
+                    <button id="materialflowStation_AddBtn" type="button" class="btn  fa fa-plus btn-success btn-lg"
+                            data-toggle="modal"
+                            data-target="#materialflowStation_UptAdd_OptModal" data-placement="bottom"
+                            data-original-title="新增">
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="panel panel-default ew-table-height table-responsive" id="materialflowStation-cont">
+            <table width="100%" class="table" id="dataTables-example">
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>编号</th>
+                    <th>X坐标</th>
+                    <th>Y坐标</th>
+                    <th>Z坐标</th>
+                    <th colspan="2"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="l,ls:${list}" class="gradeA">
+                    <td th:text="${l.staName}"></td>
+                    <td th:text="${l.staNumber}"></td>
+                    <td th:text="${#numbers.formatDecimal(l.staX,0,0)}"></td>
+                    <td th:text="${#numbers.formatDecimal(l.staY,0,0)}"></td>
+                    <td th:text="${#numbers.formatDecimal(l.staZ,0,0)}"></td>
+                    <td class="ew-tooltip ">
+                        <button type="button" name="materialflowStationBtnVU"
+                                class="btn btn-primary fa fa-edit"
+                                th:data="${l.staId}" data-toggle="modal"
+                                data-target="#materialflowStation_UptAdd_OptModal"
+                                data-placement="bottom" data-original-title="编辑">
+                        </button>
+                    </td>
+                    <td class="ew-tooltip ">
+                        <button type="button" name="materialflowStationBtnDel"
+                                class="btn btn-danger fa fa-trash-o"
+                                th:data="${l.staId}" data-toggle="modal"
+                                data-placement="bottom" data-original-title="删除">
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row ew-setPageBorders dataTables_wrapper">
+    <div class="col-sm-2">
+        <div class="dataTables_length" id="dataTables-example_length"><label>每页显示<select
+                aria-controls="dataTables-example"
+                class="form-control input-sm"
+                id="selPageSize"
+                name="selPageSize">
+            <option value="7">7</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+        </select>条</label></div>
+    </div>
+    <div class="col-sm-10">
+        <div class="dataTables_paginate paging_simple_numbers"
+             id="dataTables-example_paginate">
+            <ul id="materialflowStation_PageList" class="pagination ew-paging">
+                <li class="paginate_button disabled"
+                    aria-controls="dataTables-example" tabindex="0"
+                ><span>&laquo;</span>
+                </li>
+                <li th:each="i:${pageList}" th:if="${i eq 1}" class="paginate_button active"
+                    aria-controls="dataTables-example">
+                    <a name="pages" class="page-link" th:text="${i}"></a>
+                </li>
+                <li th:each="i:${pageList}" th:if="${i ne 1}" class="paginate_button"
+                    aria-controls="dataTables-example">
+                    <a th:name="pages" class="page-link" th:text="${i}"></a>
+                </li>
+                <li th:class="${page.totalPageNum eq page.pageNum}? 'paginate_button disabled' : 'paginate_button'"
+                    aria-controls="dataTables-example"
+                    tabindex="0"
+                    th:id="${page.totalPageNum eq page.pageNum}? '' : 'materialflowStationPageNext'">
+                    <span>&raquo;</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- modal: insert Edit Page-->
+<div class="modal fade" id="materialflowStation_UptAdd_OptModal" tabindex="-1" role="dialog"
+     aria-labelledby="materialflowStation_UptAddTitle">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="materialflowStation_UptAddTitle">Modal title</h4>
+            </div>
+            <!--模态框弹出增加或者修改页面-->
+            <div id="materialflowStation_UptAdd_OptBody" class="modal-body">
+
+
+            </div>
+            <div class="modal-footer">
+                <button id="materialflowStation_Close" type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+                <button id="materialflowStation_AddBtnExe" type="button" class="btn btn-primary">增加</button>
+                <button id="materialflowStation_UptBtnExe" type="button" class="btn btn-primary">修改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!-- modal: Affirm -->
+<div class="modal fade" tabindex="-1" id="materialflowStation_Affirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i id="examInfoIcon" class="fa fa-info"></i>
+                    <span id="examInfoTitle">温馨提示</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>确认是否删除?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="materialflowStation_OKBtn" type="button" class="btn btn-primary">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<input name="script" hidden th:value="${#httpServletRequest.scheme}+'://'+${#httpServletRequest.serverName}+':'+${#httpServletRequest.serverPort}+'/ipsp/earthworm/materialflowStation/js/materialflowStationView.js'">
+
+</html>

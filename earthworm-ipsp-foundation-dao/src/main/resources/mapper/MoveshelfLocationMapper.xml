@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IMoveshelfLocationDao">
+
+    <resultMap id="MoveshelfLocation" type="com.earthworm.ipsp.foundation.entity.MoveshelfLocation">
+        <id property="mslId" column="msl_id"/>
+        <result property="mslEquId" column="msl_equ_id"/>
+        <result property="mslEquNumber" column="msl_equ_number"/>
+        <result property="mslCurStation" column="msl_cur_station"/>
+        <result property="mslPreStation" column="msl_pre_station"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.msl_id,
+                ${alias}.msl_equ_id,
+                ${alias}.msl_equ_number,
+                ${alias}.msl_cur_station,
+                ${alias}.msl_pre_station,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				msl_id,
+				msl_equ_id,
+				msl_equ_number,
+				msl_cur_station,
+				msl_pre_station,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Moveshelf_Location</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="mslId != null">
+							msl_id,
+						</if>
+						<if test="mslEquId != null">
+							msl_equ_id,
+						</if>
+						<if test="mslEquNumber != null">
+							msl_equ_number,
+						</if>
+						<if test="mslCurStation != null">
+							msl_cur_station,
+						</if>
+						<if test="mslPreStation != null">
+							msl_pre_station,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="mslId != null" >
+						#{mslId},
+					</if>
+					<if test="mslEquId != null" >
+						#{mslEquId},
+					</if>
+					<if test="mslEquNumber != null" >
+						#{mslEquNumber},
+					</if>
+					<if test="mslCurStation != null" >
+						#{mslCurStation},
+					</if>
+					<if test="mslPreStation != null" >
+						#{mslPreStation},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="mslId != null" >
+                and ${alias}.msl_id=#{mslId}
+            </if>
+            <if test="mslEquId != null" >
+                and ${alias}.msl_equ_id=#{mslEquId}
+            </if>
+            <if test="mslEquNumber != null" >
+                and ${alias}.msl_equ_number=#{mslEquNumber}
+            </if>
+            <if test="mslCurStation != null" >
+                and ${alias}.msl_cur_station=#{mslCurStation}
+            </if>
+            <if test="mslPreStation != null" >
+                and ${alias}.msl_pre_station=#{mslPreStation}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="mslEquId != null" >
+					msl_equ_id=#{mslEquId},
+				</if>
+				<if test="mslEquNumber != null" >
+					msl_equ_number=#{mslEquNumber},
+				</if>
+				<if test="mslCurStation != null" >
+					msl_cur_station=#{mslCurStation},
+				</if>
+				<if test="mslPreStation != null" >
+					msl_pre_station=#{mslPreStation},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="mslId != null" >
+            OR ${alias}.msl_id=#{mslId}
+        </if>
+        <if test="mslEquId != null" >
+            OR ${alias}.msl_equ_id=#{mslEquId}
+        </if>
+        <if test="mslEquNumber != null" >
+            OR ${alias}.msl_equ_number=#{mslEquNumber}
+        </if>
+        <if test="mslCurStation != null" >
+            OR ${alias}.msl_cur_station=#{mslCurStation}
+        </if>
+        <if test="mslPreStation != null" >
+            OR ${alias}.msl_pre_station=#{mslPreStation}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="mslId != null" >
+            and ${alias}.msl_id ~* #{mslId}
+        </if>
+        <if test="mslEquId != null" >
+            and ${alias}.msl_equ_id ~* #{mslEquId}
+        </if>
+        <if test="mslEquNumber != null" >
+            and CAST(${alias}.msl_equ_number AS VARCHAR) ~* CAST(#{mslEquNumber} AS VARCHAR)
+        </if>
+        <if test="mslCurStation != null" >
+            and CAST(${alias}.msl_cur_station AS VARCHAR) ~* CAST(#{mslCurStation} AS VARCHAR)
+        </if>
+        <if test="mslPreStation != null" >
+            and CAST(${alias}.msl_pre_station AS VARCHAR) ~* CAST(#{mslPreStation} AS VARCHAR)
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.MoveshelfLocation">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.mslId},
+                      #{item.mslEquId},
+                      #{item.mslEquNumber},
+                      #{item.mslCurStation},
+                      #{item.mslPreStation}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Moveshelf_Location where msl_id= #{mslId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Moveshelf_Location;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.MoveshelfLocation">
+        delete from Moveshelf_Location t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Moveshelf_Location t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.MoveshelfLocation">
+        update Moveshelf_Location
+        <set>
+            <include refid="updCols" />
+        </set>
+        where msl_id=#{mslId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="MoveshelfLocation">
+        select <include refid="cols"/> from Moveshelf_Location
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="MoveshelfLocation">
+        select <include refid="cols"/> from Moveshelf_Location where msl_id=#{mslId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="MoveshelfLocation">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Moveshelf_Location t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="MoveshelfLocation">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Moveshelf_Location t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(msl_id) from Moveshelf_Location
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.MoveshelfLocation" resultType="long">
+        select count(t.msl_id) from Moveshelf_Location t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.MoveshelfLocation" resultType="long">
+        select count(t.msl_id) from Moveshelf_Location t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.MoveshelfLocation" resultMap="MoveshelfLocation">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Moveshelf_Location t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="MoveshelfLocation">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from moveshelf_location t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

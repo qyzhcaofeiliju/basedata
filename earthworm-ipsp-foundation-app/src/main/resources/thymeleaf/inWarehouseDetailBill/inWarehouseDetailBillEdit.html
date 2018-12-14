@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="inWarehouseDetailBill_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${inWarehouseDetailBill==null}? null : ${inWarehouseDetailBill.inwId}" name="inwId" hidden>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon2">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                <input readonly th:value="${inwBillsnumber}" type="text" name="inwBillsnumber" class="form-control ew-validate" pattern="[a-zA-Z0-9\u4e00-\u9fa5]+" placeholder="字母、数字、汉字、-、_ 的组合，长度小于40位" title="字母、数字、汉字、-、_ 的组合，长度小于40位" aria-describedby="sizing-addon2" maxlength="40" required>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon3">规&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;&nbsp;型&nbsp;&nbsp;号</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwModel}" type="text" name="inwModel" class="form-control ew-validate" pattern="[a-zA-Z0-9\u4e00-\u9fa5]+" placeholder="字母、数字、汉字、-、_ 的组合，长度小于30位" title="字母、数字、汉字、-、_ 的组合，长度小于30位" aria-describedby="sizing-addon3" maxlength="30" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon4">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwCode}" type="text" name="inwCode" class="form-control ew-validate" pattern="[a-zA-Z0-9\u4e00-\u9fa5]+" placeholder="字母、数字、汉字、-、_ 的组合，长度小于40位"  title="字母、数字、汉字、-、_ 的组合，长度小于40位" aria-describedby="sizing-addon4" maxlength="40" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon5">唯&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwUniquecode}" type="text" name="inwUniquecode" class="form-control ew-validate" pattern="[a-zA-Z0-9\u4e00-\u9fa5\#]+" excludeSpecValid placeholder="字母、数字、汉字、-、_ 的组合，长度小于80位" title="字母、数字、汉字、-、_ 的组合，长度小于80位" aria-describedby="sizing-addon5" maxlength="80" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon6">厂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;家</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.InwManufacturer}" type="text" name="InwManufacturer" class="form-control ew-validate" pattern="[a-zA-Z0-9\u4e00-\u9fa5]+" placeholder="字母、数字、汉字、-、_ 的组合，长度小于50位" title="字母、数字、汉字、-、_ 的组合，长度小于50位" aria-describedby="sizing-addon6" maxlength="50" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon1">计&nbsp;&nbsp;&nbsp;量&nbsp;&nbsp;&nbsp;单&nbsp;&nbsp;位</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwUnit}" type="text" name="inwUnit" class="form-control ew-validate" pattern="[a-zA-Z0-9\u4e00-\u9fa5]+" placeholder="字母、数字、汉字、-、_ 的组合，长度小于10位" title="字母、数字、汉字、-、_ 的组合，长度小于10位" aria-describedby="sizing-addon1" maxlength="10" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon8">批&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwBatch}" type="text" name="inwBatch" class="form-control ew-validate" pattern="[a-zA-Z0-9\u4e00-\u9fa5]+" placeholder="字母、数字、汉字、-、_ 的组合，长度小于20位" title="字母、数字、汉字、-、_ 的组合，长度小于20位" aria-describedby="sizing-addon8" maxlength="20" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon9">有&nbsp;&nbsp;&nbsp;效&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;期</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${#dates.format(inWarehouseDetailBill.inwEffectivedate,'yyyy-MM-dd')}" type="date" name="inwEffectivedate" class="form-control ew-validate" placeholder="请输入有效日期" aria-describedby="sizing-addon9" required pattern="^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$">
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon10">生&nbsp;&nbsp;&nbsp;产&nbsp;&nbsp;&nbsp;日&nbsp;&nbsp;期</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${#dates.format(inWarehouseDetailBill.inwProduceddate,'yyyy-MM-dd')}" type="date" name="inwProduceddate" class="form-control ew-validate" placeholder="请输入生产日期" aria-describedby="sizing-addon10" required pattern="^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$">
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon11">入&nbsp;&nbsp;&nbsp;库&nbsp;&nbsp;&nbsp;数&nbsp;&nbsp;量</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwAmount}" type="text" name="inwAmount" class="form-control ew-validate" placeholder="不超过32767的正整数" aria-describedby="sizing-addon11" pattern="^[1-9]\d{0,4}$" maxlength="5" max="32767" title="不超过32767的正整数" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" th:hidden="${inWarehouseDetailBill==null}?false:true">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon12">实际入库数量</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwActualcount}" type="text" name="inwActualcount" class="form-control ew-validate" placeholder="不超过32767的正整数" aria-describedby="sizing-addon12" pattern="^[1-9]\d{0,4}$" maxlength="5" max="32767" title="不超过32767的正整数" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" th:hidden="${inWarehouseDetailBill==null}?false:true">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon7">入库状态:</span>
+                <select name="inwStatus" class="form-control ew-validate" aria-describedby="sizing-addon7" required>
+                    <option value="" >请选择入库状态</option>
+                    <option value="0" th:selected="${inWarehouseDetailBill==null}? null:(${0==inWarehouseDetailBill.inwStatus})">未入库</option>
+                    <option value="1" th:selected="${inWarehouseDetailBill==null}? null:(${1==inWarehouseDetailBill.inwStatus})">入库中</option>
+                    <option value="2" th:selected="${inWarehouseDetailBill==null}? null:(${2==inWarehouseDetailBill.inwStatus})">已入库</option>
+                </select>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" th:hidden="${inWarehouseDetailBill==null}?false:true">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon14">仓&nbsp;&nbsp;&nbsp;库&nbsp;&nbsp;&nbsp;编&nbsp;&nbsp;号</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwWarehousenumber}" type="text" name="inwWarehousenumber" class="form-control ew-validate" pattern="[a-zA-Z0-9\u4e00-\u9fa5]+" placeholder="字母、数字、汉字、-、_ 的组合，长度小于30位" title="字母、数字、汉字、-、_ 的组合，长度小于30位" aria-describedby="sizing-addon14" maxlength="30" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" th:hidden="${inWarehouseDetailBill==null}?false:true">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon15">货&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwRank}" type="text" name="inwRank" class="form-control ew-validate" placeholder="不超过32767的正整数" aria-describedby="sizing-addon15" pattern="^[1-9]\d{0,4}$" maxlength="5" max="32767" title="不超过32767的正整数" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" th:hidden="${inWarehouseDetailBill==null}?false:true">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon16">货&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;层</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwTier}" type="text" name="inwTier" class="form-control ew-validate" placeholder="不超过32767的正整数" aria-describedby="sizing-addon16" pattern="^[1-9]\d{0,4}$" maxlength="5" max="32767" title="不超过32767的正整数" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" th:hidden="${inWarehouseDetailBill==null}?false:true">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon17">货&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;列</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwColumn}" type="text" name="inwColumn" class="form-control ew-validate" placeholder="不超过32767的正整数" aria-describedby="sizing-addon17" pattern="^[1-9]\d{0,4}$" maxlength="5" max="32767" title="不超过32767的正整数" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" th:hidden="${inWarehouseDetailBill==null}?false:true">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon18">仓&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;&nbsp;索&nbsp;&nbsp;引</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${inWarehouseDetailBill.inwRangeindex}" type="text" name="inwRangeindex" class="form-control ew-validate" placeholder="不超过32767的正整数" aria-describedby="sizing-addon18" pattern="^[1-9]\d{0,4}$" maxlength="5" max="32767" title="不超过32767的正整数" required>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" th:hidden="${inWarehouseDetailBill==null}?false:true">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon19">入&nbsp;&nbsp;&nbsp;库&nbsp;&nbsp;&nbsp;时&nbsp;&nbsp;间</span>
+                <input th:value="${inWarehouseDetailBill==null}? null:${#dates.format(inWarehouseDetailBill.inwIndatetime,'yyyy-MM-dd HH:mm')}" pattern="^(?:19|20)[0-9][0-9]-(?:(?:0[1-9])|(?:1[0-2]))-(?:(?:[0-2][1-9])|(?:[1-3][0-1])) (?:(?:[0-2][0-3])|(?:[0-1][0-9])):[0-5][0-9]$" type="text" name="inwIndatetime" id="inwIndatetime" class="form-control ew-validate" placeholder="请输入入库时间" aria-describedby="sizing-addon19" required excludeSpecValid>
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $("#inwIndatetime").datetimepicker();
+</script>
+</html>

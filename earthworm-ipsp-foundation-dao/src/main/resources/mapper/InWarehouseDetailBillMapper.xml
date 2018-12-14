@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IInWarehouseDetailBillDao">
+
+    <resultMap id="InWarehouseDetailBill" type="com.earthworm.ipsp.foundation.entity.InWarehouseDetailBill">
+        <id property="inwId" column="inw_id"/>
+        <result property="inwBillsnumber" column="inw_billsnumber"/>
+        <result property="inwModel" column="inw_model"/>
+        <result property="inwCode" column="inw_code"/>
+        <result property="inwUniquecode" column="inw_uniquecode"/>
+        <result property="inwManufacturer" column="inw_manufacturer"/>
+        <result property="inwUnit" column="inw_unit"/>
+        <result property="inwBatch" column="inw_batch"/>
+        <result property="inwEffectivedate" column="inw_effectivedate"/>
+        <result property="inwProduceddate" column="inw_produceddate"/>
+        <result property="inwAmount" column="inw_amount"/>
+        <result property="inwActualcount" column="inw_actualcount"/>
+        <result property="inwStatus" column="inw_status"/>
+        <result property="inwWarehousenumber" column="inw_warehousenumber"/>
+        <result property="inwRank" column="inw_rank"/>
+        <result property="inwTier" column="inw_tier"/>
+        <result property="inwColumn" column="inw_column"/>
+        <result property="inwRangeindex" column="inw_rangeindex"/>
+        <result property="inwIndatetime" column="inw_indatetime"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.inw_id,
+                ${alias}.inw_billsnumber,
+                ${alias}.inw_model,
+                ${alias}.inw_code,
+                ${alias}.inw_uniquecode,
+                ${alias}.inw_manufacturer,
+                ${alias}.inw_unit,
+                ${alias}.inw_batch,
+                ${alias}.inw_effectivedate,
+                ${alias}.inw_produceddate,
+                ${alias}.inw_amount,
+                ${alias}.inw_actualcount,
+                ${alias}.inw_status,
+                ${alias}.inw_warehousenumber,
+                ${alias}.inw_rank,
+                ${alias}.inw_tier,
+                ${alias}.inw_column,
+                ${alias}.inw_rangeindex,
+                ${alias}.inw_indatetime,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				inw_id,
+				inw_billsnumber,
+				inw_model,
+				inw_code,
+				inw_uniquecode,
+				inw_manufacturer,
+				inw_unit,
+				inw_batch,
+				inw_effectivedate,
+				inw_produceddate,
+				inw_amount,
+				inw_actualcount,
+				inw_status,
+				inw_warehousenumber,
+				inw_rank,
+				inw_tier,
+				inw_column,
+				inw_rangeindex,
+				inw_indatetime,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">InWarehouse_DetailBill</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="inwId != null">
+							inw_id,
+						</if>
+						<if test="inwBillsnumber != null">
+							inw_billsnumber,
+						</if>
+						<if test="inwModel != null">
+							inw_model,
+						</if>
+						<if test="inwCode != null">
+							inw_code,
+						</if>
+						<if test="inwUniquecode != null">
+							inw_uniquecode,
+						</if>
+						<if test="inwManufacturer != null">
+							inw_manufacturer,
+						</if>
+						<if test="inwUnit != null">
+							inw_unit,
+						</if>
+						<if test="inwBatch != null">
+							inw_batch,
+						</if>
+						<if test="inwEffectivedate != null">
+							inw_effectivedate,
+						</if>
+						<if test="inwProduceddate != null">
+							inw_produceddate,
+						</if>
+						<if test="inwAmount != null">
+							inw_amount,
+						</if>
+						<if test="inwActualcount != null">
+							inw_actualcount,
+						</if>
+						<if test="inwStatus != null">
+							inw_status,
+						</if>
+						<if test="inwWarehousenumber != null">
+							inw_warehousenumber,
+						</if>
+						<if test="inwRank != null">
+							inw_rank,
+						</if>
+						<if test="inwTier != null">
+							inw_tier,
+						</if>
+						<if test="inwColumn != null">
+							inw_column,
+						</if>
+						<if test="inwRangeindex != null">
+							inw_rangeindex,
+						</if>
+						<if test="inwIndatetime != null">
+							inw_indatetime,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="inwId != null" >
+						#{inwId},
+					</if>
+					<if test="inwBillsnumber != null" >
+						#{inwBillsnumber},
+					</if>
+					<if test="inwModel != null" >
+						#{inwModel},
+					</if>
+					<if test="inwCode != null" >
+						#{inwCode},
+					</if>
+					<if test="inwUniquecode != null" >
+						#{inwUniquecode},
+					</if>
+					<if test="inwManufacturer != null" >
+						#{inwManufacturer},
+					</if>
+					<if test="inwUnit != null" >
+						#{inwUnit},
+					</if>
+					<if test="inwBatch != null" >
+						#{inwBatch},
+					</if>
+					<if test="inwEffectivedate != null" >
+						#{inwEffectivedate},
+					</if>
+					<if test="inwProduceddate != null" >
+						#{inwProduceddate},
+					</if>
+					<if test="inwAmount != null" >
+						#{inwAmount},
+					</if>
+					<if test="inwActualcount != null" >
+						#{inwActualcount},
+					</if>
+					<if test="inwStatus != null" >
+						#{inwStatus},
+					</if>
+					<if test="inwWarehousenumber != null" >
+						#{inwWarehousenumber},
+					</if>
+					<if test="inwRank != null" >
+						#{inwRank},
+					</if>
+					<if test="inwTier != null" >
+						#{inwTier},
+					</if>
+					<if test="inwColumn != null" >
+						#{inwColumn},
+					</if>
+					<if test="inwRangeindex != null" >
+						#{inwRangeindex},
+					</if>
+					<if test="inwIndatetime != null" >
+						#{inwIndatetime},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="inwId != null" >
+                and ${alias}.inw_id=#{inwId}
+            </if>
+            <if test="inwBillsnumber != null" >
+                and ${alias}.inw_billsnumber=#{inwBillsnumber}
+            </if>
+            <if test="inwModel != null" >
+                and ${alias}.inw_model=#{inwModel}
+            </if>
+            <if test="inwCode != null" >
+                and ${alias}.inw_code=#{inwCode}
+            </if>
+            <if test="inwUniquecode != null" >
+                and ${alias}.inw_uniquecode=#{inwUniquecode}
+            </if>
+            <if test="inwManufacturer != null" >
+                and ${alias}.inw_manufacturer=#{inwManufacturer}
+            </if>
+            <if test="inwUnit != null" >
+                and ${alias}.inw_unit=#{inwUnit}
+            </if>
+            <if test="inwBatch != null" >
+                and ${alias}.inw_batch=#{inwBatch}
+            </if>
+            <if test="inwEffectivedate != null" >
+                and ${alias}.inw_effectivedate=#{inwEffectivedate}
+            </if>
+            <if test="inwProduceddate != null" >
+                and ${alias}.inw_produceddate=#{inwProduceddate}
+            </if>
+            <if test="inwAmount != null" >
+                and ${alias}.inw_amount=#{inwAmount}
+            </if>
+            <if test="inwActualcount != null" >
+                and ${alias}.inw_actualcount=#{inwActualcount}
+            </if>
+            <if test="inwStatus != null" >
+                and ${alias}.inw_status=#{inwStatus}
+            </if>
+            <if test="inwWarehousenumber != null" >
+                and ${alias}.inw_warehousenumber=#{inwWarehousenumber}
+            </if>
+            <if test="inwRank != null" >
+                and ${alias}.inw_rank=#{inwRank}
+            </if>
+            <if test="inwTier != null" >
+                and ${alias}.inw_tier=#{inwTier}
+            </if>
+            <if test="inwColumn != null" >
+                and ${alias}.inw_column=#{inwColumn}
+            </if>
+            <if test="inwRangeindex != null" >
+                and ${alias}.inw_rangeindex=#{inwRangeindex}
+            </if>
+            <if test="inwIndatetime != null" >
+                and ${alias}.inw_indatetime=#{inwIndatetime}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="inwBillsnumber != null" >
+					inw_billsnumber=#{inwBillsnumber},
+				</if>
+				<if test="inwModel != null" >
+					inw_model=#{inwModel},
+				</if>
+				<if test="inwCode != null" >
+					inw_code=#{inwCode},
+				</if>
+				<if test="inwUniquecode != null" >
+					inw_uniquecode=#{inwUniquecode},
+				</if>
+				<if test="inwManufacturer != null" >
+					inw_manufacturer=#{inwManufacturer},
+				</if>
+				<if test="inwUnit != null" >
+					inw_unit=#{inwUnit},
+				</if>
+				<if test="inwBatch != null" >
+					inw_batch=#{inwBatch},
+				</if>
+				<if test="inwEffectivedate != null" >
+					inw_effectivedate=#{inwEffectivedate},
+				</if>
+				<if test="inwProduceddate != null" >
+					inw_produceddate=#{inwProduceddate},
+				</if>
+				<if test="inwAmount != null" >
+					inw_amount=#{inwAmount},
+				</if>
+				<if test="inwActualcount != null" >
+					inw_actualcount=#{inwActualcount},
+				</if>
+				<if test="inwStatus != null" >
+					inw_status=#{inwStatus},
+				</if>
+				<if test="inwWarehousenumber != null" >
+					inw_warehousenumber=#{inwWarehousenumber},
+				</if>
+				<if test="inwRank != null" >
+					inw_rank=#{inwRank},
+				</if>
+				<if test="inwTier != null" >
+					inw_tier=#{inwTier},
+				</if>
+				<if test="inwColumn != null" >
+					inw_column=#{inwColumn},
+				</if>
+				<if test="inwRangeindex != null" >
+					inw_rangeindex=#{inwRangeindex},
+				</if>
+				<if test="inwIndatetime != null" >
+					inw_indatetime=#{inwIndatetime},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="inwId != null" >
+            OR ${alias}.inw_id=#{inwId}
+        </if>
+        <if test="inwBillsnumber != null" >
+            OR ${alias}.inw_billsnumber=#{inwBillsnumber}
+        </if>
+        <if test="inwModel != null" >
+            OR ${alias}.inw_model=#{inwModel}
+        </if>
+        <if test="inwCode != null" >
+            OR ${alias}.inw_code=#{inwCode}
+        </if>
+        <if test="inwUniquecode != null" >
+            OR ${alias}.inw_uniquecode=#{inwUniquecode}
+        </if>
+        <if test="inwManufacturer != null" >
+            OR ${alias}.inw_manufacturer=#{inwManufacturer}
+        </if>
+        <if test="inwUnit != null" >
+            OR ${alias}.inw_unit=#{inwUnit}
+        </if>
+        <if test="inwBatch != null" >
+            OR ${alias}.inw_batch=#{inwBatch}
+        </if>
+        <if test="inwEffectivedate != null" >
+            OR ${alias}.inw_effectivedate=#{inwEffectivedate}
+        </if>
+        <if test="inwProduceddate != null" >
+            OR ${alias}.inw_produceddate=#{inwProduceddate}
+        </if>
+        <if test="inwAmount != null" >
+            OR ${alias}.inw_amount=#{inwAmount}
+        </if>
+        <if test="inwActualcount != null" >
+            OR ${alias}.inw_actualcount=#{inwActualcount}
+        </if>
+        <if test="inwStatus != null" >
+            OR ${alias}.inw_status=#{inwStatus}
+        </if>
+        <if test="inwWarehousenumber != null" >
+            OR ${alias}.inw_warehousenumber=#{inwWarehousenumber}
+        </if>
+        <if test="inwRank != null" >
+            OR ${alias}.inw_rank=#{inwRank}
+        </if>
+        <if test="inwTier != null" >
+            OR ${alias}.inw_tier=#{inwTier}
+        </if>
+        <if test="inwColumn != null" >
+            OR ${alias}.inw_column=#{inwColumn}
+        </if>
+        <if test="inwRangeindex != null" >
+            OR ${alias}.inw_rangeindex=#{inwRangeindex}
+        </if>
+        <if test="inwIndatetime != null" >
+            OR ${alias}.inw_indatetime=#{inwIndatetime}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="inwId != null" >
+            and ${alias}.inw_id ~* #{inwId}
+        </if>
+        <if test="inwBillsnumber != null" >
+            and ${alias}.inw_billsnumber ~* #{inwBillsnumber}
+        </if>
+        <if test="inwModel != null" >
+            and ${alias}.inw_model ~* #{inwModel}
+        </if>
+        <if test="inwCode != null" >
+            and ${alias}.inw_code ~* #{inwCode}
+        </if>
+        <if test="inwUniquecode != null" >
+            and ${alias}.inw_uniquecode ~* #{inwUniquecode}
+        </if>
+        <if test="inwManufacturer != null" >
+            and ${alias}.inw_manufacturer ~* #{inwManufacturer}
+        </if>
+        <if test="inwUnit != null" >
+            and ${alias}.inw_unit ~* #{inwUnit}
+        </if>
+        <if test="inwBatch != null" >
+            and ${alias}.inw_batch ~* #{inwBatch}
+        </if>
+        <if test="inwEffectivedate != null" >
+            and ${alias}.inw_effectivedate ~* #{inwEffectivedate}
+        </if>
+        <if test="inwProduceddate != null" >
+            and ${alias}.inw_produceddate ~* #{inwProduceddate}
+        </if>
+        <if test="inwAmount != null" >
+            and CAST(${alias}.inw_amount AS VARCHAR) ~* CAST(#{inwAmount} AS VARCHAR)
+        </if>
+        <if test="inwActualcount != null" >
+            and CAST(${alias}.inw_actualcount AS VARCHAR) ~* CAST(#{inwActualcount} AS VARCHAR)
+        </if>
+        <if test="inwStatus != null" >
+            and CAST(${alias}.inw_status AS VARCHAR) ~* CAST(#{inwStatus} AS VARCHAR)
+        </if>
+        <if test="inwWarehousenumber != null" >
+            and ${alias}.inw_warehousenumber ~* #{inwWarehousenumber}
+        </if>
+        <if test="inwRank != null" >
+            and CAST(${alias}.inw_rank AS VARCHAR) ~* CAST(#{inwRank} AS VARCHAR)
+        </if>
+        <if test="inwTier != null" >
+            and CAST(${alias}.inw_tier AS VARCHAR) ~* CAST(#{inwTier} AS VARCHAR)
+        </if>
+        <if test="inwColumn != null" >
+            and CAST(${alias}.inw_column AS VARCHAR) ~* CAST(#{inwColumn} AS VARCHAR)
+        </if>
+        <if test="inwRangeindex != null" >
+            and CAST(${alias}.inw_rangeindex AS VARCHAR) ~*  CAST(#{inwRangeindex} AS VARCHAR)
+        </if>
+        <if test="inwIndatetime != null" >
+            and ${alias}.inw_indatetime ~* #{inwIndatetime}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseDetailBill">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.inwId},
+                      #{item.inwBillsnumber},
+                      #{item.inwModel},
+                      #{item.inwCode},
+                      #{item.inwUniquecode},
+                      #{item.inwManufacturer},
+                      #{item.inwUnit},
+                      #{item.inwBatch},
+                      #{item.inwEffectivedate},
+                      #{item.inwProduceddate},
+                      #{item.inwAmount},
+                      #{item.inwActualcount},
+                      #{item.inwStatus},
+                      #{item.inwWarehousenumber},
+                      #{item.inwRank},
+                      #{item.inwTier},
+                      #{item.inwColumn},
+                      #{item.inwRangeindex},
+                      #{item.inwIndatetime}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  InWarehouse_DetailBill where inw_id= #{inwId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from InWarehouse_DetailBill;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseDetailBill">
+        delete from InWarehouse_DetailBill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from InWarehouse_DetailBill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseDetailBill">
+        update InWarehouse_DetailBill
+        <set>
+            <include refid="updCols" />
+        </set>
+        where inw_id=#{inwId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="InWarehouseDetailBill">
+        select <include refid="cols"/> from InWarehouse_DetailBill
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="InWarehouseDetailBill">
+        select <include refid="cols"/> from InWarehouse_DetailBill where inw_id=#{inwId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="InWarehouseDetailBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from InWarehouse_DetailBill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="InWarehouseDetailBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from InWarehouse_DetailBill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(inw_id) from InWarehouse_DetailBill
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseDetailBill" resultType="long">
+        select count(t.inw_id) from InWarehouse_DetailBill t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseDetailBill" resultType="long">
+        select count(t.inw_id) from InWarehouse_DetailBill t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.InWarehouseDetailBill" resultMap="InWarehouseDetailBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from InWarehouse_DetailBill t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="InWarehouseDetailBill">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from inwarehouse_detailbill t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

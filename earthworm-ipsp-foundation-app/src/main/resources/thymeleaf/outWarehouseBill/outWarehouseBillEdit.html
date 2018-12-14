@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="outWarehouseBill_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${outWarehouseBill==null}? null : ${outWarehouseBill.outwId}" name="outwId" hidden>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon1">单&nbsp;&nbsp;据&nbsp;&nbsp;编&nbsp;&nbsp;号</span>
+                <input th:value="${outWarehouseBill==null}? null :${outWarehouseBill.outwBillsnumber}" type="text"
+                       name="outwBillsnumber" class="form-control ew-validate"
+                       required
+                       maxlength="40"
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于40位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于40位"
+                       aria-describedby="sizing-addon1">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon3">
+                    分&nbsp;&nbsp;类&nbsp;&nbsp;名&nbsp;&nbsp;称
+                </span>
+                <select name="outwCategory" class="form-control ew-validate" aria-describedby="sizing-addon1"
+                        required>
+                    <option value="">---请选择分类名称---</option>
+                    <option th:each="billsCategory:${billsCategories}" th:value="${billsCategory.catCategory}"
+                            th:text="${billsCategory.catName}"
+                            th:selected="${outWarehouseBill==null}? null:(${billsCategory.catCategory==outWarehouseBill.outwCategory})">
+                    </option>
+                </select>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon4">出&nbsp;&nbsp;库&nbsp;&nbsp;时&nbsp;&nbsp;间</span>
+                <input th:value="${outWarehouseBill==null}? null :${#dates.format(outWarehouseBill.outwOuttime,'yyyy-MM-dd HH:mm')}"
+                       type="text" name="outwOuttime" id="outwOuttime" class="form-control ew-validate"
+                       aria-describedby="sizing-addon2" required  excludeSpecValid
+                       pattern="^(?:19|20)[0-9][0-9]-(?:(?:0[1-9])|(?:1[0-2]))-(?:(?:[0-2][1-9])|(?:[1-3][0-1])) (?:(?:[0-2][0-3])|(?:[0-1][0-9])):[0-5][0-9]$"
+                />
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+
+        <div class="col-md-12"  th:hidden="${outWarehouseBill==null}? true:false" >
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon5">出&nbsp;&nbsp;库&nbsp;&nbsp;状&nbsp;&nbsp;态</span>
+
+                <select name="outwStatus" class="form-control ew-validate " aria-describedby="sizing-addon7"
+                        pattern="^[0-2]{1}$" required>
+                    <option value="">---请选择出库状态---</option>
+                    <option value="0"
+                            th:selected="${outWarehouseBill==null}? true:(${0==outWarehouseBill.outwStatus})">未出库
+                    </option>
+                    <option value="1"
+                            th:selected="${outWarehouseBill==null}? null:(${1==outWarehouseBill.outwStatus})">出库中
+                    </option>
+                    <option value="2"
+                            th:selected="${outWarehouseBill==null}? null:(${2==outWarehouseBill.outwStatus})">已出库
+                    </option>
+                </select>
+
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+    </div>
+</form>
+
+<script  type="text/javascript">
+    $('#outwOuttime').datetimepicker();
+</script>
+
+</html>
+

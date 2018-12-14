@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IFixshelfDetailinfoDao">
+
+    <resultMap id="FixshelfDetailinfo" type="com.earthworm.ipsp.foundation.entity.FixshelfDetailinfo">
+        <id property="fixId" column="fix_id"/>
+        <result property="fixSuiid" column="fix_suiid"/>
+        <result property="fixSuiuniquecode" column="fix_suiuniquecode"/>
+        <result property="fixMaterialmodel" column="fix_materialmodel"/>
+        <result property="fixMaterialcode" column="fix_materialcode"/>
+        <result property="fixMaterialuniquecode" column="fix_materialuniquecode"/>
+        <result property="fixMaterialmanufacturer" column="fix_materialmanufacturer"/>
+        <result property="fixMaterialunit" column="fix_materialunit"/>
+        <result property="fixMaterialbatch" column="fix_materialbatch"/>
+        <result property="fixMaterialeffectivedate" column="fix_materialeffectivedate"/>
+        <result property="fixMaterialproduceddate" column="fix_materialproduceddate"/>
+        <result property="fixMaterialamount" column="fix_materialamount"/>
+        <result property="fixIsreimbursement" column="fix_isreimbursement"/>
+        <result property="fixCabinindex" column="fix_cabinindex"/>
+        <result property="fixBindtime" column="fix_bindtime"/>
+        <result property="fixBillscategory" column="fix_billscategory"/>
+        <result property="fixBillsnumber" column="fix_billsnumber"/>
+        <result property="fixProcesscode" column="fix_processcode"/>
+        <result property="fixCurrentpath" column="fix_currentpath"/>
+        <result property="fixCurrentsite" column="fix_currentsite"/>
+        <result property="fixTargetsite" column="fix_targetsite"/>
+        <result property="fixTargetpath" column="fix_targetpath"/>
+        <result property="fixBulksuiuniquecode" column="fix_bulksuiuniquecode"/>
+        <result property="fixIsbulkmaterial" column="fix_isbulkmaterial"/>
+        <result property="fixFromsource" column="fix_fromsource"/>
+        <result property="fixDescription" column="fix_description"/>
+        <result property="fixStatus" column="fix_status"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.fix_id,
+                ${alias}.fix_suiid,
+                ${alias}.fix_suiuniquecode,
+                ${alias}.fix_materialmodel,
+                ${alias}.fix_materialcode,
+                ${alias}.fix_materialuniquecode,
+                ${alias}.fix_materialmanufacturer,
+                ${alias}.fix_materialunit,
+                ${alias}.fix_materialbatch,
+                ${alias}.fix_materialeffectivedate,
+                ${alias}.fix_materialproduceddate,
+                ${alias}.fix_materialamount,
+                ${alias}.fix_isreimbursement,
+                ${alias}.fix_cabinindex,
+                ${alias}.fix_bindtime,
+                ${alias}.fix_billscategory,
+                ${alias}.fix_billsnumber,
+                ${alias}.fix_processcode,
+                ${alias}.fix_currentpath,
+                ${alias}.fix_currentsite,
+                ${alias}.fix_targetsite,
+                ${alias}.fix_targetpath,
+                ${alias}.fix_bulksuiuniquecode,
+                ${alias}.fix_isbulkmaterial,
+                ${alias}.fix_fromsource,
+                ${alias}.fix_description,
+                ${alias}.fix_status,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				fix_id,
+				fix_suiid,
+				fix_suiuniquecode,
+				fix_materialmodel,
+				fix_materialcode,
+				fix_materialuniquecode,
+				fix_materialmanufacturer,
+				fix_materialunit,
+				fix_materialbatch,
+				fix_materialeffectivedate,
+				fix_materialproduceddate,
+				fix_materialamount,
+				fix_isreimbursement,
+				fix_cabinindex,
+				fix_bindtime,
+				fix_billscategory,
+				fix_billsnumber,
+				fix_processcode,
+				fix_currentpath,
+				fix_currentsite,
+				fix_targetsite,
+				fix_targetpath,
+				fix_bulksuiuniquecode,
+				fix_isbulkmaterial,
+				fix_fromsource,
+				fix_description,
+				fix_status,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Fixshelf_Detailinfo</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="fixId != null">
+							fix_id,
+						</if>
+						<if test="fixSuiid != null">
+							fix_suiid,
+						</if>
+						<if test="fixSuiuniquecode != null">
+							fix_suiuniquecode,
+						</if>
+						<if test="fixMaterialmodel != null">
+							fix_materialmodel,
+						</if>
+						<if test="fixMaterialcode != null">
+							fix_materialcode,
+						</if>
+						<if test="fixMaterialuniquecode != null">
+							fix_materialuniquecode,
+						</if>
+						<if test="fixMaterialmanufacturer != null">
+							fix_materialmanufacturer,
+						</if>
+						<if test="fixMaterialunit != null">
+							fix_materialunit,
+						</if>
+						<if test="fixMaterialbatch != null">
+							fix_materialbatch,
+						</if>
+						<if test="fixMaterialeffectivedate != null">
+							fix_materialeffectivedate,
+						</if>
+						<if test="fixMaterialproduceddate != null">
+							fix_materialproduceddate,
+						</if>
+						<if test="fixMaterialamount != null">
+							fix_materialamount,
+						</if>
+						<if test="fixIsreimbursement != null">
+							fix_isreimbursement,
+						</if>
+						<if test="fixCabinindex != null">
+							fix_cabinindex,
+						</if>
+						<if test="fixBindtime != null">
+							fix_bindtime,
+						</if>
+						<if test="fixBillscategory != null">
+							fix_billscategory,
+						</if>
+						<if test="fixBillsnumber != null">
+							fix_billsnumber,
+						</if>
+						<if test="fixProcesscode != null">
+							fix_processcode,
+						</if>
+						<if test="fixCurrentpath != null">
+							fix_currentpath,
+						</if>
+						<if test="fixCurrentsite != null">
+							fix_currentsite,
+						</if>
+						<if test="fixTargetsite != null">
+							fix_targetsite,
+						</if>
+						<if test="fixTargetpath != null">
+							fix_targetpath,
+						</if>
+						<if test="fixBulksuiuniquecode != null">
+							fix_bulksuiuniquecode,
+						</if>
+						<if test="fixIsbulkmaterial != null">
+							fix_isbulkmaterial,
+						</if>
+						<if test="fixFromsource != null">
+							fix_fromsource,
+						</if>
+						<if test="fixDescription != null">
+							fix_description,
+						</if>
+						<if test="fixStatus != null">
+							fix_status,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="fixId != null" >
+						#{fixId},
+					</if>
+					<if test="fixSuiid != null" >
+						#{fixSuiid},
+					</if>
+					<if test="fixSuiuniquecode != null" >
+						#{fixSuiuniquecode},
+					</if>
+					<if test="fixMaterialmodel != null" >
+						#{fixMaterialmodel},
+					</if>
+					<if test="fixMaterialcode != null" >
+						#{fixMaterialcode},
+					</if>
+					<if test="fixMaterialuniquecode != null" >
+						#{fixMaterialuniquecode},
+					</if>
+					<if test="fixMaterialmanufacturer != null" >
+						#{fixMaterialmanufacturer},
+					</if>
+					<if test="fixMaterialunit != null" >
+						#{fixMaterialunit},
+					</if>
+					<if test="fixMaterialbatch != null" >
+						#{fixMaterialbatch},
+					</if>
+					<if test="fixMaterialeffectivedate != null" >
+						#{fixMaterialeffectivedate},
+					</if>
+					<if test="fixMaterialproduceddate != null" >
+						#{fixMaterialproduceddate},
+					</if>
+					<if test="fixMaterialamount != null" >
+						#{fixMaterialamount},
+					</if>
+					<if test="fixIsreimbursement != null" >
+						#{fixIsreimbursement},
+					</if>
+					<if test="fixCabinindex != null" >
+						#{fixCabinindex},
+					</if>
+					<if test="fixBindtime != null" >
+						#{fixBindtime},
+					</if>
+					<if test="fixBillscategory != null" >
+						#{fixBillscategory},
+					</if>
+					<if test="fixBillsnumber != null" >
+						#{fixBillsnumber},
+					</if>
+					<if test="fixProcesscode != null" >
+						#{fixProcesscode},
+					</if>
+					<if test="fixCurrentpath != null" >
+						#{fixCurrentpath},
+					</if>
+					<if test="fixCurrentsite != null" >
+						#{fixCurrentsite},
+					</if>
+					<if test="fixTargetsite != null" >
+						#{fixTargetsite},
+					</if>
+					<if test="fixTargetpath != null" >
+						#{fixTargetpath},
+					</if>
+					<if test="fixBulksuiuniquecode != null" >
+						#{fixBulksuiuniquecode},
+					</if>
+					<if test="fixIsbulkmaterial != null" >
+						#{fixIsbulkmaterial},
+					</if>
+					<if test="fixFromsource != null" >
+						#{fixFromsource},
+					</if>
+					<if test="fixDescription != null" >
+						#{fixDescription},
+					</if>
+					<if test="fixStatus != null" >
+						#{fixStatus},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="fixId != null" >
+                and ${alias}.fix_id=#{fixId}
+            </if>
+            <if test="fixSuiid != null" >
+                and ${alias}.fix_suiid=#{fixSuiid}
+            </if>
+            <if test="fixSuiuniquecode != null" >
+                and ${alias}.fix_suiuniquecode=#{fixSuiuniquecode}
+            </if>
+            <if test="fixMaterialmodel != null" >
+                and ${alias}.fix_materialmodel=#{fixMaterialmodel}
+            </if>
+            <if test="fixMaterialcode != null" >
+                and ${alias}.fix_materialcode=#{fixMaterialcode}
+            </if>
+            <if test="fixMaterialuniquecode != null" >
+                and ${alias}.fix_materialuniquecode=#{fixMaterialuniquecode}
+            </if>
+            <if test="fixMaterialmanufacturer != null" >
+                and ${alias}.fix_materialmanufacturer=#{fixMaterialmanufacturer}
+            </if>
+            <if test="fixMaterialunit != null" >
+                and ${alias}.fix_materialunit=#{fixMaterialunit}
+            </if>
+            <if test="fixMaterialbatch != null" >
+                and ${alias}.fix_materialbatch=#{fixMaterialbatch}
+            </if>
+            <if test="fixMaterialeffectivedate != null" >
+                and ${alias}.fix_materialeffectivedate=#{fixMaterialeffectivedate}
+            </if>
+            <if test="fixMaterialproduceddate != null" >
+                and ${alias}.fix_materialproduceddate=#{fixMaterialproduceddate}
+            </if>
+            <if test="fixMaterialamount != null" >
+                and ${alias}.fix_materialamount=#{fixMaterialamount}
+            </if>
+            <if test="fixIsreimbursement != null" >
+                and ${alias}.fix_isreimbursement=#{fixIsreimbursement}
+            </if>
+            <if test="fixCabinindex != null" >
+                and ${alias}.fix_cabinindex=#{fixCabinindex}
+            </if>
+            <if test="fixBindtime != null" >
+                and ${alias}.fix_bindtime=#{fixBindtime}
+            </if>
+            <if test="fixBillscategory != null" >
+                and ${alias}.fix_billscategory=#{fixBillscategory}
+            </if>
+            <if test="fixBillsnumber != null" >
+                and ${alias}.fix_billsnumber=#{fixBillsnumber}
+            </if>
+            <if test="fixProcesscode != null" >
+                and ${alias}.fix_processcode=#{fixProcesscode}
+            </if>
+            <if test="fixCurrentpath != null" >
+                and ${alias}.fix_currentpath=#{fixCurrentpath}
+            </if>
+            <if test="fixCurrentsite != null" >
+                and ${alias}.fix_currentsite=#{fixCurrentsite}
+            </if>
+            <if test="fixTargetsite != null" >
+                and ${alias}.fix_targetsite=#{fixTargetsite}
+            </if>
+            <if test="fixTargetpath != null" >
+                and ${alias}.fix_targetpath=#{fixTargetpath}
+            </if>
+            <if test="fixBulksuiuniquecode != null" >
+                and ${alias}.fix_bulksuiuniquecode=#{fixBulksuiuniquecode}
+            </if>
+            <if test="fixIsbulkmaterial != null" >
+                and ${alias}.fix_isbulkmaterial=#{fixIsbulkmaterial}
+            </if>
+            <if test="fixFromsource != null" >
+                and ${alias}.fix_fromsource=#{fixFromsource}
+            </if>
+            <if test="fixDescription != null" >
+                and ${alias}.fix_description=#{fixDescription}
+            </if>
+            <if test="fixStatus != null" >
+                and ${alias}.fix_status=#{fixStatus}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="fixSuiid != null" >
+					fix_suiid=#{fixSuiid},
+				</if>
+				<if test="fixSuiuniquecode != null" >
+					fix_suiuniquecode=#{fixSuiuniquecode},
+				</if>
+				<if test="fixMaterialmodel != null" >
+					fix_materialmodel=#{fixMaterialmodel},
+				</if>
+				<if test="fixMaterialcode != null" >
+					fix_materialcode=#{fixMaterialcode},
+				</if>
+				<if test="fixMaterialuniquecode != null" >
+					fix_materialuniquecode=#{fixMaterialuniquecode},
+				</if>
+				<if test="fixMaterialmanufacturer != null" >
+					fix_materialmanufacturer=#{fixMaterialmanufacturer},
+				</if>
+				<if test="fixMaterialunit != null" >
+					fix_materialunit=#{fixMaterialunit},
+				</if>
+				<if test="fixMaterialbatch != null" >
+					fix_materialbatch=#{fixMaterialbatch},
+				</if>
+				<if test="fixMaterialeffectivedate != null" >
+					fix_materialeffectivedate=#{fixMaterialeffectivedate},
+				</if>
+				<if test="fixMaterialproduceddate != null" >
+					fix_materialproduceddate=#{fixMaterialproduceddate},
+				</if>
+				<if test="fixMaterialamount != null" >
+					fix_materialamount=#{fixMaterialamount},
+				</if>
+				<if test="fixIsreimbursement != null" >
+					fix_isreimbursement=#{fixIsreimbursement},
+				</if>
+				<if test="fixCabinindex != null" >
+					fix_cabinindex=#{fixCabinindex},
+				</if>
+				<if test="fixBindtime != null" >
+					fix_bindtime=#{fixBindtime},
+				</if>
+				<if test="fixBillscategory != null" >
+					fix_billscategory=#{fixBillscategory},
+				</if>
+				<if test="fixBillsnumber != null" >
+					fix_billsnumber=#{fixBillsnumber},
+				</if>
+				<if test="fixProcesscode != null" >
+					fix_processcode=#{fixProcesscode},
+				</if>
+				<if test="fixCurrentpath != null" >
+					fix_currentpath=#{fixCurrentpath},
+				</if>
+				<if test="fixCurrentsite != null" >
+					fix_currentsite=#{fixCurrentsite},
+				</if>
+				<if test="fixTargetsite != null" >
+					fix_targetsite=#{fixTargetsite},
+				</if>
+				<if test="fixTargetpath != null" >
+					fix_targetpath=#{fixTargetpath},
+				</if>
+				<if test="fixBulksuiuniquecode != null" >
+					fix_bulksuiuniquecode=#{fixBulksuiuniquecode},
+				</if>
+				<if test="fixIsbulkmaterial != null" >
+					fix_isbulkmaterial=#{fixIsbulkmaterial},
+				</if>
+				<if test="fixFromsource != null" >
+					fix_fromsource=#{fixFromsource},
+				</if>
+				<if test="fixDescription != null" >
+					fix_description=#{fixDescription},
+				</if>
+				<if test="fixStatus != null" >
+					fix_status=#{fixStatus},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="fixId != null" >
+            OR ${alias}.fix_id=#{fixId}
+        </if>
+        <if test="fixSuiid != null" >
+            OR ${alias}.fix_suiid=#{fixSuiid}
+        </if>
+        <if test="fixSuiuniquecode != null" >
+            OR ${alias}.fix_suiuniquecode=#{fixSuiuniquecode}
+        </if>
+        <if test="fixMaterialmodel != null" >
+            OR ${alias}.fix_materialmodel=#{fixMaterialmodel}
+        </if>
+        <if test="fixMaterialcode != null" >
+            OR ${alias}.fix_materialcode=#{fixMaterialcode}
+        </if>
+        <if test="fixMaterialuniquecode != null" >
+            OR ${alias}.fix_materialuniquecode=#{fixMaterialuniquecode}
+        </if>
+        <if test="fixMaterialmanufacturer != null" >
+            OR ${alias}.fix_materialmanufacturer=#{fixMaterialmanufacturer}
+        </if>
+        <if test="fixMaterialunit != null" >
+            OR ${alias}.fix_materialunit=#{fixMaterialunit}
+        </if>
+        <if test="fixMaterialbatch != null" >
+            OR ${alias}.fix_materialbatch=#{fixMaterialbatch}
+        </if>
+        <if test="fixMaterialeffectivedate != null" >
+            OR ${alias}.fix_materialeffectivedate=#{fixMaterialeffectivedate}
+        </if>
+        <if test="fixMaterialproduceddate != null" >
+            OR ${alias}.fix_materialproduceddate=#{fixMaterialproduceddate}
+        </if>
+        <if test="fixMaterialamount != null" >
+            OR ${alias}.fix_materialamount=#{fixMaterialamount}
+        </if>
+        <if test="fixIsreimbursement != null" >
+            OR ${alias}.fix_isreimbursement=#{fixIsreimbursement}
+        </if>
+        <if test="fixCabinindex != null" >
+            OR ${alias}.fix_cabinindex=#{fixCabinindex}
+        </if>
+        <if test="fixBindtime != null" >
+            OR ${alias}.fix_bindtime=#{fixBindtime}
+        </if>
+        <if test="fixBillscategory != null" >
+            OR ${alias}.fix_billscategory=#{fixBillscategory}
+        </if>
+        <if test="fixBillsnumber != null" >
+            OR ${alias}.fix_billsnumber=#{fixBillsnumber}
+        </if>
+        <if test="fixProcesscode != null" >
+            OR ${alias}.fix_processcode=#{fixProcesscode}
+        </if>
+        <if test="fixCurrentpath != null" >
+            OR ${alias}.fix_currentpath=#{fixCurrentpath}
+        </if>
+        <if test="fixCurrentsite != null" >
+            OR ${alias}.fix_currentsite=#{fixCurrentsite}
+        </if>
+        <if test="fixTargetsite != null" >
+            OR ${alias}.fix_targetsite=#{fixTargetsite}
+        </if>
+        <if test="fixTargetpath != null" >
+            OR ${alias}.fix_targetpath=#{fixTargetpath}
+        </if>
+        <if test="fixBulksuiuniquecode != null" >
+            OR ${alias}.fix_bulksuiuniquecode=#{fixBulksuiuniquecode}
+        </if>
+        <if test="fixIsbulkmaterial != null" >
+            OR ${alias}.fix_isbulkmaterial=#{fixIsbulkmaterial}
+        </if>
+        <if test="fixFromsource != null" >
+            OR ${alias}.fix_fromsource=#{fixFromsource}
+        </if>
+        <if test="fixDescription != null" >
+            OR ${alias}.fix_description=#{fixDescription}
+        </if>
+        <if test="fixStatus != null" >
+            OR ${alias}.fix_status=#{fixStatus}
+        </if>
+    </sql>
+
+	<sql id="likeAndCond">
+		<if test="fixId != null" >
+			and ${alias}.fix_id ~* #{fixId}
+		</if>
+		<if test="fixSuiid != null" >
+			and ${alias}.fix_suiid ~* #{fixSuiid}
+		</if>
+		<if test="fixSuiuniquecode != null" >
+			and ${alias}.fix_suiuniquecode ~* #{fixSuiuniquecode}
+		</if>
+		<if test="fixMaterialmodel != null" >
+			and ${alias}.fix_materialmodel ~* #{fixMaterialmodel}
+		</if>
+		<if test="fixMaterialcode != null" >
+			and ${alias}.fix_materialcode ~* #{fixMaterialcode}
+		</if>
+		<if test="fixMaterialuniquecode != null" >
+			and ${alias}.fix_materialuniquecode ~* #{fixMaterialuniquecode}
+		</if>
+		<if test="fixMaterialmanufacturer != null" >
+			and ${alias}.fix_materialmanufacturer ~* #{fixMaterialmanufacturer}
+		</if>
+		<if test="fixMaterialunit != null" >
+			and ${alias}.fix_materialunit ~* #{fixMaterialunit}
+		</if>
+		<if test="fixMaterialbatch != null" >
+			and ${alias}.fix_materialbatch ~* #{fixMaterialbatch}
+		</if>
+		<if test="fixMaterialeffectivedate != null" >
+			and ${alias}.fix_materialeffectivedate ~* #{fixMaterialeffectivedate}
+		</if>
+		<if test="fixMaterialproduceddate != null" >
+			and ${alias}.fix_materialproduceddate ~* #{fixMaterialproduceddate}
+		</if>
+		<if test="fixMaterialamount != null" >
+			and CAST(${alias}.fix_materialamount AS VARCHAR) ~* CAST(#{fixMaterialamount} AS VARCHAR)
+		</if>
+		<if test="fixIsreimbursement != null" >
+			and CAST(${alias}.fix_isreimbursement AS VARCHAR) ~* CAST(#{fixIsreimbursement} AS VARCHAR)
+		</if>
+		<if test="fixCabinindex != null" >
+			and ${alias}.fix_cabinindex ~* #{fixCabinindex}
+		</if>
+		<if test="fixBindtime != null" >
+			and CAST(${alias}.fix_bindtime AS VARCHAR) ~* CAST(#{fixBindtime} AS VARCHAR)
+		</if>
+		<if test="fixBillscategory != null" >
+			and CAST(${alias}.fix_billscategory AS VARCHAR) ~* CAST(#{fixBillscategory} AS VARCHAR)
+		</if>
+		<if test="fixBillsnumber != null" >
+			and ${alias}.fix_billsnumber ~* #{fixBillsnumber}
+		</if>
+		<if test="fixProcesscode != null" >
+			and ${alias}.fix_processcode ~* #{fixProcesscode}
+		</if>
+		<if test="fixCurrentpath != null" >
+			and CAST(${alias}.fix_currentpath AS VARCHAR) ~* CAST(#{fixCurrentpath} AS VARCHAR)
+		</if>
+		<if test="fixCurrentsite != null" >
+			and CAST(${alias}.fix_currentsite AS VARCHAR) ~* CAST(#{fixCurrentsite} AS VARCHAR)
+		</if>
+		<if test="fixTargetsite != null" >
+			and CAST(${alias}.fix_targetsite AS VARCHAR) ~* CAST(#{fixTargetsite} AS VARCHAR)
+		</if>
+		<if test="fixTargetpath != null" >
+			and ${alias}.fix_targetpath ~* #{fixTargetpath}
+		</if>
+		<if test="fixBulksuiuniquecode != null" >
+			and ${alias}.fix_bulksuiuniquecode ~* #{fixBulksuiuniquecode}
+		</if>
+		<if test="fixIsbulkmaterial != null" >
+			and CAST(${alias}.fix_isbulkmaterial AS VARCHAR) ~* CAST(#{fixIsbulkmaterial} AS VARCHAR)
+		</if>
+		<if test="fixFromsource != null" >
+			and CAST(${alias}.fix_fromsource AS VARCHAR) ~* CAST(#{fixFromsource} AS VARCHAR)
+		</if>
+		<if test="fixDescription != null" >
+			and ${alias}.fix_description ~* #{fixDescription}
+		</if>
+		<if test="fixStatus != null" >
+			and CAST(${alias}.fix_status AS VARCHAR)~* CAST(#{fixStatus} AS VARCHAR)
+		</if>
+	</sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfDetailinfo">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.fixId},
+                      #{item.fixSuiid},
+                      #{item.fixSuiuniquecode},
+                      #{item.fixMaterialmodel},
+                      #{item.fixMaterialcode},
+                      #{item.fixMaterialuniquecode},
+                      #{item.fixMaterialmanufacturer},
+                      #{item.fixMaterialunit},
+                      #{item.fixMaterialbatch},
+                      #{item.fixMaterialeffectivedate},
+                      #{item.fixMaterialproduceddate},
+                      #{item.fixMaterialamount},
+                      #{item.fixIsreimbursement},
+                      #{item.fixCabinindex},
+                      #{item.fixBindtime},
+                      #{item.fixBillscategory},
+                      #{item.fixBillsnumber},
+                      #{item.fixProcesscode},
+                      #{item.fixCurrentpath},
+                      #{item.fixCurrentsite},
+                      #{item.fixTargetsite},
+                      #{item.fixTargetpath},
+                      #{item.fixBulksuiuniquecode},
+                      #{item.fixIsbulkmaterial},
+                      #{item.fixFromsource},
+                      #{item.fixDescription},
+                      #{item.fixStatus}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Fixshelf_Detailinfo where fix_id= #{fixId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Fixshelf_Detailinfo;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfDetailinfo">
+        delete from Fixshelf_Detailinfo t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Fixshelf_Detailinfo t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfDetailinfo">
+        update Fixshelf_Detailinfo
+        <set>
+            <include refid="updCols" />
+        </set>
+        where fix_id=#{fixId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="FixshelfDetailinfo">
+        select <include refid="cols"/> from Fixshelf_Detailinfo
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="FixshelfDetailinfo">
+        select <include refid="cols"/> from Fixshelf_Detailinfo where fix_id=#{fixId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="FixshelfDetailinfo">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Fixshelf_Detailinfo t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="FixshelfDetailinfo">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Fixshelf_Detailinfo t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(fix_id) from Fixshelf_Detailinfo
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfDetailinfo" resultType="long">
+        select count(t.fix_id) from Fixshelf_Detailinfo t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfDetailinfo" resultType="long">
+        select count(t.fix_id) from Fixshelf_Detailinfo t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.FixshelfDetailinfo" resultMap="FixshelfDetailinfo">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Fixshelf_Detailinfo t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+	<select id="findLikeInfo" parameterType="string" resultMap="FixshelfDetailinfo">
+		select <include refid="colsForAlias"><property name="alias" value="t"/></include> from fixshelf_detailinfo t
+		<where>
+			<include refid="likeAndCond"><property name="alias" value="t" /></include>
+		</where>
+	</select>
+</mapper>

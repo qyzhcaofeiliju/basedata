@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IAppSysDao">
+
+    <resultMap id="AppSys" type="com.earthworm.ipsp.foundation.entity.AppSys">
+        <id property="sysId" column="sys_id"/>
+        <result property="sysCode" column="sys_code"/>
+        <result property="sysName" column="sys_name"/>
+        <result property="sysAddress" column="sys_address"/>
+        <result property="sysCreateTime" column="sys_create_time"/>
+        <result property="sysModifyTime" column="sys_modify_time"/>
+        <result property="sysModifyAuthor" column="sys_modify_author"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.sys_id,
+                ${alias}.sys_code,
+                ${alias}.sys_name,
+                ${alias}.sys_address,
+                ${alias}.sys_create_time,
+                ${alias}.sys_modify_time,
+                ${alias}.sys_modify_author,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				sys_id,
+				sys_code,
+				sys_name,
+				sys_address,
+				sys_create_time,
+				sys_modify_time,
+				sys_modify_author,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">app_sys</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="sysId != null">
+							sys_id,
+						</if>
+						<if test="sysCode != null">
+							sys_code,
+						</if>
+						<if test="sysName != null">
+							sys_name,
+						</if>
+						<if test="sysAddress != null">
+							sys_address,
+						</if>
+						<if test="sysCreateTime != null">
+							sys_create_time,
+						</if>
+						<if test="sysModifyTime != null">
+							sys_modify_time,
+						</if>
+						<if test="sysModifyAuthor != null">
+							sys_modify_author,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="sysId != null" >
+						#{sysId},
+					</if>
+					<if test="sysCode != null" >
+						#{sysCode},
+					</if>
+					<if test="sysName != null" >
+						#{sysName},
+					</if>
+					<if test="sysAddress != null" >
+						#{sysAddress},
+					</if>
+					<if test="sysCreateTime != null" >
+						#{sysCreateTime},
+					</if>
+					<if test="sysModifyTime != null" >
+						#{sysModifyTime},
+					</if>
+					<if test="sysModifyAuthor != null" >
+						#{sysModifyAuthor},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="sysId != null" >
+                and ${alias}.sys_id=#{sysId}
+            </if>
+            <if test="sysCode != null" >
+                and ${alias}.sys_code=#{sysCode}
+            </if>
+            <if test="sysName != null" >
+                and ${alias}.sys_name=#{sysName}
+            </if>
+            <if test="sysAddress != null" >
+                and ${alias}.sys_address=#{sysAddress}
+            </if>
+            <if test="sysCreateTime != null" >
+                and ${alias}.sys_create_time=#{sysCreateTime}
+            </if>
+            <if test="sysModifyTime != null" >
+                and ${alias}.sys_modify_time=#{sysModifyTime}
+            </if>
+            <if test="sysModifyAuthor != null" >
+                and ${alias}.sys_modify_author=#{sysModifyAuthor}
+            </if>
+    </sql>
+    <sql id="likeAndCond">
+                    <if test="sysId != null" >
+                        and ${alias}.sys_id ~* #{sysId}
+                    </if>
+                    <if test="sysCode != null" >
+                        and ${alias}.sys_code ~* #{sysCode}
+                    </if>
+                    <if test="sysName != null" >
+                        and ${alias}.sys_name ~* #{sysName}
+                    </if>
+                    <if test="sysAddress != null" >
+                        and ${alias}.sys_address ~* #{sysAddress}
+                    </if>
+                    <if test="sysCreateTime != null" >
+                        and ${alias}.sys_create_time ~* #{sysCreateTime}
+                    </if>
+                    <if test="sysModifyTime != null" >
+                        and ${alias}.sys_modify_time ~* #{sysModifyTime}
+                    </if>
+                    <if test="sysModifyAuthor != null" >
+                        and ${alias}.sys_modify_author ~* #{sysModifyAuthor}
+                    </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="sysCode != null" >
+					sys_code=#{sysCode},
+				</if>
+				<if test="sysName != null" >
+					sys_name=#{sysName},
+				</if>
+				<if test="sysAddress != null" >
+					sys_address=#{sysAddress},
+				</if>
+				<if test="sysCreateTime != null" >
+					sys_create_time=#{sysCreateTime},
+				</if>
+				<if test="sysModifyTime != null" >
+					sys_modify_time=#{sysModifyTime},
+				</if>
+				<if test="sysModifyAuthor != null" >
+					sys_modify_author=#{sysModifyAuthor},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="sysId != null" >
+            OR ${alias}.sys_id=#{sysId}
+        </if>
+        <if test="sysCode != null" >
+            OR ${alias}.sys_code=#{sysCode}
+        </if>
+        <if test="sysName != null" >
+            OR ${alias}.sys_name=#{sysName}
+        </if>
+        <if test="sysAddress != null" >
+            OR ${alias}.sys_address=#{sysAddress}
+        </if>
+        <if test="sysCreateTime != null" >
+            OR ${alias}.sys_create_time=#{sysCreateTime}
+        </if>
+        <if test="sysModifyTime != null" >
+            OR ${alias}.sys_modify_time=#{sysModifyTime}
+        </if>
+        <if test="sysModifyAuthor != null" >
+            OR ${alias}.sys_modify_author=#{sysModifyAuthor}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.AppSys">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.sysId},
+                      #{item.sysCode},
+                      #{item.sysName},
+                      #{item.sysAddress},
+                      #{item.sysCreateTime},
+                      #{item.sysModifyTime},
+                      #{item.sysModifyAuthor}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  app_sys where sys_id= #{sysId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from app_sys;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.AppSys">
+        delete from app_sys t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from app_sys t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.AppSys">
+        update app_sys
+        <set>
+            <include refid="updCols" />
+        </set>
+        where sys_id=#{sysId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="AppSys">
+        select <include refid="cols"/> from app_sys
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="AppSys">
+        select <include refid="cols"/> from app_sys where sys_id=#{sysId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="AppSys">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from app_sys t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="AppSys">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from app_sys t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(sys_id) from app_sys
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.AppSys" resultType="long">
+        select count(t.sys_id) from app_sys t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.AppSys" resultType="long">
+        select count(t.sys_id) from app_sys t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.AppSys" resultMap="AppSys">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from app_sys t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="AppSys">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from app_sys t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

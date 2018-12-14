@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.ISuitcaseQrruleDao">
+
+    <resultMap id="SuitcaseQrrule" type="com.earthworm.ipsp.foundation.entity.SuitcaseQrrule">
+        <id property="sqrrId" column="sqrr_id"/>
+        <result property="sqrrNumber" column="sqrr_number"/>
+        <result property="sqrrProductmodel" column="sqrr_productmodel"/>
+        <result property="sqrrDateTime" column="sqrr_date_time"/>
+        <result property="sqrrStatus" column="sqrr_status"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.sqrr_id,
+                ${alias}.sqrr_number,
+                ${alias}.sqrr_productmodel,
+                ${alias}.sqrr_date_time,
+                ${alias}.sqrr_status,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				sqrr_id,
+				sqrr_number,
+				sqrr_productmodel,
+				sqrr_date_time,
+				sqrr_status,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">suitcase_qrrule</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="sqrrId != null">
+							sqrr_id,
+						</if>
+						<if test="sqrrNumber != null">
+							sqrr_number,
+						</if>
+						<if test="sqrrProductmodel != null">
+							sqrr_productmodel,
+						</if>
+						<if test="sqrrDateTime != null">
+							sqrr_date_time,
+						</if>
+						<if test="sqrrStatus != null">
+							sqrr_status,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="sqrrId != null" >
+						#{sqrrId},
+					</if>
+					<if test="sqrrNumber != null" >
+						#{sqrrNumber},
+					</if>
+					<if test="sqrrProductmodel != null" >
+						#{sqrrProductmodel},
+					</if>
+					<if test="sqrrDateTime != null" >
+						#{sqrrDateTime},
+					</if>
+					<if test="sqrrStatus != null" >
+						#{sqrrStatus},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="sqrrId != null" >
+                and ${alias}.sqrr_id=#{sqrrId}
+            </if>
+            <if test="sqrrNumber != null" >
+                and ${alias}.sqrr_number=#{sqrrNumber}
+            </if>
+            <if test="sqrrProductmodel != null" >
+                and ${alias}.sqrr_productmodel=#{sqrrProductmodel}
+            </if>
+            <if test="sqrrDateTime != null" >
+                and ${alias}.sqrr_date_time=#{sqrrDateTime}
+            </if>
+            <if test="sqrrStatus != null" >
+                and ${alias}.sqrr_status=#{sqrrStatus}
+            </if>
+    </sql>
+    <sql id="likeAndCond">
+                    <if test="sqrrId != null" >
+                        and ${alias}.sqrr_id ~* #{sqrrId}
+                    </if>
+                    <if test="sqrrNumber != null" >
+                        and ${alias}.sqrr_number ~* #{sqrrNumber}
+                    </if>
+                    <if test="sqrrProductmodel != null" >
+                        and ${alias}.sqrr_productmodel ~* #{sqrrProductmodel}
+                    </if>
+                    <if test="sqrrDateTime != null" >
+                        and ${alias}.sqrr_date_time ~* #{sqrrDateTime}
+                    </if>
+                    <if test="sqrrStatus != null" >
+                        and ${alias}.sqrr_status ~* #{sqrrStatus}
+                    </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="sqrrNumber != null" >
+					sqrr_number=#{sqrrNumber},
+				</if>
+				<if test="sqrrProductmodel != null" >
+					sqrr_productmodel=#{sqrrProductmodel},
+				</if>
+				<if test="sqrrDateTime != null" >
+					sqrr_date_time=#{sqrrDateTime},
+				</if>
+				<if test="sqrrStatus != null" >
+					sqrr_status=#{sqrrStatus},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="sqrrId != null" >
+            OR ${alias}.sqrr_id=#{sqrrId}
+        </if>
+        <if test="sqrrNumber != null" >
+            OR ${alias}.sqrr_number=#{sqrrNumber}
+        </if>
+        <if test="sqrrProductmodel != null" >
+            OR ${alias}.sqrr_productmodel=#{sqrrProductmodel}
+        </if>
+        <if test="sqrrDateTime != null" >
+            OR ${alias}.sqrr_date_time=#{sqrrDateTime}
+        </if>
+        <if test="sqrrStatus != null" >
+            OR ${alias}.sqrr_status=#{sqrrStatus}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.SuitcaseQrrule">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.sqrrId},
+                      #{item.sqrrNumber},
+                      #{item.sqrrProductmodel},
+                      #{item.sqrrDateTime},
+                      #{item.sqrrStatus}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  suitcase_qrrule where sqrr_id= #{sqrrId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from suitcase_qrrule;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.SuitcaseQrrule">
+        delete from suitcase_qrrule t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from suitcase_qrrule t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.SuitcaseQrrule">
+        update suitcase_qrrule
+        <set>
+            <include refid="updCols" />
+        </set>
+        where sqrr_id=#{sqrrId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="SuitcaseQrrule">
+        select <include refid="cols"/> from suitcase_qrrule
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="SuitcaseQrrule">
+        select <include refid="cols"/> from suitcase_qrrule where sqrr_id=#{sqrrId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="SuitcaseQrrule">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from suitcase_qrrule t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="SuitcaseQrrule">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from suitcase_qrrule t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(sqrr_id) from suitcase_qrrule
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.SuitcaseQrrule" resultType="long">
+        select count(t.sqrr_id) from suitcase_qrrule t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.SuitcaseQrrule" resultType="long">
+        select count(t.sqrr_id) from suitcase_qrrule t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.SuitcaseQrrule" resultMap="SuitcaseQrrule">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from suitcase_qrrule t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="SuitcaseQrrule">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from suitcase_qrrule t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findSqrrNumberMaxByFunName" parameterType="string" resultType="string">
+        SELECT max(sqrr_number) FROM "suitcase_qrrule" where sqrr_productmodel = #{funName}
+    </select>
+
+    <select id="findSqrrNumberMax"  resultType="string">
+        SELECT max(sqrr_number) FROM suitcase_qrrule
+    </select>
+</mapper>

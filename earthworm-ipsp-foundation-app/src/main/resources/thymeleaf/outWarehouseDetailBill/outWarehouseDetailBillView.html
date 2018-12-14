@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div class="row">
+    <div class="col-lg-12">
+        <h5 class="page-header">基础数据-->出库单详情</h5>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <!--添加新增或者更新的反馈结果-->
+        <div id="outWarehouseDetailBill_UptAdd_Back" hidden="true" class="alert alert-success alert-dismissable">
+            <span></span>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-10">
+                        出库单详情
+                    </div>
+                    <div class="col-md-2 ew-tooltip">
+                        <button type="button" id="outWarehouseDetailBill_AddBtn"
+                                class="btn  fa fa-plus btn-success btn-lg" data-toggle="modal"
+                                data-target="#outWarehouseDetailBill_UptAdd_OptModal" data-placement="bottom"
+                                data-original-title="新增" th:data="${outwBillsnumber}"></button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <form id="find_outWarehouseDetailBill" role="form" class="ew-form-search">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">物料码</span>
+                                    <input type="text" class="form-control" name="outwCode" placeholder="请输入物料码">
+                                    <!--添加清除输入框小按钮-->
+                                    <a class="fa fa-lg fa-times-circle form-control-feedback"></a>
+                                </div>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">批次</span>
+                                    <input type="text" class="form-control" name="outwBatch" placeholder="请输入批次">
+                                    <!--添加清除输入框小按钮-->
+                                    <a class="fa fa-lg fa-times-circle form-control-feedback"></a>
+                                </div>
+                            </div>
+                            <div class="col-md-2 ew-tooltip">
+                                <button type="button" class="btn fa btn-info fa-search btn-lg"
+                                        data-toggle="tooltip"
+                                        id="query_outWarehouseDetailBill"
+                                        data-placement="bottom"
+                                        data-original-title="查询">
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table width="100%" class="table table-striped table-bordered table-hover"
+                                   id="dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th>编号</th>
+                                    <th>型号</th>
+                                    <th>物料码</th>
+                                    <th>唯一码</th>
+                                    <th>厂家</th>
+                                    <th>计量单位</th>
+                                    <th>批次</th>
+                                    <th>有限日期</th>
+                                    <th>生产日期</th>
+                                    <!--<th>实际出库总数量</th>-->
+                                    <!--<th>Bom单需求量</th>-->
+                                    <!--<th>Bom单实际需求量</th>-->
+                                    <!--<th>出库状态</th>-->
+                                    <!--<th>仓库编号</th>-->
+                                    <!--<th>是否预出库</th>-->
+                                    <!--<th>预出库单号</th>-->
+                                    <th colspan="2"></th>
+                                </tr>
+                                </thead>
+                                <tbody id="outWarehouseDetailBillTbody">
+                                <tr th:each="l,ls:${list}" class="gradeA">
+                                    <td th:text="${l.outwBillsnumber}"></td>
+                                    <td th:text="${l.outwModel}"></td>
+                                    <td th:text="${l.outwCode}"></td>
+                                    <td th:text="${l.outwUniquecode}"></td>
+                                    <td th:text="${l.outwManufacturer}"></td>
+                                    <td th:text="${l.outwUnit}"></td>
+                                    <td th:text="${l.outwBatch}"></td>
+                                    <td th:text="${#dates.format(l.outwEffectivedate,'yyyy-MM-dd')}"></td>
+                                    <td th:text="${#dates.format(l.outwProduceddate,'yyyy-MM-dd')}"></td>
+                                    <!--<td th:text="${l.outwTotal}"></td>-->
+                                    <!--<td th:text="${l.outwAmount}"></td>-->
+                                    <!--<td th:text="${l.outwActualcount}"></td>-->
+                                    <!--<td th:text="${l.outwStatus}"></td>-->
+                                    <!--<td th:text="${l.outwWarehousenumber}"></td>-->
+                                    <!--<td th:text="${l.outwIspreout}"></td>-->
+                                    <!--<td th:text="${l.outwPrebillnumber}"></td>-->
+                                    <td class="ew-tooltip ">
+                                        <button type="button" name="outWarehouseDetailBillBtnVU"
+                                                class="btn btn-primary fa fa-edit"
+                                                th:data="${l.outwId}" data-toggle="modal"
+                                                data-target="#outWarehouseDetailBill_UptAdd_OptModal"
+                                                data-placement="bottom" data-original-title="编辑">
+                                        </button>
+                                    </td>
+                                    <td class="ew-tooltip ">
+                                        <button type="button" name="outWarehouseDetailBillBtnDel"
+                                                class="btn btn-danger fa fa-trash-o"
+                                                th:data="${l.outwId}" data-toggle="modal"
+                                                data-placement="bottom" data-original-title="删除">
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="dataTables_length" id="dataTables-example_length"><label>每页显示<select
+                                    aria-controls="dataTables-example"
+                                    class="form-control input-sm"
+                                    id="selPageSize"
+                                    name="selPageSize">
+                                <option value="7">7</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                            </select>条</label></div>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="dataTables_paginate paging_simple_numbers"
+                                 id="dataTables-example_paginate">
+                                <ul id="outWarehouseDetailBill_PageList" class="pagination">
+                                    <li class="paginate_button disabled"
+                                        aria-controls="dataTables-example" tabindex="0"
+                                    ><span>&laquo;</span>
+                                    </li>
+                                    <li th:each="i:${pageList}" th:if="${i eq 1}" class="paginate_button active"
+                                        aria-controls="dataTables-example">
+                                        <a name="pages" class="page-link" th:text="${i}"></a>
+                                    </li>
+                                    <li th:each="i:${pageList}" th:if="${i ne 1}" class="paginate_button"
+                                        aria-controls="dataTables-example">
+                                        <a th:name="pages" class="page-link" th:text="${i}"></a>
+                                    </li>
+                                    <li th:class="${page.totalPageNum eq page.pageNum}? 'paginate_button disabled' : 'paginate_button'"
+                                        aria-controls="dataTables-example"
+                                        tabindex="0"
+                                        th:id="${page.totalPageNum eq page.pageNum}? '' : 'outWarehouseDetailBillPageNext'">
+                                        <span>&raquo;</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!--</div>-->
+<!-- /#page-wrapper -->
+<!-- modal: insert Edit Page-->
+<div class="modal fade" id="outWarehouseDetailBill_UptAdd_OptModal" tabindex="-1" role="dialog"
+     aria-labelledby="outWarehouseDetailBill_UptAddTitle">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="outWarehouseDetailBill_UptAddTitle">Modal title</h4>
+            </div>
+            <!--模态框弹出增加或者修改页面-->
+            <div id="outWarehouseDetailBill_UptAdd_OptBody" class="modal-body">
+
+
+            </div>
+            <div class="modal-footer">
+                <button id="outWarehouseDetailBill_Close" type="button" class="btn btn-default" data-dismiss="modal">
+                    取消
+                </button>
+                <button id="outWarehouseDetailBill_AddBtnExe" type="button" class="btn btn-primary">增加</button>
+                <button id="outWarehouseDetailBill_UptBtnExe" type="button" class="btn btn-primary">修改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!-- modal: Affirm -->
+<div class="modal fade" tabindex="-1" id="outWarehouseDetailBill_Affirm" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i id="examInfoIcon" class="fa fa-info"></i>
+                    <span id="examInfoTitle">温馨提示</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>确认是否删除?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="outWarehouseDetailBill_OKBtn" type="button" class="btn btn-primary">确认</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 引入时间戳相关控件-->
+<!--<input name="script" type="hidden"  value="/ipsp/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js">-->
+
+<input name="script" hidden th:value="${#httpServletRequest.scheme}+'://'+${#httpServletRequest.serverName}+':'+${#httpServletRequest.serverPort}+'/ipsp/earthworm/outWarehouseDetailBill/js/outWarehouseDetailBillView.js'">
+</html>

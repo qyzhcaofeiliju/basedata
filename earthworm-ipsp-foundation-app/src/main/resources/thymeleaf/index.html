@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>基础数据</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link th:href="@{/startbootstrap-sb-admin-2/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link th:href="@{/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.css}" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link th:href="@{/startbootstrap-sb-admin-2/vendor/datatables-plugins/dataTables.bootstrap.css}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link th:href="@{/startbootstrap-sb-admin-2/vendor/datatables-responsive/dataTables.responsive.css}"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link th:href="@{/startbootstrap-sb-admin-2/dist/css/sb-admin-2.css}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link th:href="@{/startbootstrap-sb-admin-2/vendor/font-awesome/css/font-awesome.min.css}" rel="stylesheet"
+          type="text/css">
+    <link th:href="@{/earthworm/css/ew.ipsp.css}" rel="stylesheet" type="text/css">
+
+
+    <!--bootstrap-timepicker style-->
+    <link th:href="@{/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">智慧计划排程平台</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        <!--<ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Read All Messages</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                &lt;!&ndash; /.dropdown-messages &ndash;&gt;
+            </li>
+            &lt;!&ndash; /.dropdown &ndash;&gt;
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 1</strong>
+                                    <span class="pull-right text-muted">40% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 2</strong>
+                                    <span class="pull-right text-muted">20% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 3</strong>
+                                    <span class="pull-right text-muted">60% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <span class="sr-only">60% Complete (warning)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 4</strong>
+                                    <span class="pull-right text-muted">80% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Tasks</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                &lt;!&ndash; /.dropdown-tasks &ndash;&gt;
+            </li>
+            &lt;!&ndash; /.dropdown &ndash;&gt;
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                <span class="pull-right text-muted small">12 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-tasks fa-fw"></i> New Task
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                &lt;!&ndash; /.dropdown-alerts &ndash;&gt;
+            </li>
+            &lt;!&ndash; /.dropdown &ndash;&gt;
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                &lt;!&ndash; /.dropdown-user &ndash;&gt;
+            </li>
+            &lt;!&ndash; /.dropdown &ndash;&gt;
+        </ul>-->
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <!--<li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        &lt;!&ndash; /input-group &ndash;&gt;
+                    </li>-->
+                    <li th:each="menuvo,stat : ${menus}">
+                        <a th:href="${menuvo.menu.menuUrl} == null? '#' : ${menuvo.menu.menuUrl}">
+                            <i th:class="${menuvo.menu.menuIcon==null}? 'ew-display-none' : ${menuvo.menu.menuIcon}"></i>
+                            <span th:text="${menuvo.menu.menuDescription}"></span>
+                            <span th:if="${menuvo.hasChildren}" class="fa arrow"></span>
+                        </a>
+                        <ul th:if="${menuvo.hasChildren}" class="nav nav-second-level">
+                            <li th:each="submenuvo, substat : ${menuvo.subMenus}">
+                                <a th:href="${submenuvo.menu.menuUrl} == null? '#' : ${submenuvo.menu.menuUrl}">
+                                    <i th:class="${submenuvo.menu.menuIcon==null}? 'ew-display-none' : ${submenuvo.menu.menuIcon}"></i>
+                                    <span th:text="${submenuvo.menu.menuDescription}"></span>
+                                    <span th:if="${submenuvo.hasChildren}" class="fa arrow"></span>
+                                </a>
+                                <ul th:if="${submenuvo.hasChildren}" class="nav nav-third-level">
+                                    <li th:each="thirdmenuvo, substat : ${submenuvo.subMenus}">
+                                        <a th:href="${thirdmenuvo.menu.menuUrl} == null? '#' : ${thirdmenuvo.menu.menuUrl}">
+                                            <i th:class="${thirdmenuvo.menu.menuIcon==null}? 'ew-display-none' : ${thirdmenuvo.menu.menuIcon}"></i>
+                                            <span th:text="${thirdmenuvo.menu.menuDescription}"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- index modal :
+            用于点击菜单时，页面找不到，或者出错时，应该要弹出 模态框，显示相应的信息。 -->
+<div id="idxModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="idxModal">
+    <div class="modal-dialog modal-sm ew-modal-sm" role="document">
+        <div class="modal-content">
+            <div class="alert alert-danger alert-dismissible ew-idx-alert" role="alert">
+                <!--关闭模态框的按钮-->
+                <button id="btnIdxModal" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <!--显示提示的内容-->
+                <strong id="idxTipTitle">Warning!</strong><hr class="ew-idx-hr"><span id="idxContent"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /index modal -->
+
+
+<!-- jQuery -->
+<script th:src="@{/startbootstrap-sb-admin-2/vendor/jquery/jquery.min.js}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script th:src="@{/startbootstrap-sb-admin-2/vendor/bootstrap/js/bootstrap.min.js}"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script th:src="@{/startbootstrap-sb-admin-2/vendor/metisMenu/metisMenu.min.js}"></script>
+
+<!-- DataTables JavaScript -->
+<script th:src="@{/startbootstrap-sb-admin-2/vendor/datatables/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/startbootstrap-sb-admin-2/vendor/datatables-plugins/dataTables.bootstrap.min.js}"></script>
+<script th:src="@{/startbootstrap-sb-admin-2/vendor/datatables-responsive/dataTables.responsive.js}"></script>
+
+<!-- Custom Theme JavaScript -->
+<script th:src="@{/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js}"></script>
+<script th:src="@{/earthworm/js/ew.ipsp.js}"></script>
+<script th:src="@{/earthworm/index/index.js}"></script>
+
+<!--fileinput css-->
+<link th:href="@{/earthworm/fileinput/css/fileinput.min.css}" rel="stylesheet">
+<!--fileinput js-->
+<script th:src="@{/earthworm/fileinput/js/fileinput.min.js}"></script>
+<script th:src="@{/earthworm/fileinput/js/fileinput_locale_zh.js}"></script>
+
+
+<!-- 引入时间戳相关控件-->
+<script th:src="@{/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js}"></script>
+<!--
+<input name="script" hidden value="/ipsp/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js">
+-->
+
+</body>
+
+</html>

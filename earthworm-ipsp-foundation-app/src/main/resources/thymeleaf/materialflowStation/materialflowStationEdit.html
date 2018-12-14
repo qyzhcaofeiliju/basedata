@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="materialflowStation_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${materialflowStation==null}? null : ${materialflowStation.staId}" name="staId"
+               hidden>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon1">
+                    名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称
+                </span>
+                <input th:value="${materialflowStation==null}? null : ${materialflowStation.staName}" type="text"
+                       name="staName" class="form-control ew-validate"
+                       required
+                       maxlength="64"
+                       pattern="[a-zA-Z0-9\u4e00-\u9fa5]+"
+                       title="字母、数字、汉字、-、_ 的组合，长度小于64位"
+                       placeholder="字母、数字、汉字、-、_ 的组合，长度小于64位"
+                       aria-describedby="sizing-addon2">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon2">
+                    编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号
+                </span>
+                <input th:value="${materialflowStation==null}? null : ${materialflowStation.staNumber}" type="text"
+                       name="staNumber" class="form-control ew-validate"
+                       required
+                       pattern="^[1-9]\d{0,4}$"
+                       maxlength="5"
+                       max="32767"
+                       placeholder="不能超过32767的正整数"
+                       title="不能超过32767的正整数"
+                       aria-describedby="sizing-addon2">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon3">X&nbsp;&nbsp;坐&nbsp;&nbsp;标</span>
+                <input th:value="${materialflowStation==null}? null : ${#numbers.formatDecimal(materialflowStation.staX,0,0)}"
+                       type="text" name="staX" class="form-control ew-validate"
+                       required
+                       pattern="^[1-9]\d*$"
+                       maxlength="6"
+                       placeholder="长度不超过6位的正整数"
+                       title="长度不超过6位的正整数"
+                       aria-describedby="sizing-addon3">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" ew-form-rowdiv>
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon4">Y&nbsp;&nbsp;坐&nbsp;&nbsp;标</span>
+                <input th:value="${materialflowStation==null}? null : ${#numbers.formatDecimal(materialflowStation.staY,0,0)}"
+                       type="text" name="staY" class="form-control ew-validate"
+                       required
+                       pattern="^[1-9]\d*$"
+                       maxlength="6"
+                       placeholder="长度不超过6位的正整数"
+                       title="长度不超过6位的正整数"
+                       aria-describedby="sizing-addon4">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+        <div class="col-md-12" ew-form-rowdiv>
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon5">Z&nbsp;&nbsp;坐&nbsp;&nbsp;标</span>
+                <input th:value="${materialflowStation==null}? null : ${#numbers.formatDecimal(materialflowStation.staZ,0,0)}"
+                       type="text" name="staZ" class="form-control ew-validate"
+                       required
+                       pattern="^[1-9]\d*$"
+                       maxlength="6"
+                       placeholder="长度不超过6位的正整数"
+                       title="长度不超过6位的正整数"
+                       aria-describedby="sizing-addon5">
+                <!--清空按钮-->
+                <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="input-group form-group ew-form-rowdiv">
+                <span class="input-group-addon" id="sizing-addon6">描&nbsp;述&nbsp;信&nbsp;息</span>
+                <textarea name="staDescription"
+                          th:text="${materialflowStation==null}? null : ${materialflowStation.staDescription}"
+                          class="form-control ew-textarea-noresize ew-validate" cols="54" rows="5"
+                          maxlength="200"
+                          title="请输入描述信息，字数在200以内"
+                          placeholder="请输入描述信息，字数在200以内">
+                </textarea>
+                <!--添加验证失败或者成功的小图标-->
+                <div class="glyphicon form-control-feedback"></div>
+            </div>
+            <!--添加验证失败后的反馈信息-->
+            <div class="valid-feedback ew-valid-feedback"></div>
+        </div>
+    </div>
+</form>
+</html>

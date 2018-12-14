@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="fixshelfBillinfo_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${fixshelfBillinfo==null}? null : ${fixshelfBillinfo.billId}" name="billId" hidden>
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon1">单&nbsp;&nbsp;据&nbsp;&nbsp;编&nbsp;&nbsp;号</span>
+                    <input th:value="${fixshelfBillinfo==null}? null : ${fixshelfBillinfo.billNumber}" type="text" name="billNumber" class="form-control ew-validate" placeholder="单据编号" aria-describedby="sizing-addon2" required>
+                    <!--清空按钮-->
+                    <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon2">送&nbsp;&nbsp;到&nbsp;&nbsp;时&nbsp;&nbsp;间</span>
+                    <input th:value="${fixshelfBillinfo==null}? null :${#dates.format(fixshelfBillinfo.billArrivaltime,'yyyy-MM-dd')}" type="date" name="billArrivaltime" class="form-control ew-validate" placeholder="请输入送达时间" aria-describedby="sizing-addon2" required>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon3">执&nbsp;&nbsp;行&nbsp;&nbsp;状&nbsp;&nbsp;态</span>
+
+                    <select name="billStatus" class="form-control ew-validate " aria-describedby="sizing-addon7" pattern="^[0-2]{1}$" placeholder="请输入整数类型的状态值" required >
+                        <option value="" >请选择执行状态</option>
+                        <option value="0" th:selected="${fixshelfBillinfo==null}? null:(${0==fixshelfBillinfo.billStatus})">未执行</option>
+                        <option value="1" th:selected="${fixshelfBillinfo==null}? null:(${1==fixshelfBillinfo.billStatus})">执行中</option>
+                        <option value="2" th:selected="${fixshelfBillinfo==null}? null:(${2==fixshelfBillinfo.billStatus})">已执行</option>
+                    </select>
+
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon4">所&nbsp;&nbsp;在&nbsp;&nbsp;站&nbsp;&nbsp;点</span>
+                    <input th:value="${fixshelfBillinfo==null}? null:${fixshelfBillinfo.billSite}" type="text" name="billSite" class="form-control ew-validate" pattern="^[1-9]\d{0,3}$" placeholder="请输入整数类型的站点值" aria-describedby="sizing-addon4" required>
+                    <!--清空按钮-->
+                    <a class="fa fa-lg fa-times-circle form-control-feedback cleanBtn"></a>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon5">表&nbsp;&nbsp;单&nbsp;&nbsp;分&nbsp;&nbsp;类</span>
+                    <select name="billCategory" pattern="^[1-9]\d{0,3}$" placeholder="请输入整数类型的站点值" class="form-control ew-validate" aria-describedby="sizing-addon5" required >
+                        <option value="" >请选择分类</option>
+                        <option th:each="billsCategory:${billsCategories}" th:value="${billsCategory.catCategory}" th:text="${billsCategory.catName}" th:selected="${fixshelfBillinfo==null}? null:(${billsCategory.catCategory==fixshelfBillinfo.billCategory})"></option>
+                    </select>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+    </div>
+</form>
+</html>

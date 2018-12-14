@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IMaterialflowStationDao">
+
+    <resultMap id="MaterialflowStation" type="com.earthworm.ipsp.foundation.entity.MaterialflowStation">
+        <id property="staId" column="sta_id"/>
+        <result property="staName" column="sta_name"/>
+        <result property="staNumber" column="sta_number"/>
+        <result property="staX" column="sta_x"/>
+        <result property="staY" column="sta_y"/>
+        <result property="staZ" column="sta_z"/>
+        <result property="staDescription" column="sta_description"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.sta_id,
+                ${alias}.sta_name,
+                ${alias}.sta_number,
+                ${alias}.sta_x,
+                ${alias}.sta_y,
+                ${alias}.sta_z,
+                ${alias}.sta_description,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				sta_id,
+				sta_name,
+				sta_number,
+				sta_x,
+				sta_y,
+				sta_z,
+				sta_description,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Materialflow_Station</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="staId != null">
+							sta_id,
+						</if>
+						<if test="staName != null">
+							sta_name,
+						</if>
+						<if test="staNumber != null">
+							sta_number,
+						</if>
+						<if test="staX != null">
+							sta_x,
+						</if>
+						<if test="staY != null">
+							sta_y,
+						</if>
+						<if test="staZ != null">
+							sta_z,
+						</if>
+						<if test="staDescription != null">
+							sta_description,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="staId != null" >
+						#{staId},
+					</if>
+					<if test="staName != null" >
+						#{staName},
+					</if>
+					<if test="staNumber != null" >
+						#{staNumber},
+					</if>
+					<if test="staX != null" >
+						#{staX},
+					</if>
+					<if test="staY != null" >
+						#{staY},
+					</if>
+					<if test="staZ != null" >
+						#{staZ},
+					</if>
+					<if test="staDescription != null" >
+						#{staDescription},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="staId != null" >
+                and ${alias}.sta_id=#{staId}
+            </if>
+            <if test="staName != null" >
+                and ${alias}.sta_name=#{staName}
+            </if>
+            <if test="staNumber != null" >
+                and ${alias}.sta_number=#{staNumber}
+            </if>
+            <if test="staX != null" >
+                and ${alias}.sta_x=#{staX}
+            </if>
+            <if test="staY != null" >
+                and ${alias}.sta_y=#{staY}
+            </if>
+            <if test="staZ != null" >
+                and ${alias}.sta_z=#{staZ}
+            </if>
+            <if test="staDescription != null" >
+                and ${alias}.sta_description=#{staDescription}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="staName != null" >
+					sta_name=#{staName},
+				</if>
+				<if test="staNumber != null" >
+					sta_number=#{staNumber},
+				</if>
+				<if test="staX != null" >
+					sta_x=#{staX},
+				</if>
+				<if test="staY != null" >
+					sta_y=#{staY},
+				</if>
+				<if test="staZ != null" >
+					sta_z=#{staZ},
+				</if>
+				<if test="staDescription != null" >
+					sta_description=#{staDescription},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="staId != null" >
+            OR ${alias}.sta_id=#{staId}
+        </if>
+        <if test="staName != null" >
+            OR ${alias}.sta_name=#{staName}
+        </if>
+        <if test="staNumber != null" >
+            OR ${alias}.sta_number=#{staNumber}
+        </if>
+        <if test="staX != null" >
+            OR ${alias}.sta_x=#{staX}
+        </if>
+        <if test="staY != null" >
+            OR ${alias}.sta_y=#{staY}
+        </if>
+        <if test="staZ != null" >
+            OR ${alias}.sta_z=#{staZ}
+        </if>
+        <if test="staDescription != null" >
+            OR ${alias}.sta_description=#{staDescription}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="staId != null" >
+            and ${alias}.sta_id ~* #{staId}
+        </if>
+        <if test="staName != null" >
+            and ${alias}.sta_name ~* #{staName}
+        </if>
+        <if test="staNumber != null" >
+            and CAST(${alias}.sta_number AS VARCHAR) ~* CAST(#{staNumber} AS VARCHAR)
+        </if>
+        <if test="staDescription != null" >
+            and ${alias}.sta_description ~* #{staDescription}
+        </if>
+        <if test="staX != null" >
+            and ${alias}.sta_x ~* #{staX}
+        </if>
+        <if test="staY != null" >
+            and ${alias}.sta_y ~* #{staY}
+        </if>
+        <if test="staZ != null" >
+            and ${alias}.sta_z ~* #{staZ}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.MaterialflowStation">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.staId},
+                      #{item.staName},
+                      #{item.staNumber},
+                      #{item.staX},
+                      #{item.staY},
+                      #{item.staZ},
+                      #{item.staDescription}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Materialflow_Station where sta_id= #{staId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Materialflow_Station;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.MaterialflowStation">
+        delete from Materialflow_Station t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Materialflow_Station t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.MaterialflowStation">
+        update Materialflow_Station
+        <set>
+            <include refid="updCols" />
+        </set>
+        where sta_id=#{staId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="MaterialflowStation">
+        select <include refid="cols"/> from Materialflow_Station
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="MaterialflowStation">
+        select <include refid="cols"/> from Materialflow_Station where sta_id=#{staId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="MaterialflowStation">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Materialflow_Station t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="MaterialflowStation">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Materialflow_Station t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(sta_id) from Materialflow_Station
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.MaterialflowStation" resultType="long">
+        select count(t.sta_id) from Materialflow_Station t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.MaterialflowStation" resultType="long">
+        select count(t.sta_id) from Materialflow_Station t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.MaterialflowStation" resultMap="MaterialflowStation">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Materialflow_Station t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="MaterialflowStation">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from materialflow_station t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.ITerminalFunccategoryDao">
+
+    <resultMap id="TerminalFunccategory" type="com.earthworm.ipsp.foundation.entity.TerminalFunccategory">
+        <id property="funId" column="fun_id"/>
+        <result property="funName" column="fun_name"/>
+        <result property="funCategory" column="fun_category"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.fun_id,
+                ${alias}.fun_name,
+                ${alias}.fun_category,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				fun_id,
+				fun_name,
+				fun_category,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Terminal_Funccategory</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="funId != null">
+							fun_id,
+						</if>
+						<if test="funName != null">
+							fun_name,
+						</if>
+						<if test="funCategory != null">
+							fun_category,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="funId != null" >
+						#{funId},
+					</if>
+					<if test="funName != null" >
+						#{funName},
+					</if>
+					<if test="funCategory != null" >
+						#{funCategory},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="funId != null" >
+                and ${alias}.fun_id=#{funId}
+            </if>
+            <if test="funName != null" >
+                and ${alias}.fun_name=#{funName}
+            </if>
+            <if test="funCategory != null" >
+                and ${alias}.fun_category=#{funCategory}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="funName != null" >
+					fun_name=#{funName},
+				</if>
+				<if test="funCategory != null" >
+					fun_category=#{funCategory},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="funId != null" >
+            OR ${alias}.fun_id=#{funId}
+        </if>
+        <if test="funName != null" >
+            OR ${alias}.fun_name=#{funName}
+        </if>
+        <if test="funCategory != null" >
+            OR ${alias}.fun_category=#{funCategory}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="funId != null" >
+            and ${alias}.fun_id ~* #{funId}
+        </if>
+        <if test="funName != null" >
+            and ${alias}.fun_name ~* #{funName}
+        </if>
+        <if test="funCategory != null" >
+            and CAST(${alias}.fun_category AS VARCHAR) ~* CAST(#{funCategory} AS VARCHAR)
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.TerminalFunccategory">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.funId},
+                      #{item.funName},
+                      #{item.funCategory}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Terminal_Funccategory where fun_id= #{funId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Terminal_Funccategory;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.TerminalFunccategory">
+        delete from Terminal_Funccategory t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Terminal_Funccategory t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.TerminalFunccategory">
+        update Terminal_Funccategory
+        <set>
+            <include refid="updCols" />
+        </set>
+        where fun_id=#{funId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="TerminalFunccategory">
+        select <include refid="cols"/> from Terminal_Funccategory
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="TerminalFunccategory">
+        select <include refid="cols"/> from Terminal_Funccategory where fun_id=#{funId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="TerminalFunccategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Funccategory t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="TerminalFunccategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Funccategory t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(fun_id) from Terminal_Funccategory
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.TerminalFunccategory" resultType="long">
+        select count(t.fun_id) from Terminal_Funccategory t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.TerminalFunccategory" resultType="long">
+        select count(t.fun_id) from Terminal_Funccategory t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.TerminalFunccategory" resultMap="TerminalFunccategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Terminal_Funccategory t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="TerminalFunccategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from terminal_funccategory t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

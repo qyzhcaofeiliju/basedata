@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+		<Property name="logPattern">
+			<![CDATA[%d %c [%t] [%level] %m%n]]></Property>
+		<Property name="projectName">earthworm-ipsp-foundation</Property>
+		<Property name="logRootPath">
+			<![CDATA[/var/logs/earthworm/projects]]></Property>
+		<Property name="logFilePattern">
+			<![CDATA[${logRootPath}/${projectName}/$${date:yyyy-MM}]]></Property>
+	</Properties>
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="${logPattern}"/>
+		</Console>
+		<!--all log-->
+		<RollingRandomAccessFile
+				name="RRAF_ALL"
+				filePattern="${logFilePattern}/${projectName}-all-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<Pattern>${logPattern}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10 MB"/>
+				<TimeBasedTriggeringPolicy modulate="true"/>
+			</Policies>
+		</RollingRandomAccessFile>
+		<!-- info log -->
+		<RollingRandomAccessFile
+				name="RRAF_INFO"
+				filePattern="${logFilePattern}/${projectName}-info-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<Pattern>${logPattern}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10 MB"/>
+				<TimeBasedTriggeringPolicy modulate="true"/>
+			</Policies>
+			<LevelRangeFilter minLevel="WARN" maxLevel="INFO" onMatch="ACCEPT"
+							  onMismatch="DENY"/>
+			<!--
+            当onMatch或onMismatch为NEUTRAL时，继续由下面的过滤器来决定是否写入日志
+            <LevelRangeFilter minLevel="WARN" maxLevel="INFO" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
+            <LevelRangeFilter minLevel="WARN" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            -->
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="org.springframework" level="INFO" additivity="false">
+			<AppenderRef ref="RRAF_ALL"/>
+		</Logger>
+
+		<Logger name="org.hibernate" level="INFO" additivity="false">
+			<AppenderRef ref="RRAF_ALL"/>
+		</Logger>
+
+		<Root level="INFO">
+			<AppenderRef ref="STDOUT"/>
+			<AppenderRef ref="RRAF_ALL"/>
+			<AppenderRef ref="RRAF_INFO"/>
+		</Root>
+	</Loggers>
+</Configuration>

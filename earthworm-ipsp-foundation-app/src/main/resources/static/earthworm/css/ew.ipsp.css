@@ -1,0 +1,181 @@
+.ew-col-opt {
+    text-align: center;
+}
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 20px 0px 0px;
+    border-bottom: 1px solid #eee;
+}
+
+.ew-form-search {
+    margin-top: 20px;
+}
+
+.ew-paging li {
+    cursor: pointer;
+}
+
+.ew-title {
+    height:36px;
+    line-height:36px;
+}
+
+.ew-display-none {
+    display: none;
+}
+
+.ew-form-addupt input{
+    height: 34.2px;
+}
+.ew-form-addupt input[type=radio]{
+    height:auto;
+}
+
+.ew-form-addupt span{
+    width: 30%;
+}
+
+.ew-form-addupt .input-group{
+    width: 100%;
+}
+
+.ew-valid-feedback-error {
+    width: 100%;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.ew-feedbakIcon-ok{
+    color: forestgreen;
+}
+.ew-feedbakIcon-error{
+    color: #a94442;
+}
+
+.ew-form-input-error{
+    border-color: red;
+}
+
+.ew-form-input-ok{
+    border-color: #28a745;
+}
+
+.ew-form-rowdiv{
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.ew-modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+ /*设置textarea 边框不能拉伸*/
+.ew-textarea-noresize{
+    resize: none;
+}
+
+/*tooltip的样式*/
+.ew-tooltip {
+    text-align: center;
+}
+
+/*设置view页面中的table最后一列的多个button的样式*/
+.table-bordered>tbody>tr>.ew-tooltip{
+    width: 1px;
+    border-right: none;
+    border-left: none;
+}
+
+/*
+清空查询条件中的内容样式*/
+.ew-form-search a{
+    margin-top: 11px;
+    color: #bba8a7;
+    pointer-events: auto;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/*index.html中提示框距离底部的样式*/
+.ew-idx-alert {
+    margin-bottom: 0px;
+}
+
+/**index.html中提示框距离底部的宽度*/
+@media (min-width: 800px) {
+    .ew-modal-sm {
+        width: 400px;
+    }
+}
+
+/*编辑页面的文本框清空按钮*/
+.cleanBtn {
+    margin-top: 11px;
+    margin-right: 20px;
+    color: #bba8a7;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.cleanBtn:hover {
+    text-decoration: none;
+    color: #bba8a7;
+}
+
+#idxTipTitle {
+    font-size:20px;
+}
+
+#idxContent {
+    font-size: 15px;
+}
+
+.ew-idx-hr{
+    margin-top: 3px;
+    margin-bottom: 5px;
+    height: 1px;
+    background-color: white;
+}
+
+/*设置查询条件的边框*/
+.ew-setFindBtnBorders{
+    border: 1px solid #80808057;
+    padding: 15px 0px 15px 0px;
+    border-radius: 5px;
+    margin: -15px 1px 5px 1px;
+}
+
+/*设置分页样式的边框*/
+.ew-setPageBorders{
+    border: 1px solid #80808057;
+    padding: 12px 0px 0px 0px;
+    border-radius: 5px;
+    margin: 0px;
+}
+
+/*设置表格高度*/
+.ew-table-height{
+    height: 400px;
+    margin-bottom: 5px;
+}
+
+/*查询框大小设置*/
+.findInputSize{
+    width:270px;
+}
+
+/*thead的背景颜色*/
+thead {
+    background-color: #c7ecf7;
+}
+
+/*设置表头不换行*/
+thead tr {
+    white-space: nowrap;
+}
+
+

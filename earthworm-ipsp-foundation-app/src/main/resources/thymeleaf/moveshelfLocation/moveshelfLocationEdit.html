@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="moveshelfLocation_UptAddForm">
+    <div class="row form-group ew-form-addupt">
+        <input type="text" th:value="${moveshelfLocation==null}? null : ${moveshelfLocation.mslId}" name="mslId" hidden>
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon1">设&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;备</span>
+                    <select name="mslEquId" class="form-control ew-validate" aria-describedby="sizing-addon1" placeholder="请选择设备" required >
+                        <option value="" >请选择设备</option>
+                        <option th:each="terminalEquipment:${terminalEquipments}" th:value="${terminalEquipment.equId}" th:text="${terminalEquipment.equUniquecode}" th:selected="${moveshelfLocation==null}? null:(${terminalEquipment.equId==moveshelfLocation.mslEquId})"></option>
+                    </select>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon2">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+                    <select name="mslEquNumber" class="form-control ew-validate" aria-describedby="sizing-addon2" placeholder="请选择设备编号" required >
+                        <option value="" >请选择设备编号</option>
+                        <option th:each="terminalEquipment:${terminalEquipments}" th:value="${terminalEquipment.equNumber}" th:text="${terminalEquipment.equNumber}" th:selected="${moveshelfLocation==null}? null:(${terminalEquipment.equNumber==moveshelfLocation.mslEquNumber})"></option>
+                    </select>
+
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+
+            <div class="col-md-12" >
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon3">当&nbsp;前&nbsp;站&nbsp;点</span>
+                    <select name="mslCurStation" class="form-control ew-validate" aria-describedby="sizing-addon3" placeholder="请选择当前站点" required >
+                        <option value="" >请选择当前站点</option>
+                        <option th:each="materialflowStation:${materialflowStations}" th:value="${materialflowStation.staNumber}" th:text="${materialflowStation.staName}" th:selected="${moveshelfLocation==null}? null:(${materialflowStation.staNumber==moveshelfLocation.mslCurStation})"></option>
+                    </select>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+            <div class="col-md-12" >
+                <div class="input-group form-group ew-form-rowdiv">
+                    <span class="input-group-addon" id="sizing-addon4">上&nbsp;一&nbsp;站&nbsp;点</span>
+                    <select name="mslPreStation" class="form-control ew-validate" aria-describedby="sizing-addon4" placeholder="请选择上一站点" required >
+                        <option value="" >请选择上一站点</option>
+                        <option th:each="materialflowStation:${materialflowStations}" th:value="${materialflowStation.staNumber}" th:text="${materialflowStation.staName}" th:selected="${moveshelfLocation==null}? null:(${materialflowStation.staNumber==moveshelfLocation.mslPreStation})"></option>
+                    </select>
+                    <!--添加验证失败或者成功的小图标-->
+                    <div class="glyphicon form-control-feedback"></div>
+                </div>
+                <!--添加验证失败后的反馈信息-->
+                <div class="valid-feedback ew-valid-feedback"></div>
+            </div>
+    </div>
+</form>
+</html>

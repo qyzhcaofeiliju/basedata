@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+    <body>
+        <form id="viewSuitcaseProfileInfo">
+            <div class="page-header">
+                <div class="table-responsive pre-scrollable">
+                    <table class="table table-bordered" >
+                       <thead>
+                           <tr>
+                                <th>#</th>
+                                <th>唯一码</th>
+                                <th>仓位总数</th>
+                                <th>当前状态</th>
+                                <th>宽</th>
+                                <th>高</th>
+                                <th>长</th>
+                                <th>仓位厚度</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ite,item:${list}" class="tableA">
+                            <td th:text="${item.count}"></td>
+                            <th th:text="${ite.proUniquecode}"></th>
+                            <th th:text="${ite.proCabintotal}"></th>
+                            <th th:text="${ite.proStatus}"></th>
+                            <th th:text="${ite.proWidth}"></th>
+                            <th th:text="${ite.proHeight}"></th>
+                            <th th:text="${ite.proLength}"></th>
+                            <th th:text="${ite.proCabinwidth}"></th>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

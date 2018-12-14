@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IBillsCategoryDao">
+
+    <resultMap id="BillsCategory" type="com.earthworm.ipsp.foundation.entity.BillsCategory">
+        <id property="catId" column="cat_id"/>
+        <result property="catName" column="cat_name"/>
+        <result property="catCategory" column="cat_category"/>
+        <result property="catOwnercategory" column="cat_ownercategory"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.cat_id,
+                ${alias}.cat_name,
+                ${alias}.cat_category,
+                ${alias}.cat_ownercategory,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				cat_id,
+				cat_name,
+				cat_category,
+				cat_ownercategory,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Bills_Category</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="catId != null">
+							cat_id,
+						</if>
+						<if test="catName != null">
+							cat_name,
+						</if>
+						<if test="catCategory != null">
+							cat_category,
+						</if>
+						<if test="catOwnercategory != null">
+							cat_ownercategory,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="catId != null" >
+						#{catId},
+					</if>
+					<if test="catName != null" >
+						#{catName},
+					</if>
+					<if test="catCategory != null" >
+						#{catCategory},
+					</if>
+					<if test="catOwnercategory != null" >
+						#{catOwnercategory},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="catId != null" >
+                and ${alias}.cat_id=#{catId}
+            </if>
+            <if test="catName != null" >
+                and ${alias}.cat_name=#{catName}
+            </if>
+            <if test="catCategory != null" >
+                and ${alias}.cat_category=#{catCategory}
+            </if>
+            <if test="catOwnercategory != null" >
+                and ${alias}.cat_ownercategory=#{catOwnercategory}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="catName != null" >
+					cat_name=#{catName},
+				</if>
+				<if test="catCategory != null" >
+					cat_category=#{catCategory},
+				</if>
+				<if test="catOwnercategory != null" >
+					cat_ownercategory=#{catOwnercategory},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="catId != null" >
+            OR ${alias}.cat_id=#{catId}
+        </if>
+        <if test="catName != null" >
+            OR ${alias}.cat_name=#{catName}
+        </if>
+        <if test="catCategory != null" >
+            OR ${alias}.cat_category=#{catCategory}
+        </if>
+        <if test="catOwnercategory != null" >
+            OR ${alias}.cat_ownercategory=#{catOwnercategory}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="catId != null" >
+            and ${alias}.cat_id ~* #{catId}
+        </if>
+        <if test="catName != null" >
+            and ${alias}.cat_name ~* #{catName}
+        </if>
+        <if test="catCategory != null" >
+            and CAST(${alias}.cat_category AS VARCHAR) ~* CAST(#{catCategory} AS VARCHAR)
+        </if>
+        <if test="catOwnercategory != null" >
+            and CAST(${alias}.cat_ownercategory AS VARCHAR) ~* CAST(#{catOwnercategory} AS VARCHAR)
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.BillsCategory">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.catId},
+                      #{item.catName},
+                      #{item.catCategory},
+                      #{item.catOwnercategory}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Bills_Category where cat_id= #{catId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Bills_Category;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.BillsCategory">
+        delete from Bills_Category t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Bills_Category t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.BillsCategory">
+        update Bills_Category
+        <set>
+            <include refid="updCols" />
+        </set>
+        where cat_id=#{catId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="BillsCategory">
+        select <include refid="cols"/> from Bills_Category
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="BillsCategory">
+        select <include refid="cols"/> from Bills_Category where cat_id=#{catId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="BillsCategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Bills_Category t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="BillsCategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Bills_Category t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(cat_id) from Bills_Category
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.BillsCategory" resultType="long">
+        select count(t.cat_id) from Bills_Category t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.BillsCategory" resultType="long">
+        select count(t.cat_id) from Bills_Category t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.BillsCategory" resultMap="BillsCategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Bills_Category t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="BillsCategory">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from bills_category t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

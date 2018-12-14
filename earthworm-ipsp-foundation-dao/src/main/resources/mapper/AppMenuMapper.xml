@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IAppMenuDao">
+
+    <resultMap id="AppMenu" type="com.earthworm.ipsp.foundation.entity.AppMenu">
+        <id property="menuId" column="menu_id"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="menuDescription" column="menu_description"/>
+        <result property="menuLevel" column="menu_level"/>
+        <result property="menuIcon" column="menu_icon"/>
+        <result property="menuOwnerid" column="menu_ownerid"/>
+        <result property="menuUrl" column="menu_url"/>
+        <result property="menuRemark" column="menu_remark"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.menu_id,
+                ${alias}.menu_name,
+                ${alias}.menu_description,
+                ${alias}.menu_level,
+                ${alias}.menu_icon,
+                ${alias}.menu_ownerid,
+                ${alias}.menu_url,
+                ${alias}.menu_remark,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				menu_id,
+				menu_name,
+				menu_description,
+				menu_level,
+				menu_icon,
+				menu_ownerid,
+				menu_url,
+				menu_remark,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">App_Menu</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="menuId != null">
+							menu_id,
+						</if>
+						<if test="menuName != null">
+							menu_name,
+						</if>
+						<if test="menuDescription != null">
+							menu_description,
+						</if>
+						<if test="menuLevel != null">
+							menu_level,
+						</if>
+						<if test="menuIcon != null">
+							menu_icon,
+						</if>
+						<if test="menuOwnerid != null">
+							menu_ownerid,
+						</if>
+						<if test="menuUrl != null">
+							menu_url,
+						</if>
+						<if test="menuRemark != null">
+							menu_remark,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="menuId != null" >
+						#{menuId},
+					</if>
+					<if test="menuName != null" >
+						#{menuName},
+					</if>
+					<if test="menuDescription != null" >
+						#{menuDescription},
+					</if>
+					<if test="menuLevel != null" >
+						#{menuLevel},
+					</if>
+					<if test="menuIcon != null" >
+						#{menuIcon},
+					</if>
+					<if test="menuOwnerid != null" >
+						#{menuOwnerid},
+					</if>
+					<if test="menuUrl != null" >
+						#{menuUrl},
+					</if>
+					<if test="menuRemark != null" >
+						#{menuRemark},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="menuId != null" >
+                and ${alias}.menu_id=#{menuId}
+            </if>
+            <if test="menuName != null" >
+                and ${alias}.menu_name=#{menuName}
+            </if>
+            <if test="menuDescription != null" >
+                and ${alias}.menu_description=#{menuDescription}
+            </if>
+            <if test="menuLevel != null" >
+                and ${alias}.menu_level=#{menuLevel}
+            </if>
+            <if test="menuIcon != null" >
+                and ${alias}.menu_icon=#{menuIcon}
+            </if>
+            <if test="menuOwnerid != null" >
+                and ${alias}.menu_ownerid=#{menuOwnerid}
+            </if>
+            <if test="menuUrl != null" >
+                and ${alias}.menu_url=#{menuUrl}
+            </if>
+            <if test="menuRemark != null" >
+                and ${alias}.menu_remark=#{menuRemark}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="menuName != null" >
+					menu_name=#{menuName},
+				</if>
+				<if test="menuDescription != null" >
+					menu_description=#{menuDescription},
+				</if>
+				<if test="menuLevel != null" >
+					menu_level=#{menuLevel},
+				</if>
+				<if test="menuIcon != null" >
+					menu_icon=#{menuIcon},
+				</if>
+				<if test="menuOwnerid != null" >
+					menu_ownerid=#{menuOwnerid},
+				</if>
+				<if test="menuUrl != null" >
+					menu_url=#{menuUrl},
+				</if>
+				<if test="menuRemark != null" >
+					menu_remark=#{menuRemark},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="menuId != null" >
+            OR ${alias}.menu_id=#{menuId}
+        </if>
+        <if test="menuName != null" >
+            OR ${alias}.menu_name=#{menuName}
+        </if>
+        <if test="menuDescription != null" >
+            OR ${alias}.menu_description=#{menuDescription}
+        </if>
+        <if test="menuLevel != null" >
+            OR ${alias}.menu_level=#{menuLevel}
+        </if>
+        <if test="menuIcon != null" >
+            OR ${alias}.menu_icon=#{menuIcon}
+        </if>
+        <if test="menuOwnerid != null" >
+            OR ${alias}.menu_ownerid=#{menuOwnerid}
+        </if>
+        <if test="menuUrl != null" >
+            OR ${alias}.menu_url=#{menuUrl}
+        </if>
+        <if test="menuRemark != null" >
+            OR ${alias}.menu_remark=#{menuRemark}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.AppMenu">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.menuId},
+                      #{item.menuName},
+                      #{item.menuDescription},
+                      #{item.menuLevel},
+                      #{item.menuIcon},
+                      #{item.menuOwnerid},
+                      #{item.menuUrl},
+                      #{item.menuRemark}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  App_Menu where menu_id= #{menuId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from App_Menu;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.AppMenu">
+        delete from App_Menu t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from App_Menu t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.AppMenu">
+        update App_Menu
+        <set>
+            <include refid="updCols" />
+        </set>
+        where menu_id=#{menuId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="AppMenu">
+        select <include refid="cols"/> from App_Menu
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="AppMenu">
+        select <include refid="cols"/> from App_Menu where menu_id=#{menuId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="AppMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from App_Menu t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="AppMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from App_Menu t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(menu_id) from App_Menu
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.AppMenu" resultType="long">
+        select count(t.menu_id) from App_Menu t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.AppMenu" resultType="long">
+        select count(t.menu_id) from App_Menu t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.AppMenu" resultMap="AppMenu">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from App_Menu t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>

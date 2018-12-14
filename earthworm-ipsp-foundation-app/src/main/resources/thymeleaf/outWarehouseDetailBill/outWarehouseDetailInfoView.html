@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<form id="viewOutWarehouseDeatilInfo">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <div class="page-header">
+        <div class="table-responsive pre-scrollable">
+            <table class="table table-bordered" >
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>编号</th>
+                    <th>规格类型</th>
+                    <th>编码</th>
+                    <th>唯一码</th>
+                    <th>厂家</th>
+                    <th>计量单位</th>
+                    <th>批次</th>
+                    <th>总库数量</th>
+                    <th>出库数量</th>
+                    <th>实际出库数量</th>
+                    <th>出库状态</th>
+                    <th>仓库编码</th>
+                    <th>是否预出库</th>
+                    <th>预出库单号</th>
+                    <th>有效日期</th>
+                    <th>生产日期</th>
+                    <th>出库时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ite,item:${list}" class="tableA">
+                    <td>1</td>
+                    <td th:text="${ite.outwBillsnumber}"></td>
+                    <td th:text="${ite.outwModel}"></td>
+                    <td th:text="${ite.outwCode}"></td>
+                    <td th:text="${ite.outwUniquecode}"></td>
+                    <td th:text="${ite.outwManufacturer}"></td>
+                    <td th:text="${ite.outwUnit}"></td>
+                    <td th:text="${ite.outwBatch}"></td>
+                    <td th:text="${ite.outwTotal}"></td>
+                    <td th:text="${ite.outwAmount}"></td>
+                    <td th:text="${ite.outwActualcount}"></td>
+                    <td th:text="${ite.outwStatus}"></td>
+                    <td th:text="${ite.outwWarehousenumber}"></td>
+                    <td th:text="${ite.outwIspreout}"></td>
+                    <td th:text="${ite.outwPrebillnumber}"></td>
+                    <td th:text="${#dates.format(ite.outwEffectivedate,'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(ite.outwProduceddate,'yyyy-MM-dd')}"></td>
+                    <td th:text="${#dates.format(ite.outwOutdatetime,'yyyy-MM-dd')}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </body>
+</form>
+</html>

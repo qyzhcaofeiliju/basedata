@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.earthworm.ipsp.foundation.dao.interf.IStaticdataTranslateDao">
+
+    <resultMap id="StaticdataTranslate" type="com.earthworm.ipsp.foundation.entity.StaticdataTranslate">
+        <id property="traId" column="tra_id"/>
+        <result property="traAppcategory" column="tra_appcategory"/>
+        <result property="traRawvalue" column="tra_rawvalue"/>
+        <result property="traTranslatevalue" column="tra_translatevalue"/>
+        <result property="traOwnerid" column="tra_ownerid"/>
+        <result property="traOwnername" column="tra_ownername"/>
+        <result property="traAppdescription" column="tra_appdescription"/>
+    </resultMap>
+
+    <sql id="colsForAlias">
+		<trim suffixOverrides=",">
+                ${alias}.tra_id,
+                ${alias}.tra_appcategory,
+                ${alias}.tra_rawvalue,
+                ${alias}.tra_translatevalue,
+                ${alias}.tra_ownerid,
+                ${alias}.tra_ownername,
+                ${alias}.tra_appdescription,
+		</trim>
+    </sql>
+    <sql id="cols">
+		<trim suffixOverrides=",">
+				tra_id,
+				tra_appcategory,
+				tra_rawvalue,
+				tra_translatevalue,
+				tra_ownerid,
+				tra_ownername,
+				tra_appdescription,
+		</trim>
+    </sql>
+    <!-- 表名 -->
+    <sql id="table">Staticdata_Translate</sql>
+
+    <sql id="insCols">
+            (
+			<trim suffixOverrides=",">
+						<if test="traId != null">
+							tra_id,
+						</if>
+						<if test="traAppcategory != null">
+							tra_appcategory,
+						</if>
+						<if test="traRawvalue != null">
+							tra_rawvalue,
+						</if>
+						<if test="traTranslatevalue != null">
+							tra_translatevalue,
+						</if>
+						<if test="traOwnerid != null">
+							tra_ownerid,
+						</if>
+						<if test="traOwnername != null">
+							tra_ownername,
+						</if>
+						<if test="traAppdescription != null">
+							tra_appdescription,
+						</if>
+			</trim>
+            )
+    </sql>
+
+    <sql id="insVals">
+          VALUES (
+			 <trim suffixOverrides=",">
+					<if test="traId != null" >
+						#{traId},
+					</if>
+					<if test="traAppcategory != null" >
+						#{traAppcategory},
+					</if>
+					<if test="traRawvalue != null" >
+						#{traRawvalue},
+					</if>
+					<if test="traTranslatevalue != null" >
+						#{traTranslatevalue},
+					</if>
+					<if test="traOwnerid != null" >
+						#{traOwnerid},
+					</if>
+					<if test="traOwnername != null" >
+						#{traOwnername},
+					</if>
+					<if test="traAppdescription != null" >
+						#{traAppdescription},
+					</if>
+			</trim>
+           )
+    </sql>
+    <sql id="objAndCond">
+            <if test="traId != null" >
+                and ${alias}.tra_id=#{traId}
+            </if>
+            <if test="traAppcategory != null" >
+                and ${alias}.tra_appcategory=#{traAppcategory}
+            </if>
+            <if test="traRawvalue != null" >
+                and ${alias}.tra_rawvalue=#{traRawvalue}
+            </if>
+            <if test="traTranslatevalue != null" >
+                and ${alias}.tra_translatevalue=#{traTranslatevalue}
+            </if>
+            <if test="traOwnerid != null" >
+                and ${alias}.tra_ownerid=#{traOwnerid}
+            </if>
+            <if test="traOwnername != null" >
+                and ${alias}.tra_ownername=#{traOwnername}
+            </if>
+            <if test="traAppdescription != null" >
+                and ${alias}.tra_appdescription=#{traAppdescription}
+            </if>
+    </sql>
+    <sql id="updCols">
+		<trim suffixOverrides=",">
+				<if test="traAppcategory != null" >
+					tra_appcategory=#{traAppcategory},
+				</if>
+				<if test="traRawvalue != null" >
+					tra_rawvalue=#{traRawvalue},
+				</if>
+				<if test="traTranslatevalue != null" >
+					tra_translatevalue=#{traTranslatevalue},
+				</if>
+				<if test="traOwnerid != null" >
+					tra_ownerid=#{traOwnerid},
+				</if>
+				<if test="traOwnername != null" >
+					tra_ownername=#{traOwnername},
+				</if>
+				<if test="traAppdescription != null" >
+					tra_appdescription=#{traAppdescription},
+				</if>
+		</trim>
+    </sql>
+    <sql id="mapAndCond">
+        <foreach collection="_parameter" index="key" item="value">
+            and ${alias}.${key}=#{value}
+        </foreach>
+    </sql>
+
+    <sql id="objOrCond">
+        <if test="traId != null" >
+            OR ${alias}.tra_id=#{traId}
+        </if>
+        <if test="traAppcategory != null" >
+            OR ${alias}.tra_appcategory=#{traAppcategory}
+        </if>
+        <if test="traRawvalue != null" >
+            OR ${alias}.tra_rawvalue=#{traRawvalue}
+        </if>
+        <if test="traTranslatevalue != null" >
+            OR ${alias}.tra_translatevalue=#{traTranslatevalue}
+        </if>
+        <if test="traOwnerid != null" >
+            OR ${alias}.tra_ownerid=#{traOwnerid}
+        </if>
+        <if test="traOwnername != null" >
+            OR ${alias}.tra_ownername=#{traOwnername}
+        </if>
+        <if test="traAppdescription != null" >
+            OR ${alias}.tra_appdescription=#{traAppdescription}
+        </if>
+    </sql>
+
+    <sql id="likeAndCond">
+        <if test="traId != null" >
+            and ${alias}.tra_id ~* #{traId}
+        </if>
+        <if test="traAppcategory != null" >
+            and CAST(${alias}.tra_appcategory AS VARCHAR) ~* CAST(#{traAppcategory} AS VARCHAR)
+        </if>
+        <if test="traRawvalue != null" >
+            and CAST(${alias}.tra_rawvalue AS VARCHAR) ~* CAST(#{traRawvalue} AS VARCHAR)
+        </if>
+        <if test="traTranslatevalue != null" >
+            and ${alias}.tra_translatevalue ~* #{traTranslatevalue}
+        </if>
+        <if test="traOwnerid != null" >
+            and ${alias}.tra_ownerid ~* #{traOwnerid}
+        </if>
+        <if test="traOwnername != null" >
+            and ${alias}.tra_ownername ~* #{traOwnername}
+        </if>
+        <if test="traAppdescription != null" >
+            and ${alias}.tra_appdescription ~* #{traAppdescription}
+        </if>
+    </sql>
+
+    <!-- 添加 -->
+    <insert id="save" parameterType="com.earthworm.ipsp.foundation.entity.StaticdataTranslate">
+        INSERT INTO <include refid="table"/>
+        <include refid="insCols"/>
+        <include refid="insVals"/>
+    </insert>
+
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into <include refid="table"/> (<include refid="cols"/>) values
+            <foreach item="item" collection="list" separator=",">
+               (
+                      #{item.traId},
+                      #{item.traAppcategory},
+                      #{item.traRawvalue},
+                      #{item.traTranslatevalue},
+                      #{item.traOwnerid},
+                      #{item.traOwnername},
+                      #{item.traAppdescription}
+                )
+            </foreach>
+    </insert>
+
+    <!-- 根据ID删除 -->
+    <delete id="deleteById" parameterType="string">
+        delete from  Staticdata_Translate where tra_id= #{traId}
+    </delete>
+
+    <!-- 删除所有信息 -->
+    <delete id="deleteAll">
+        delete from Staticdata_Translate;
+    </delete>
+
+    <delete id="delete" parameterType="com.earthworm.ipsp.foundation.entity.StaticdataTranslate">
+        delete from Staticdata_Translate t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </delete>
+
+    <delete id="deleteByCondition" parameterType="java.util.Map">
+        delete from Staticdata_Translate t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="com.earthworm.ipsp.foundation.entity.StaticdataTranslate">
+        update Staticdata_Translate
+        <set>
+            <include refid="updCols" />
+        </set>
+        where tra_id=#{traId}
+    </update>
+
+    <!-- 查询所有 -->
+    <select id="findAll" resultMap="StaticdataTranslate">
+        select <include refid="cols"/> from Staticdata_Translate
+    </select>
+
+    <!-- 根据ID查询 -->
+    <select id="findById" parameterType="string" resultMap="StaticdataTranslate">
+        select <include refid="cols"/> from Staticdata_Translate where tra_id=#{traId}
+    </select>
+
+    <select id="find" parameterType="string" resultMap="StaticdataTranslate">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Staticdata_Translate t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultMap="StaticdataTranslate">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Staticdata_Translate t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <!-- 查询总记录数 -->
+    <select id="countAll" resultType="long">
+        select count(tra_id) from Staticdata_Translate
+    </select>
+
+    <select id="count" parameterType="com.earthworm.ipsp.foundation.entity.StaticdataTranslate" resultType="long">
+        select count(t.tra_id) from Staticdata_Translate t
+        <where>
+            <include refid="objAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="countByCondition" parameterType="com.earthworm.ipsp.foundation.entity.StaticdataTranslate" resultType="long">
+        select count(t.tra_id) from Staticdata_Translate t
+        <where>
+            <include refid="mapAndCond"><property name="alias" value="t"/></include>
+        </where>
+    </select>
+
+    <select id="findByOrQuery" parameterType="com.earthworm.ipsp.foundation.entity.StaticdataTranslate" resultMap="StaticdataTranslate">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from Staticdata_Translate t
+        <where>
+            <include refid="objOrCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+
+    <select id="findLikeInfo" parameterType="string" resultMap="StaticdataTranslate">
+        select <include refid="colsForAlias"><property name="alias" value="t"/></include> from staticdata_translate t
+        <where>
+            <include refid="likeAndCond"><property name="alias" value="t" /></include>
+        </where>
+    </select>
+</mapper>
